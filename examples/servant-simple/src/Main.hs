@@ -21,8 +21,8 @@ type IssueCommentHookAPI
     :> Post '[JSON] ()
 
 issueCommentHook :: RepoWebhookEvent -> ((), IssueCommentEvent) -> Handler ()
-issueCommentHook _ ev =
-    liftIO . putStrLn $ (show . whIssueCommentBody . evIssueCommentPayload . snd) ev
+issueCommentHook _ ev = liftIO $
+    print $ (show . whIssueCommentBody . evIssueCommentPayload . snd) ev
 
 main :: IO ()
 main = do

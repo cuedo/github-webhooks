@@ -26,7 +26,7 @@ type PushHookAPI
 pushHook :: RepoWebhookEvent -> ((), PushEvent) -> Handler ()
 pushHook _ (_, ev) = liftIO $ do
     putStrLn $ (show . whUserLogin . evPushSender) ev ++ " pushed a commit causing HEAD SHA to become:"
-    putStrLn $ (show . fromJust . evPushHeadSha) ev
+    print $ (fromJust . evPushHeadSha) ev
 
 -- Issue Comment Hook
 
@@ -38,7 +38,7 @@ type IssueCommentHookAPI
 issueCommentHook :: RepoWebhookEvent -> ((), IssueCommentEvent) -> Handler ()
 issueCommentHook _ (_, ev) = liftIO $ do
     putStrLn "An issue comment was posted:"
-    putStrLn $ (show . whIssueCommentBody . evIssueCommentPayload) ev
+    print $ (whIssueCommentBody . evIssueCommentPayload) ev
 
 -- Combine Handlers
 

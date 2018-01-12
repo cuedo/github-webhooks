@@ -2,12 +2,13 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 83b636769db28062ff2e3fe32da99c50cdecac5126424a868592c3d32145f869
+-- hash: 5615459135d4ff74ceec05176fb1708f3f5c7b50dd4184b4d462e62af6bbdb17
 
 name:           github-webhooks
 version:        0.9.0
-synopsis:       Support for GitHub webhook payloads.
-description:    Complete instances for decoding (using @aeson@) and interpreting webhook payloads from the GitHub API.
+synopsis:       Aeson instances for GitHub Webhook payloads.
+description:    Complete instances for decoding GitHub Webhook payloads (using @aeson@). See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
+category:       GitHub
 homepage:       https://github.com/onrock-eng/github-webhooks#readme
 bug-reports:    https://github.com/onrock-eng/github-webhooks/issues
 author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
@@ -17,6 +18,11 @@ license:        MIT
 license-file:   LICENSE
 build-type:     Simple
 cabal-version:  >= 1.10
+
+extra-source-files:
+    CHANGELOG.md
+    package.yaml
+    stack.yaml
 
 source-repository head
   type: git

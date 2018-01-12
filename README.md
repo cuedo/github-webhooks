@@ -1,4 +1,4 @@
-![github-webhooks Mascot](./doc/github-webhooks-mascot-248.svg)<br/>
+![github-webhooks Mascot](./doc/github-webhooks-mascot-248.svg)  
 github-webhooks
 ---------------
 
@@ -47,11 +47,11 @@ eitherDecode' json :: Either String WatchEvent
 ```
 
 Some practical integration examples are also provided:
-* [Servant Integration (Simple)](./examples/servant-simple#readme)<br/>
+* [Servant Integration (Simple)](./examples/servant-simple#readme)  
   Minimal working example of integrating this package with [servant] and [servant-github-webhook].
-* [Servant Integration (Typical)](./examples/servant-adv#readme)<br/>
+* [Servant Integration (Typical)](./examples/servant-adv#readme)  
   This example demonstrates more advanced use-cases with [servant] by decoding multiple different types of payloads on the same endpoint.
-* [Scotty Integration](./examples/scotty#readme)<br/>
+* [Scotty Integration](./examples/scotty#readme)  
   Minimal working example of integrating this package with [scotty].
 
 ## Changelog

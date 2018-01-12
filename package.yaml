@@ -1,12 +1,20 @@
 name: github-webhooks
 version: 0.9.0
+
+category: GitHub
 license: MIT
-synopsis: Support for GitHub webhook payloads.
-description: Complete instances for decoding (using @aeson@) and interpreting webhook payloads from the GitHub API.
+extra-source-files:
+  - package.yaml
+  - stack.yaml
+  - CHANGELOG.md
+synopsis: Aeson instances for GitHub Webhook payloads.
 copyright: (c) 2017-2018 OnRock Engineering
 author: Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
 maintainer: Kyle Van Berendonck <foss@onrock.engineering>
 github: onrock-eng/github-webhooks
+description:
+    Complete instances for decoding GitHub Webhook payloads (using @aeson@).
+    See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
 
 ghc-options:
   - -Wall
