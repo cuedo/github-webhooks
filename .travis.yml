@@ -1,0 +1,36 @@
+# .travis.yml
+# Used for Continuous Integration builds on Linux/OS X via https://travis-ci.org
+sudo: false
+language: c # default is ruby
+
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      env:
+        - STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
+        - HLINT=Y
+        - WEEDER=Y
+    - os: osx
+      env: STACK_PKG_URL=https://www.stackage.org/stack/osx-x86_64
+
+cache:
+  directories:
+    - $HOME/.stack
+
+before_install:
+  - source .ci-scripts/travis/install-stack.sh
+
+# Here starts the actual work to be performed for the package under test;
+# any command which exits with a non-zero exit code causes the build to fail.
+script:
+  - if [[ $HLINT ]]; then source .ci-scripts/travis/run-hlint.sh; fi
+  - travis_wait 30 stack --no-terminal --skip-ghc-check test --haddock --no-haddock-deps
+  - if [[ $WEEDER ]]; then source .ci-scripts/travis/run-weeder.sh; fi
+
+  # Build the integration examples
+  - travis_wait 30 stack --no-terminal --skip-ghc-check build
+    github-webhooks-scotty-example
+    github-webhooks-servant-simple-example
+    github-webhooks-servant-example
+

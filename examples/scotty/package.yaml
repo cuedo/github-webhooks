@@ -1,0 +1,25 @@
+name: github-webhooks-scotty-example
+version: 0.0.0
+license: MIT
+copyright: (c) 2017-2018 OnRock Engineering
+author: Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
+maintainer: Kyle Van Berendonck <foss@onrock.engineering>
+
+ghc-options:
+  - -Wall
+  - -Wincomplete-uni-patterns
+  - -Wincomplete-record-updates
+
+default-extensions:
+  - OverloadedStrings
+
+dependencies:
+ - base == 4.*
+ - bytestring
+ - github-webhooks
+ - scotty
+
+executables:
+  github-webhooks-scotty-example:
+    main: Main.hs
+    source-dirs: src

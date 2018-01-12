@@ -1,0 +1,32 @@
+name: github-webhooks-servant-simple-example
+version: 0.0.0
+license: MIT
+copyright: (c) 2017-2018 OnRock Engineering
+author: Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
+maintainer: Kyle Van Berendonck <foss@onrock.engineering>
+
+ghc-options:
+  - -Wall
+  - -Wincomplete-uni-patterns
+  - -Wincomplete-record-updates
+
+default-extensions:
+  - OverloadedStrings
+  - DataKinds
+  - TypeFamilies
+  - TypeOperators
+
+dependencies:
+ - base == 4.*
+ - bytestring
+ - wai
+ - warp
+ - github-webhooks
+ - servant
+ - servant-server
+ - servant-github-webhook
+
+executables:
+  github-webhooks-servant-example:
+    main: Main.hs
+    source-dirs: src

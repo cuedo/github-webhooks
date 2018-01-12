@@ -1,0 +1,43 @@
+name: github-webhooks
+version: 0.9.0
+license: MIT
+synopsis: Support for GitHub webhook payloads.
+description: Complete instances for decoding (using @aeson@) and interpreting webhook payloads from the GitHub API.
+copyright: (c) 2017-2018 OnRock Engineering
+author: Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
+maintainer: Kyle Van Berendonck <foss@onrock.engineering>
+github: onrock-eng/github-webhooks
+
+ghc-options:
+  - -Wall
+  - -Wincomplete-uni-patterns
+  - -Wincomplete-record-updates
+
+default-extensions:
+  - DeriveDataTypeable
+  - DeriveGeneric
+  - OverloadedStrings
+
+dependencies:
+ - base == 4.*
+ - aeson
+ - text
+ - vector
+
+library:
+  source-dirs: src
+  dependencies:
+    - deepseq
+    - deepseq-generics
+    - time
+
+tests:
+  spec:
+    source-dirs: spec
+    main: Spec.hs
+    dependencies:
+      - github-webhooks
+      - hspec == 2.*
+      - bytestring
+    default-extensions:
+      - ScopedTypeVariables
