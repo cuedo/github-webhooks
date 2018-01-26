@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5615459135d4ff74ceec05176fb1708f3f5c7b50dd4184b4d462e62af6bbdb17
+-- hash: f7a90de8da51ba7bfe8b932cd2e197309c530257d3ed031c1d776ccb5cd7f39e
 
 name:           github-webhooks
 version:        0.9.0
@@ -36,14 +36,19 @@ library
   build-depends:
       aeson
     , base ==4.*
+    , base16-bytestring
+    , bytestring
+    , cryptonite
     , deepseq
     , deepseq-generics
+    , memory
     , text
     , time
     , vector
   exposed-modules:
       GitHub.Data.Webhooks.Events
       GitHub.Data.Webhooks.Payload
+      GitHub.Data.Webhooks.Secure
   other-modules:
       Paths_github_webhooks
   default-language: Haskell2010

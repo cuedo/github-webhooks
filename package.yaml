@@ -29,14 +29,18 @@ default-extensions:
 dependencies:
  - base == 4.*
  - aeson
+ - bytestring
  - text
  - vector
 
 library:
   source-dirs: src
   dependencies:
+    - base16-bytestring
+    - cryptonite
     - deepseq
     - deepseq-generics
+    - memory
     - time
 
 tests:
@@ -46,6 +50,5 @@ tests:
     dependencies:
       - github-webhooks
       - hspec == 2.*
-      - bytestring
     default-extensions:
       - ScopedTypeVariables
