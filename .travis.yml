@@ -7,10 +7,7 @@ matrix:
   fast_finish: true
   include:
     - os: linux
-      env:
-        - STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
-        - HLINT=Y
-        - WEEDER=Y
+      env: STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
     - os: osx
       env: STACK_PKG_URL=https://www.stackage.org/stack/osx-x86_64
 
@@ -24,9 +21,9 @@ before_install:
 # Here starts the actual work to be performed for the package under test;
 # any command which exits with a non-zero exit code causes the build to fail.
 script:
-  - if [[ $HLINT ]]; then source .ci-scripts/travis/run-hlint.sh; fi
+  - source .ci-scripts/travis/run-hlint.sh
   - travis_wait 45 stack --no-terminal --skip-ghc-check test --haddock --no-haddock-deps
-  - if [[ $WEEDER ]]; then source .ci-scripts/travis/run-weeder.sh; fi
+  - source .ci-scripts/travis/run-weeder.sh
 
   # Build the integration examples
   - travis_wait 45 stack --no-terminal --skip-ghc-check build
