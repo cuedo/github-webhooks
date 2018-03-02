@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f7a90de8da51ba7bfe8b932cd2e197309c530257d3ed031c1d776ccb5cd7f39e
+-- hash: 5dd15a0aa8328bdcde1b059bb3bba07566dab8d1382357f03bc9ac9427ea36fc
 
 name:           github-webhooks
 version:        0.9.0
@@ -21,6 +21,38 @@ cabal-version:  >= 1.10
 
 extra-source-files:
     CHANGELOG.md
+    fixtures/commit-comment-event.json
+    fixtures/create-event.json
+    fixtures/delete-event.json
+    fixtures/deployment-event.json
+    fixtures/deployment-status-event.json
+    fixtures/fork-event.json
+    fixtures/gollum-event.json
+    fixtures/installation-event.json
+    fixtures/installation-repo-event.json
+    fixtures/issue-comment-event.json
+    fixtures/issues-event.json
+    fixtures/label-event.json
+    fixtures/member-event.json
+    fixtures/membership-event.json
+    fixtures/milestone-event.json
+    fixtures/org-block-event.json
+    fixtures/organization-event.json
+    fixtures/page-build-event.json
+    fixtures/project-card-event.json
+    fixtures/project-column-event.json
+    fixtures/project-event.json
+    fixtures/public-event.json
+    fixtures/pull-request-event.json
+    fixtures/pull-request-review-comment-event.json
+    fixtures/pull-request-review-event.json
+    fixtures/push-event.json
+    fixtures/release-event.json
+    fixtures/repository-event.json
+    fixtures/status-event.json
+    fixtures/team-add-event.json
+    fixtures/team-event.json
+    fixtures/watch-event.json
     package.yaml
     stack.yaml
 

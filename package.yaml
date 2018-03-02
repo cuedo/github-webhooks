@@ -7,6 +7,7 @@ extra-source-files:
   - package.yaml
   - stack.yaml
   - CHANGELOG.md
+  - fixtures/*.json
 synopsis: Aeson instances for GitHub Webhook payloads.
 copyright: (c) 2017-2018 OnRock Engineering
 author: Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
