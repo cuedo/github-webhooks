@@ -6,6 +6,7 @@ license: MIT
 extra-source-files:
   - package.yaml
   - stack.yaml
+  - stack-*.yaml
   - CHANGELOG.md
   - fixtures/*.json
 synopsis: Aeson instances for GitHub Webhook payloads.
