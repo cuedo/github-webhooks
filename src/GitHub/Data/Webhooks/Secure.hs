@@ -1,6 +1,9 @@
--- See <https://developer.github.com/webhooks/securing/>.
+{-# LANGUAGE Trustworthy #-}
+
+-- | See <https://developer.github.com/webhooks/securing/>.
 module GitHub.Data.Webhooks.Secure
-    ( isSecurePayload
+    ( PayloadNotSecure(..)
+    , isSecurePayload
     , assertSecurePayload
     ) where
 

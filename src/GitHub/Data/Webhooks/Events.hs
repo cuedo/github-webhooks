@@ -1,3 +1,5 @@
+{-# LANGUAGE Trustworthy #-}
+
 --
 module GitHub.Data.Webhooks.Events
     ( EventHasSender(..)

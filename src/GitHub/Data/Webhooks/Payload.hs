@@ -1,3 +1,5 @@
+{-# LANGUAGE Trustworthy #-}
+
 --
 module GitHub.Data.Webhooks.Payload
     ( -- * Construction Types
