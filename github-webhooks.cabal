@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 72cc73dfb174ed7c815be04d09918735a1f0e7211bb752fa5d58fa2f7564f9eb
+-- hash: 3a5e153626d27bf18ef6a1b4bcd4346c0b6fb4a13a071adc473d6224f7f87aec
 
 name:           github-webhooks
 version:        0.9.1
@@ -57,6 +57,7 @@ extra-source-files:
     stack-ghc-7.10.yaml
     stack-ghc-7.8.yaml
     stack-ghc-8.0.yaml
+    stack-nightly.yaml
     stack.yaml
 
 source-repository head
@@ -67,7 +68,7 @@ library
   hs-source-dirs:
       src
   default-extensions: DeriveDataTypeable DeriveGeneric OverloadedStrings
-  ghc-options: -Wall -Wincomplete-uni-patterns -Wincomplete-record-updates
+  ghc-options: -Wall
   build-depends:
       aeson
     , base ==4.*
@@ -94,7 +95,7 @@ test-suite spec
   hs-source-dirs:
       spec
   default-extensions: DeriveDataTypeable DeriveGeneric OverloadedStrings ScopedTypeVariables
-  ghc-options: -Wall -Wincomplete-uni-patterns -Wincomplete-record-updates
+  ghc-options: -Wall
   build-depends:
       aeson
     , base ==4.*

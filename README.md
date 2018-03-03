@@ -6,7 +6,7 @@ github-webhooks
 [![Stackage](http://stackage.org/package/github-webhooks/badge/nightly?style=flat-square)](https://www.stackage.org/package/github-webhooks)
 [![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=flat-square)](#license)
 
-|             | `lts-10.0` |
+|             | `lts-10.7` |
 |-------------|------------|
 | Linux & OSX | [![Linux & OSX](https://img.shields.io/travis/onrock-eng/github-webhooks/master.svg?style=flat-square)]() |
 | Windows     | [![Windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/master.svg?style=flat-square)]() |
