@@ -1,9 +1,7 @@
 resolver: lts-2.22
 extra-deps:
 # Needed for servant examples
-- servant-github-webhook-0.3.2.1
-extra-deps:
-- cryptonite-0.25
+- servant-github-webhook-0.4.0.0
 packages:
 - .
 - location: ./examples/servant-simple
