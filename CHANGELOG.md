@@ -2,6 +2,8 @@
 
 * Fixed a bug whereby the test fixtures were not included in the source distribution (resolves #8)
 * Marked the modules as Trustworthy indicating that they do not perform unsafe operations (resolves #9)
+* Include stack files for older resolvers in CI and the source distribution
+* Removed flags from the cabal file that prevented older GHC from being able to build (contributes #6)
 
 # 0.9.0
 
