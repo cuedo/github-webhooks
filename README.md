@@ -6,9 +6,9 @@ github-webhooks
 [![Stackage](http://stackage.org/package/github-webhooks/badge/nightly?style=flat-square)](https://www.stackage.org/package/github-webhooks)
 [![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=flat-square)](#license)
 
-|             | `0.9.0` | `master` |
+|             | `0.9.1` | `master` |
 |-------------|---------|----------|
-| Linux & OSX | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks/0.9.0.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) |
+| Linux & OSX | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks/0.9.1.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) |
 | Windows     | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/master.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/master.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) |
 
 Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
