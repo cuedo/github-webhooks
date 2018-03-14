@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a1a4064d53639fefe12d7deb1295ebb9246da1ff5a828e58baf91112ee25169a
+-- hash: 6c174b34807ade0436cdf6494f4266981d8c18f39b3f490bb8cce69c8e6a02bf
 
 name:           github-webhooks
 version:        0.9.1
@@ -11,7 +11,8 @@ description:    Complete instances for decoding GitHub Webhook payloads (using @
 category:       GitHub
 homepage:       https://github.com/onrock-eng/github-webhooks#readme
 bug-reports:    https://github.com/onrock-eng/github-webhooks/issues
-author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
+author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>,
+                Christian Sakai <christianmsakai@gmail.com>
 maintainer:     Kyle Van Berendonck <foss@onrock.engineering>
 copyright:      (c) 2017-2018 OnRock Engineering
 license:        MIT
