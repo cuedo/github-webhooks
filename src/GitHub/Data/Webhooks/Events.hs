@@ -102,7 +102,7 @@ module GitHub.Data.Webhooks.Events
     , WatchEventAction(..)
     ) where
 
-import           Data.Aeson               (FromJSON(..), withObject, withText, (.:), (.:?))
+import           Data.Aeson               (FromJSON(..), withObject, withText, (.:), (.:?), Object)
 import           Control.DeepSeq          (NFData(..))
 import           Control.DeepSeq.Generics (genericRnf)
 import           Data.Data                (Data, Typeable)
