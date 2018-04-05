@@ -24,6 +24,7 @@ module GitHub.Data.Webhooks.Payload
     , HookCommit(..)
     , HookRelease(..)
     , HookPullRequest(..)
+    , PullRequestTarget(..)
     , HookPullRequestReview(..)
     , HookInstallation(..)
     , HookDeployment(..)
@@ -453,6 +454,8 @@ data HookPullRequest = HookPullRequest
     , whPullReqRevCommentUrl    :: !URL
     , whPullReqCommentsUrl      :: !URL
     , whPullReqStatusesUrl      :: !URL
+    , whPullReqBase             :: !PullRequestTarget
+    , whPullReqHead             :: !PullRequestTarget
     -- , whPullReqIsMerged         :: !Bool
     -- , whPullReqIsMergeable      :: !Bool
     -- , whPullReqMergeableState   :: !Text
@@ -468,6 +471,16 @@ data HookPullRequest = HookPullRequest
 
 instance NFData HookPullRequest where rnf = genericRnf
 
+data PullRequestTarget = PullRequestTarget
+    { whPullReqTargetSha :: !Text
+    , whPullReqTargetUser :: !HookUser
+    , whPullReqTargetRepo :: !HookRepository
+    , whPullReqTargetLabel :: !Text -- ex "user:branch"
+    , whPullReqTargetRef :: !Text -- ex "somebranch"
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData PullRequestTarget where rnf = genericRnf
 
 data HookPullRequestReview = HookPullRequestReview
     { whPullReqReviewId         :: !Int
@@ -907,6 +920,8 @@ instance FromJSON HookPullRequest where
       <*> o .: "review_comment_url"
       <*> o .: "comments_url"
       <*> o .: "statuses_url"
+      <*> o .: "base"
+      <*> o .: "head"
       -- <*> o .: "merged"
       -- <*> o .: "mergeable"
       -- <*> o .: "mergeable_state"
@@ -917,6 +932,14 @@ instance FromJSON HookPullRequest where
       <*> o .:? "additions"
       <*> o .:? "deletions"
       <*> o .:? "changed_files"
+
+instance FromJSON PullRequestTarget where
+    parseJSON = withObject "PullRequestTarget" $ \o -> PullRequestTarget
+      <$> o .: "sha"
+      <*> o .: "user"
+      <*> o .: "repo"
+      <*> o .: "label"
+      <*> o .: "ref"
 
 instance FromJSON HookPullRequestReview where
   parseJSON = withObject "HookPullRequestReview" $ \o -> HookPullRequestReview
