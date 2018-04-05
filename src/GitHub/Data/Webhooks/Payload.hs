@@ -426,9 +426,6 @@ data HookRelease = HookRelease
 
 instance NFData HookRelease where rnf = genericRnf
 
-
--- FIXME: Property "head" missing (not sure)
--- FIXME: Property "base" missing (not sure)
 data HookPullRequest = HookPullRequest
     { whPullReqUrl              :: !URL
     , whPullReqId               :: !Int

@@ -94,7 +94,7 @@ module GitHub.Data.Webhooks.Events
     , WatchEventAction(..)
     ) where
 
-import           Data.Aeson               (FromJSON(..), withObject, withText, (.:), (.:?), Object)
+import           Data.Aeson               (FromJSON(..), withObject, withText, (.:), (.:?))
 import           Control.DeepSeq          (NFData(..))
 import           Control.DeepSeq.Generics (genericRnf)
 import           Data.Data                (Data, Typeable)
@@ -854,7 +854,6 @@ data PullRequestEvent = PullRequestEvent
     , evPullReqRepo             :: !HookRepository
     , evPullReqSender           :: !HookUser
     , evPullReqInstallationId   :: !Int
-    , evRawObject               :: !Object
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
@@ -1352,7 +1351,6 @@ instance FromJSON PullRequestEvent where
         <*> o .: "repository"
         <*> o .: "sender"
         <*> (o .: "installation" >>= \i -> i .: "id")
-        <*> pure o
 
 instance FromJSON PullRequestReviewEvent where
     parseJSON = withObject "PullRequestReviewEvent" $ \o -> PullRequestReviewEvent
