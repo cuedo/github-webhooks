@@ -43,7 +43,7 @@ module GitHub.Data.Webhooks.Payload
     , HookPullRequestReviewComment(..)
     ) where
 
-import           Data.Aeson               (FromJSON(..), withObject, withText, (.!=), (.:), (.:?))
+import           Data.Aeson               (FromJSON(..), ToJSON(..), Value(..), withObject, withText, object, (.!=), (.:), (.:?), (.=))
 import           Control.DeepSeq          (NFData (..))
 import           Control.DeepSeq.Generics (genericRnf)
 import           Control.Applicative      ((<|>))
@@ -71,6 +71,10 @@ instance FromJSON OwnerType where
           "organization"  -> pure OwnerOrganization
           _               -> fail $ "Unknown owner type: " ++ T.unpack t
 
+instance ToJSON OwnerType where
+  toJSON OwnerUser          = String "user"
+  toJSON OwnerOrganization  = String "organization"
+
 
 -- | Represents an internet address that would be suitable to query
 -- for more information. The GitHub API only returns valid 'URL's.
@@ -81,6 +85,9 @@ instance NFData URL where rnf = genericRnf
 
 instance FromJSON URL where
   parseJSON = withText "URL" (pure . URL)
+
+instance ToJSON URL where
+  toJSON (URL url) = String url
 
 -- | Demote GitHub URL to Text.
 getUrl :: URL -> Text
@@ -659,6 +666,32 @@ instance FromJSON HookIssue where
       <*> o .: "updated_at"
       <*> o .:? "closed_at"
       <*> o .: "body"
+
+instance ToJSON HookIssue where
+  toJSON hookIssue = object
+    [ "url"           .= whIssueUrl hookIssue
+    , "labels_url"    .= whIssueLabelsUrl hookIssue
+    , "comments_url"  .= whIssueCommentsUrl hookIssue
+    , "events_url"    .= whIssueEventsUrl hookIssue
+    , "html_url"      .= whIssueHtmlUrl hookIssue
+    , "id"            .= whIssueId hookIssue
+    , "number"        .= whIssueNumber hookIssue
+    , "title"         .= whIssueTitle hookIssue
+    , "user"          .= whIssueUser hookIssue
+    , "labels"        .= whIssueLabels hookIssue
+    , "state"         .= whIssueState hookIssue
+    , "locked"        .= whIssueIsLocked hookIssue
+    , "assignee"      .= whIssueAssignee hookIssue
+    , "milestone"     .= whIssueMilestone hookIssue
+    , "comments"      .= whIssueCommentCount hookIssue
+    , "created_at"    .= whIssueCreatedAt hookIssue
+    , "updated_at"    .= whIssueUpdatedAt hookIssue
+    , "closed_at"     .= (case whIssueClosedAt hookIssue of
+                            Just utcTime -> toJSON utcTime
+                            Nothing      -> ""
+                         )
+    , "body"          .= whIssueBody hookIssue
+    ]
 
 instance FromJSON HookRepository where
   parseJSON = withObject "HookRepository" $ \o -> HookRepository
