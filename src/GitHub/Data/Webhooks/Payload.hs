@@ -793,6 +793,27 @@ instance FromJSON HookUser where
       <*> o .: "type"
       <*> o .: "site_admin"
 
+instance ToJSON HookUser where
+  toJSON hookUser = object
+    [ "login"               .= whUserLogin hookUser
+    , "id"                  .= whUserId hookUser
+    , "avatar_url"          .= whUserAvatarUrl hookUser
+    , "gravatar_id"         .= whUserGravatarId hookUser
+    , "url"                 .= whUserUrl hookUser
+    , "html_url"            .= whUserHtmlUrl hookUser
+    , "followers_url"       .= whUserFollowersUrl hookUser
+    , "following_url"       .= whUserFollowingUrl hookUser
+    , "gists_url"           .= whUserGistsUrl hookUser
+    , "starred_url"         .= whUserStarredUrl hookUser
+    , "subscriptions_url"   .= whUserSubscriptionsUrl hookUser
+    , "organizations_url"   .= whUserOrganizationsUrl hookUser
+    , "repos_url"           .= whUserReposUrl hookUser
+    , "events_url"          .= whUserEventsUrl hookUser
+    , "received_events_url" .= whUserReceivedEventsUrl hookUser
+    , "type"                .= whUserType hookUser
+    , "site_admin"          .= whUserIsAdminOfSite hookUser
+    ]
+
 instance FromJSON HookSimpleUser where
   parseJSON = withObject "HookSimpleUser" $ \o -> HookSimpleUser
       <$> o .: "name"
@@ -856,6 +877,25 @@ instance FromJSON HookMilestone where
       <*> o .: "due_on"
       <*> o .: "closed_at"
 
+instance ToJSON HookMilestone where
+  toJSON hookMilestone = object
+    [ "url"           .= whMilestoneUrl hookMilestone
+    , "html_url"      .= whMilestoneHtmlUrl hookMilestone
+    , "labels_url"    .= whMilestoneLabelsUrl hookMilestone
+    , "id"            .= whMilestoneId hookMilestone
+    , "number"        .= whMilestoneNumber hookMilestone
+    , "title"         .= whMilestoneTitle hookMilestone
+    , "description"   .= whMilestoneDescription hookMilestone
+    , "creator"       .= whMilestoneCreator hookMilestone
+    , "open_issues"   .= whMilestoneOpenIssues hookMilestone
+    , "closed_issues" .= whMilestoneClosedIssues hookMilestone
+    , "state"         .= whMilestoneState hookMilestone
+    , "created_at"    .= whMilestoneCreatedAt hookMilestone
+    , "updated_at"    .= whMilestoneUpdatedAt hookMilestone
+    , "due_on"        .= whMilestoneDueOn hookMilestone
+    , "closed_at"     .= whMilestoneClosedAt hookMilestone
+    ]
+
 instance FromJSON HookMembership where
   parseJSON = withObject "HookMembership" $ \o -> HookMembership
       <$> o .: "url"
@@ -907,6 +947,18 @@ instance FromJSON HookIssueLabels where
       <*> o .: "name"
       <*> o .: "color"
       <*> o .:? "default" .!= False
+
+instance ToJSON HookIssueLabels where
+  toJSON hookIssueLabels = object
+    [ "id"      .= (case whIssueLabelId hookIssueLabels of
+                      Just hookIssueLabelsId  -> toJSON hookIssueLabelsId
+                      Nothing                 -> ""
+                   )
+    , "url"     .= whIssueLabelUrl hookIssueLabels
+    , "name"    .= whIssueLabelName hookIssueLabels
+    , "color"   .= whIssueLabelColor hookIssueLabels
+    , "default" .= whIssueLabelIsDefault hookIssueLabels
+    ]
 
 instance FromJSON HookCommit where
   parseJSON = withObject "HookCommit" $ \o -> HookCommit
