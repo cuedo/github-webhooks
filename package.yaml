@@ -11,7 +11,9 @@ extra-source-files:
   - fixtures/*.json
 synopsis: Aeson instances for GitHub Webhook payloads.
 copyright: (c) 2017-2018 OnRock Engineering
-author: Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
+author:
+  - Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
+  - Christian Sakai <christianmsakai@gmail.com>
 maintainer: Kyle Van Berendonck <foss@onrock.engineering>
 github: onrock-eng/github-webhooks
 description:

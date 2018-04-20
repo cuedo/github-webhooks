@@ -1,6 +1,12 @@
 {-# LANGUAGE Trustworthy #-}
+{-|
+Module      : Github.Data.Webhooks.Events
+Copyright   : (c) OnRock Engineering, 2018
+License     : MIT
+Maintainer  : Kyle Van Berendonck <foss@onrock.engineering>
 
---
+This module contains types that represent GitHub webhook's events.
+-}
 module GitHub.Data.Webhooks.Events
     ( EventHasSender(..)
     , EventHasRepo(..)
@@ -107,16 +113,18 @@ import           GHC.Generics             (Generic)
 
 import           GitHub.Data.Webhooks.Payload
 
-
+-- | Represents an event that contains its sender information.
 class EventHasSender eventKind where
     -- | Provides the sender context of a Webhook event.
     senderOfEvent :: eventKind -> HookUser
 
+-- | Represents an event that contains its repository information.
 class EventHasRepo eventKind where
     -- | Provides the repository context of a Webhook event.
     repoForEvent :: eventKind -> HookRepository
 
-
+-- | Represents the "action" field in the
+-- 'CommitCommentEvent' payload.
 data CommitCommentEventAction
     -- | Decodes from "created"
     = CommitCommentActionCreated

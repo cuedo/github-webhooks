@@ -1,6 +1,12 @@
 {-# LANGUAGE Trustworthy #-}
+{-|
+Module      : Github.Data.Webhooks.Payload
+Copyright   : (c) OnRock Engineering, 2018
+License     : MIT
+Maintainer  : Kyle Van Berendonck <foss@onrock.engineering>
 
---
+This module contains types that represent GitHub webhook's payload contents.
+-}
 module GitHub.Data.Webhooks.Payload
     ( -- * Construction Types
       URL(..)
@@ -52,6 +58,7 @@ import           GHC.Generics             (Generic)
 
 -- Types lifted from the @github@ package.
 
+-- | Represents the owner of the repository.
 data OwnerType = OwnerUser | OwnerOrganization
     deriving (Eq, Ord, Enum, Bounded, Show, Read, Generic, Typeable, Data)
 
@@ -65,6 +72,8 @@ instance FromJSON OwnerType where
           _               -> fail $ "Unknown owner type: " ++ T.unpack t
 
 
+-- | Represents an internet address that would be suitable to query
+-- for more information. The GitHub API only returns valid 'URL's.
 newtype URL = URL Text
     deriving (Eq, Ord, Show, Generic, Typeable, Data)
 
@@ -73,6 +82,7 @@ instance NFData URL where rnf = genericRnf
 instance FromJSON URL where
   parseJSON = withText "URL" (pure . URL)
 
+-- | Demote GitHub URL to Text.
 getUrl :: URL -> Text
 getUrl (URL url) = url
 
@@ -81,6 +91,8 @@ getUrl (URL url) = url
 
 type IssueState = Text
 
+-- | Represents the "issue" field in the 'IssueCommentEvent'
+-- and 'IssueEvent' payload.
 data HookIssue = HookIssue
     { whIssueUrl                :: !URL
     , whIssueLabelsUrl          :: !URL
@@ -106,7 +118,7 @@ data HookIssue = HookIssue
 
 instance NFData HookIssue where rnf = genericRnf
 
-
+-- | Represents the "repository" field in all types of payload.
 data HookRepository = HookRepository
     { whRepoId                  :: !Int
     , whRepoName                :: !Text
@@ -177,7 +189,8 @@ data HookRepository = HookRepository
 
 instance NFData HookRepository where rnf = genericRnf
 
-
+-- | Represents the "repositories_added" and "repositories_removed"
+-- field in the 'InstallationRepositoriesEvent' payload.
 data HookRepositorySimple = HookRepositorySimple
   { whSimplRepoId               :: !Int
   , whSimplRepoName             :: !Text
@@ -187,8 +200,7 @@ data HookRepositorySimple = HookRepositorySimple
 
 instance NFData HookRepositorySimple where rnf = genericRnf
 
-
-
+-- | Represents the "label" field in the 'LabelEvent' payload.
 data HookRepositoryLabel = HookRepositoryLabel
     { whRepoLabelUrl            :: !URL
     , whRepoLabelName           :: !Text
@@ -198,7 +210,7 @@ data HookRepositoryLabel = HookRepositoryLabel
 
 instance NFData HookRepositoryLabel where rnf = genericRnf
 
-
+-- | Represents the "user" field in all types of payload.
 data HookUser = HookUser
     { whUserLogin               :: !Text
     , whUserId                  :: !Int
@@ -222,7 +234,7 @@ data HookUser = HookUser
 
 instance NFData HookUser where rnf = genericRnf
 
-
+-- FIXME: Not sure where this is.
 data HookSimpleUser = HookSimpleUser
     { whSimplUserName           :: !Text
     , whSimplUserEmail          :: !Text
@@ -232,7 +244,7 @@ data HookSimpleUser = HookSimpleUser
 
 instance NFData HookSimpleUser where rnf = genericRnf
 
-
+-- | Represents the "organization" field in all types of payload.
 data HookOrganization = HookOrganization
     { whOrgLogin                :: !Text
     , whOrgId                   :: !Int
@@ -250,7 +262,7 @@ data HookOrganization = HookOrganization
 
 instance NFData HookOrganization where rnf = genericRnf
 
-
+-- | Represents the "invitation" field in the 'OrganizationEvent' payload.
 data HookOrganizationInvitation = HookOrganizationInvitation
     { whOrgInvitationId         :: !Int
     , whOrgInvitationLogin      :: !Text
@@ -261,7 +273,7 @@ data HookOrganizationInvitation = HookOrganizationInvitation
 
 instance NFData HookOrganizationInvitation where rnf = genericRnf
 
-
+-- | Represents the "membership" field in the 'OrganizationEvent' payload.
 data HookOrganizationMembership = HookOrganizationMembership
     { whOrgMembershipUrl        :: !URL
     , whOrgMembershipState      :: !Text
@@ -273,7 +285,8 @@ data HookOrganizationMembership = HookOrganizationMembership
 
 instance NFData HookOrganizationMembership where rnf = genericRnf
 
-
+-- | Represents the "team" field in the 'TeamEvent' and
+-- 'TeamAddEvent' payload.
 data HookTeam = HookTeam
     { whTeamName                :: !Text
     , whTeamId                  :: !Int
@@ -290,6 +303,7 @@ instance NFData HookTeam where rnf = genericRnf
 
 type MilestoneState = Text
 
+-- | Represents the "milestone" field in the 'MilestoneEvent' payload.
 data HookMilestone = HookMilestone
     { whMilestoneUrl            :: !URL
     , whMilestoneHtmlUrl        :: !URL
@@ -315,6 +329,7 @@ instance NFData HookMilestone where rnf = genericRnf
 type MembershipState = Text
 type MembershipRole = Text
 
+-- FIXME: Not sure where this is.
 data HookMembership = HookMembership
     { whMembershipUrl           :: !URL
     , whMembershipState         :: !MembershipState
@@ -329,6 +344,7 @@ instance NFData HookMembership where rnf = genericRnf
 
 type ProjectState = Text
 
+-- | Represents the "project" field in the 'ProjectEvent' payload.
 data HookProject = HookProject
     { whProjectOwnerUrl         :: !URL
     , whProjectUrl              :: !URL
@@ -346,7 +362,7 @@ data HookProject = HookProject
 
 instance NFData HookProject where rnf = genericRnf
 
-
+-- | Represents the "project_card" field in the 'ProjectCardEvent' payload.
 data HookProjectCard = HookProjectCard
     { whProjectCardUrl          :: !URL
     , whProjectCardColumnUrl    :: !URL
@@ -362,7 +378,7 @@ data HookProjectCard = HookProjectCard
 
 instance NFData HookProjectCard where rnf = genericRnf
 
-
+-- | Represents the "project_column" field in the 'ProjectColumnEvent' payload.
 data HookProjectColumn = HookProjectColumn
     { whProjectColumnUrl        :: !URL
     , whProjectColumnProjUrl    :: !URL
@@ -376,7 +392,8 @@ data HookProjectColumn = HookProjectColumn
 
 instance NFData HookProjectColumn where rnf = genericRnf
 
-
+-- | Represents the "issue.labels" field in the
+-- 'IssueCommentEvent' and 'IssueEvent' payloads.
 data HookIssueLabels = HookIssueLabels
     { whIssueLabelId            :: !(Maybe Int)   -- ^ Not always sent.
     , whIssueLabelUrl           :: !URL
@@ -470,7 +487,7 @@ data HookPullRequest = HookPullRequest
 
 instance NFData HookPullRequest where rnf = genericRnf
 
-
+-- | Represents the "pull_request" field in the 'PullRequestReviewEvent' payload.
 data HookPullRequestReview = HookPullRequestReview
     { whPullReqReviewId         :: !Int
     , whPullReqReviewUser       :: !HookUser
@@ -484,7 +501,7 @@ data HookPullRequestReview = HookPullRequestReview
 
 instance NFData HookPullRequestReview where rnf = genericRnf
 
-
+-- | Represents the "installation" field in the 'InstallationEvent' payload.
 data HookInstallation = HookInstallation
     { whInstallationId          :: !Int
     , whInstallationAccount     :: !HookUser
@@ -496,7 +513,8 @@ data HookInstallation = HookInstallation
 
 instance NFData HookInstallation where rnf = genericRnf
 
-
+-- | Represents the "deployment" field in the
+-- 'DeploymentEvent' and 'DeploymentStatusEvent' payload.
 data HookDeployment = HookDeployment
     { whDeploymentUrl           :: !URL
     , whDeploymentId            :: !Int
@@ -516,7 +534,8 @@ data HookDeployment = HookDeployment
 
 instance NFData HookDeployment where rnf = genericRnf
 
-
+-- | Represents the "deployment_status" field in the
+-- 'DeploymentStatusEvent' payload.
 data HookDeploymentStatus = HookDeploymentStatus
     { whDeploymentStatusUrl     :: !URL
     , whDeploymentStatusId      :: !Int
@@ -533,7 +552,7 @@ data HookDeploymentStatus = HookDeploymentStatus
 
 instance NFData HookDeploymentStatus where rnf = genericRnf
 
-
+-- | Represents the "pages" field in the 'GollumEvent' payload.
 data HookWikiPage = HookWikiPage
     { whWikiPageName            :: !Text
     , whWikiPageTitle           :: !Text
@@ -546,7 +565,7 @@ data HookWikiPage = HookWikiPage
 
 instance NFData HookWikiPage where rnf = genericRnf
 
-
+-- | Represents the "build" field in the 'PageBuildEvent' payload.
 data HookPageBuildResult = HookPageBuildResult
     { whPageBuildUrl            :: !URL
     , whPageBuildStatus         :: !Text
@@ -561,7 +580,7 @@ data HookPageBuildResult = HookPageBuildResult
 
 instance NFData HookPageBuildResult where rnf = genericRnf
 
-
+-- | Represents the "issue" field in 'IssueComentEvent' payload.
 data HookIssueComment = HookIssueComment
     { whIssueCommentUrl         :: !URL
     , whIssueCommentHtmlUrl     :: !URL
@@ -576,7 +595,7 @@ data HookIssueComment = HookIssueComment
 
 instance NFData HookIssueComment where rnf = genericRnf
 
-
+-- | Represents the "comment" field in the 'CommitCommentEvent' payload.
 data HookCommitComment = HookCommitComment
     { whCommitCommentUrl        :: !URL
     , whCommitCommentHtmlUrl    :: !URL
@@ -594,7 +613,8 @@ data HookCommitComment = HookCommitComment
 
 instance NFData HookCommitComment where rnf = genericRnf
 
-
+-- | Represents the "pull_request" field in the
+-- 'PullRequestReviewCommentEvent' payload.
 data HookPullRequestReviewComment = HookPullRequestReviewComment
     { whPullReqRevComUrl        :: !URL
     , whPullReqRevComId         :: !Int
