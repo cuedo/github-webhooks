@@ -863,7 +863,7 @@ data PullRequestEvent = PullRequestEvent
     , evPullReqPayload          :: !HookPullRequest
     , evPullReqRepo             :: !HookRepository
     , evPullReqSender           :: !HookUser
-    , evPullReqInstallationId   :: !Int
+    , evPullReqInstallationId   :: !(Maybe Int)
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
