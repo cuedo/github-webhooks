@@ -863,7 +863,7 @@ data PullRequestEvent = PullRequestEvent
     , evPullReqPayload          :: !HookPullRequest
     , evPullReqRepo             :: !HookRepository
     , evPullReqSender           :: !HookUser
-    , evPullReqInstallationId   :: !Int
+    , evPullReqInstallationId   :: !(Maybe Int)
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
@@ -1360,7 +1360,7 @@ instance FromJSON PullRequestEvent where
         <*> o .: "pull_request"
         <*> o .: "repository"
         <*> o .: "sender"
-        <*> (o .: "installation" >>= \i -> i .: "id")
+        <*> (o .:? "installation" >>= maybe (pure Nothing) (.:? "id"))
 
 instance FromJSON PullRequestReviewEvent where
     parseJSON = withObject "PullRequestReviewEvent" $ \o -> PullRequestReviewEvent

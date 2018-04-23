@@ -3033,7 +3033,7 @@ pullRequestEventFixture = PullRequestEvent
           , whUserType = OwnerUser
           , whUserIsAdminOfSite = False
           }
-    , evPullReqInstallationId = 234
+    , evPullReqInstallationId = Just 234
     }
 
 pullRequestReviewCommentEventFixture :: PullRequestReviewCommentEvent
