@@ -2,10 +2,10 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6c174b34807ade0436cdf6494f4266981d8c18f39b3f490bb8cce69c8e6a02bf
+-- hash: d232bf8988268db8133919aa5e0010982ebac34f40ba80a07f996c28b3bd40c2
 
 name:           github-webhooks
-version:        0.9.1
+version:        0.10.0
 synopsis:       Aeson instances for GitHub Webhook payloads.
 description:    Complete instances for decoding GitHub Webhook payloads (using @aeson@). See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
 category:       GitHub

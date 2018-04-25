@@ -1,3 +1,8 @@
+# 0.10.0
+
+* Significantly improved documentation coverage and added module descriptions (by Christian Sakai, resolves #5)
+* Fixed a bug where the installation id field of 'PullRequestEvent' was not optional (by Rob Berry)
+
 # 0.9.1
 
 * Fixed a bug whereby the test fixtures were not included in the source distribution (resolves #8)
