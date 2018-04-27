@@ -2,6 +2,7 @@
 
 * Significantly improved documentation coverage and added module descriptions (by Christian Sakai, resolves #5)
 * Fixed a bug where the installation id field of 'PullRequestEvent' was not optional (by Rob Berry)
+* Implementing "head" and "base" fields to PullRequestReview (by Rob Berry and Thomas DuBuisson)
 
 # 0.9.1
 
