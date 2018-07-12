@@ -102,7 +102,7 @@ module GitHub.Data.Webhooks.Events
     , WatchEventAction(..)
     ) where
 
-import           Data.Aeson               (FromJSON(..), withObject, withText, (.:), (.:?))
+import           Data.Aeson               (FromJSON(..), withObject, withText, (.:), (.:?), (.!=))
 import           Control.DeepSeq          (NFData(..))
 import           Control.DeepSeq.Generics (genericRnf)
 import           Data.Data                (Data, Typeable)
@@ -296,6 +296,7 @@ instance FromJSON InstallationEventAction where
 data InstallationEvent = InstallationEvent
     { evInstallationAction      :: !InstallationEventAction
     , evInstallationInfo        :: !HookInstallation
+    , evInstallationRepos       :: !(Vector HookRepositorySimple)
     , evInstallationSender      :: !HookUser
     }
     deriving (Eq, Show, Typeable, Data, Generic)
@@ -1244,6 +1245,7 @@ instance FromJSON InstallationEvent where
     parseJSON = withObject "InstallationEvent" $ \o -> InstallationEvent
         <$> o .: "action"
         <*> o .: "installation"
+        <*> o .:? "repositories" .!= mempty
         <*> o .: "sender"
 
 instance FromJSON InstallationRepositoriesEvent where

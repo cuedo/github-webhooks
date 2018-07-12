@@ -196,6 +196,7 @@ data HookRepositorySimple = HookRepositorySimple
   { whSimplRepoId               :: !Int
   , whSimplRepoName             :: !Text
   , whSimplRepoFullName         :: !Text
+  , whSimplRepoIsPrivate        :: !Bool
   }
   deriving (Eq, Show, Typeable, Data, Generic)
 
@@ -744,6 +745,7 @@ instance FromJSON HookRepositorySimple where
       <$> o .: "id"
       <*> o .: "name"
       <*> o .: "full_name"
+      <*> o .: "private"
 
 instance FromJSON HookRepositoryLabel where
   parseJSON = withObject "HookRepositoryLabel" $ \o -> HookRepositoryLabel
