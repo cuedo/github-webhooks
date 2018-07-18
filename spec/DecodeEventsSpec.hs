@@ -1115,6 +1115,8 @@ installationEventFixture = InstallationEvent
           , whInstallationTokenUrl = URL "https://api.github.com/installations/2/access_tokens"
           , whInstallationRepoUrl = URL "https://api.github.com/installation/repositories"
           }
+    , evInstallationRepos = V.fromList
+        [ HookRepositorySimple { whSimplRepoId = 1296269 , whSimplRepoName = "Hello-World" , whSimplRepoFullName = "octocat/Hello-World", whSimplRepoIsPrivate = True } ]
     , evInstallationSender =
         HookUser
           { whUserLogin = "octocat"
@@ -1170,7 +1172,7 @@ installationRepoEventFixture = InstallationRepositoriesEvent
     , evInstallationRepoSel = "selected"
     , evInstallationReposAdd = V.empty
     , evInstallationReposRemove = V.fromList
-        [ HookRepositorySimple { whSimplRepoId = 1296269 , whSimplRepoName = "Hello-World" , whSimplRepoFullName = "octocat/Hello-World" } ]
+        [ HookRepositorySimple { whSimplRepoId = 1296269 , whSimplRepoName = "Hello-World" , whSimplRepoFullName = "octocat/Hello-World", whSimplRepoIsPrivate = False } ]
     , evInstallationReposSender =
         HookUser
           { whUserLogin = "octocat"
