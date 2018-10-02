@@ -25,6 +25,14 @@
     "access_tokens_url": "https://api.github.com/installations/2/access_tokens",
     "repositories_url": "https://api.github.com/installation/repositories"
   },
+  "repositories": [
+    {
+      "id": 1296269,
+      "name": "Hello-World",
+      "full_name": "octocat/Hello-World",
+      "private": true
+    }
+  ],
   "sender": {
     "login": "octocat",
     "id": 1,
