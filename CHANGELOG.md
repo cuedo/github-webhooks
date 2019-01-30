@@ -1,3 +1,8 @@
+# 0.10.1
+
+* Fixed a bug parsing related PR with empty body (by Rob Berry)
+* Updated copyright and contact information
+
 # 0.10.0
 
 * Significantly improved documentation coverage and added module descriptions (by Christian Sakai, resolves #5)
