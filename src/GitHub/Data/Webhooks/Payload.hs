@@ -929,7 +929,7 @@ instance FromJSON HookPullRequest where
       <*> o .: "locked"
       <*> o .: "title"
       <*> o .: "user"
-      <*> o .: "body"
+      <*> o .:? "body" .!= ""
       <*> o .: "created_at"
       <*> o .: "updated_at"
       <*> o .:? "closed_at"

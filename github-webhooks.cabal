@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fa98648f69f235f9a9cb69aea03e51473ebe2de375abab406423f9ef4420423b
+-- hash: a1c4c8d07282b16c71f35367bc54136dd3c7724e45dbc279eec0ea418cd14a9a
 
 name:           github-webhooks
 version:        0.10.0
@@ -45,6 +45,7 @@ extra-source-files:
     fixtures/project-column-event.json
     fixtures/project-event.json
     fixtures/public-event.json
+    fixtures/pull-request-event-null-body.json
     fixtures/pull-request-event.json
     fixtures/pull-request-review-comment-event.json
     fixtures/pull-request-review-event.json
