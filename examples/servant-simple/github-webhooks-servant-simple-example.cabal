@@ -2,13 +2,13 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 659d958b6d85cdc5e1309c5b384b4f72f6a134e2ccb51909aacbcaa33dcfd41c
+-- hash: f4544444c483914bf5892aa7e88bcc051997d88689fd1e3e52b0b62cfcdc220e
 
 name:           github-webhooks-servant-simple-example
 version:        0.0.0
-author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
-maintainer:     Kyle Van Berendonck <foss@onrock.engineering>
-copyright:      (c) 2017-2018 OnRock Engineering
+author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
+maintainer:     Kyle Van Berendonck <foss@onrock.online>
+copyright:      (c) 2017-2019 ONROCK
 license:        MIT
 build-type:     Simple
 cabal-version:  >= 1.10

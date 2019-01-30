@@ -69,7 +69,7 @@ See [LICENSE](./LICENSE) for a bundled copy of the MIT license.
 <br/>
 
 > ###### Free open source software, sponsored by
-> <a href="https://onrock.engineering" rel="sponsor">![OnRock Engineering](./doc/onrock-color-196.svg)</a>
+> <a href="https://onrock.online" rel="sponsor">![ONROCK](./doc/onrock-color-196.svg)</a>
 
 [Webhook]: https://developer.github.com/webhooks/
 

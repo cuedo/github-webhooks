@@ -2,13 +2,13 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 501f5dd0765a8ad9641840be0dcf2fb9917a6b206e61ed16fa7a0ff785367340
+-- hash: 037329c48b81e7b9c668a3d794dd62d7e7d1b2c48525a34c4deb336e6d71edbe
 
 name:           github-webhooks-scotty-example
 version:        0.0.0
-author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
-maintainer:     Kyle Van Berendonck <foss@onrock.engineering>
-copyright:      (c) 2017-2018 OnRock Engineering
+author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
+maintainer:     Kyle Van Berendonck <foss@onrock.online>
+copyright:      (c) 2017-2019 ONROCK
 license:        MIT
 build-type:     Simple
 cabal-version:  >= 1.10

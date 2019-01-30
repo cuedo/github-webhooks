@@ -1,9 +1,9 @@
 name: github-webhooks-servant-example
 version: 0.0.0
 license: MIT
-copyright: (c) 2017-2018 OnRock Engineering
-author: Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
-maintainer: Kyle Van Berendonck <foss@onrock.engineering>
+copyright: (c) 2017-2019 ONROCK
+author: Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
+maintainer: Kyle Van Berendonck <foss@onrock.online>
 
 ghc-options:
   - -Wall

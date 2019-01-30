@@ -62,7 +62,7 @@ spec = do
   it "can decode ProjectEvent"            $ fixtureShouldMatch "fixtures/project-event.json" projectEventFixture
   it "can decode PublicEvent"             $ fixtureShouldMatch "fixtures/public-event.json" publicEventFixture
   it "can decode PullRequestEvent"        $ fixtureShouldMatch "fixtures/pull-request-event.json" pullRequestEventFixture
-  it "can decode PullRequestEvent when body is null"        $ fixtureShouldMatch "fixtures/pull-request-event-null-body.json" pullRequestEventNullBodyFixture
+  it "can decode PullRequestEvent when body is null" $ fixtureShouldMatch "fixtures/pull-request-event-null-body.json" pullRequestEventNullBodyFixture
   it "can decode PullRequestReviewCommentEvent" $ fixtureShouldMatch  "fixtures/pull-request-review-comment-event.json" pullRequestReviewCommentEventFixture
   it "can decode PullRequestReviewEvent"  $ fixtureShouldMatch "fixtures/pull-request-review-event.json" pullRequestReviewEventFixture
   it "can decode PushEvent"               $ fixtureShouldMatch "fixtures/push-event.json" pushEventFixture

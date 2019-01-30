@@ -1,26 +1,27 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+-- This file has been generated from package.yaml by hpack version 0.21.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a1c4c8d07282b16c71f35367bc54136dd3c7724e45dbc279eec0ea418cd14a9a
+-- hash: e310b493da67a9769074061f068306cf777edfa12e5ef3fc1ca0da4fdcf15fbd
 
 name:           github-webhooks
-version:        0.10.0
+version:        0.10.1
 synopsis:       Aeson instances for GitHub Webhook payloads.
 description:    Complete instances for decoding GitHub Webhook payloads (using @aeson@). See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
 category:       GitHub
 homepage:       https://github.com/onrock-eng/github-webhooks#readme
 bug-reports:    https://github.com/onrock-eng/github-webhooks/issues
-author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>,
+author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.online>,
                 Christian Sakai <christianmsakai@gmail.com>,
                 Thomas DuBuisson <thomas.dubuisson@gmail.com>,
                 Rob Berry
-maintainer:     Kyle Van Berendonck <foss@onrock.engineering>
-copyright:      (c) 2017-2018 OnRock Engineering
+maintainer:     Kyle Van Berendonck <foss@onrock.online>
+copyright:      (c) 2017-2019 ONROCK
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
 cabal-version:  >= 1.10
+
 extra-source-files:
     CHANGELOG.md
     fixtures/commit-comment-event.json

@@ -1,5 +1,5 @@
 name: github-webhooks
-version: 0.10.0
+version: 0.10.1
 
 category: GitHub
 license: MIT
@@ -10,13 +10,13 @@ extra-source-files:
   - CHANGELOG.md
   - fixtures/*.json
 synopsis: Aeson instances for GitHub Webhook payloads.
-copyright: (c) 2017-2018 OnRock Engineering
+copyright: (c) 2017-2019 ONROCK
 author:
-  - Kyle Van Berendonck <kyle.vanberendonck@onrock.engineering>
+  - Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
   - Christian Sakai <christianmsakai@gmail.com>
   - Thomas DuBuisson <thomas.dubuisson@gmail.com>
   - Rob Berry
-maintainer: Kyle Van Berendonck <foss@onrock.engineering>
+maintainer: Kyle Van Berendonck <foss@onrock.online>
 github: onrock-eng/github-webhooks
 description:
     Complete instances for decoding GitHub Webhook payloads (using @aeson@).
