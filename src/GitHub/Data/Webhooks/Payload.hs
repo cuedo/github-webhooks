@@ -421,6 +421,7 @@ data HookCommit = HookCommit
     , whCommitCommentsUrl       :: !(Maybe URL)   -- ^ Not always sent.
     , whCommitAuthor            :: !(Either HookSimpleUser HookUser)
     , whCommitCommitter         :: !(Either HookSimpleUser HookUser)
+    , whCommitMessage           :: !Text
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
@@ -893,13 +894,27 @@ instance FromJSON HookIssueLabels where
       <*> o .:? "default" .!= False
 
 instance FromJSON HookCommit where
-  parseJSON = withObject "HookCommit" $ \o -> HookCommit
-      <$> (o .: "sha" <|> o .: "id")
-      <*> o .: "url"
-      <*> o .:? "html_url"
-      <*> o .:? "comments_url"
-      <*> ((Right <$> o .: "author")      <|> (Left <$> o .: "author"))       -- try complex form first
-      <*> ((Right <$> o .: "committer")   <|> (Left <$> o .: "committer"))    -- try complex form first
+  parseJSON = withObject "HookCommit" $ \o -> do 
+      maybeCommit <- o .:? "commit" 
+      case maybeCommit of 
+        Just commit -> -- complex form
+          HookCommit
+          <$> (o .: "sha" <|> o .: "id")
+          <*> o .: "url"
+          <*> o .:? "html_url"
+          <*> o .:? "comments_url"
+          <*> (Right <$> o .: "author")
+          <*> (Right <$> o .: "committer")
+          <*> commit .: "message"
+        Nothing ->  
+          HookCommit
+          <$> (o .: "sha" <|> o .: "id")
+          <*> o .: "url"
+          <*> o .:? "html_url"
+          <*> o .:? "comments_url"
+          <*> (Left <$> o .: "author")
+          <*> (Left <$> o .: "committer")
+          <*> o .: "message"
 
 instance FromJSON HookRelease where
   parseJSON = withObject "HookRelease" $ \o -> HookRelease
