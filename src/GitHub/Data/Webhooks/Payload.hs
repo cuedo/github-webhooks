@@ -60,7 +60,7 @@ import           GHC.Generics             (Generic)
 -- Types lifted from the @github@ package.
 
 -- | Represents the owner of the repository.
-data OwnerType = OwnerUser | OwnerOrganization
+data OwnerType = OwnerUser | OwnerOrganization | OwnerBot
     deriving (Eq, Ord, Enum, Bounded, Show, Read, Generic, Typeable, Data)
 
 instance NFData OwnerType
@@ -70,6 +70,7 @@ instance FromJSON OwnerType where
       case T.toLower t of
           "user"          -> pure OwnerUser
           "organization"  -> pure OwnerOrganization
+          "bot"           -> pure OwnerBot
           _               -> fail $ "Unknown owner type: " ++ T.unpack t
 
 
