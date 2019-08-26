@@ -59,7 +59,10 @@ import           GHC.Generics             (Generic)
 
 -- Types lifted from the @github@ package.
 
--- | Represents the owner of the repository.
+-- | Represents the owner of a repository, pull request or similar.
+--
+-- A bot is a "special type of user which takes actions on behalf of GitHub Apps".
+-- See also https://developer.github.com/v4/object/bot/
 data OwnerType = OwnerUser | OwnerOrganization | OwnerBot
     deriving (Eq, Ord, Enum, Bounded, Show, Read, Generic, Typeable, Data)
 
