@@ -3,6 +3,7 @@ module Main
     ) where
 
 import           Control.Monad.IO.Class       ( liftIO )
+import qualified Data.ByteString              as BS
 import qualified Data.ByteString.Char8        as C8
 import           GitHub.Data.Webhooks.Events  ( IssueCommentEvent(..) )
 import           GitHub.Data.Webhooks.Payload ( HookIssueComment(..) )
@@ -12,7 +13,16 @@ import           System.Environment           ( lookupEnv )
 
 -- Using servant and servant-github-webhook to serve the API
 import           Servant
-import           Servant.GitHub.Webhook
+import qualified Servant.GitHub.Webhook       as SGH
+import           Servant.GitHub.Webhook       ( GitHubEvent, GitHubSignedReqBody, RepoWebhookEvent(..) )
+
+newtype GitHubKey = GitHubKey (forall result. SGH.GitHubKey result)
+
+gitHubKey :: IO BS.ByteString -> GitHubKey
+gitHubKey k = GitHubKey (SGH.gitHubKey k)
+
+instance HasContextEntry '[GitHubKey] (SGH.GitHubKey result) where
+    getContextEntry (GitHubKey x :. _) = x
 
 
 type IssueCommentHookAPI

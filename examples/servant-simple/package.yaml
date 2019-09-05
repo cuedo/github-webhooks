@@ -15,6 +15,9 @@ default-extensions:
   - DataKinds
   - TypeFamilies
   - TypeOperators
+  - FlexibleInstances
+  - MultiParamTypeClasses
+  - RankNTypes
 
 dependencies:
  - base == 4.*

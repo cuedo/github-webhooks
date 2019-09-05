@@ -1,12 +1,8 @@
 resolver: lts-6.35
 extra-deps:
 # Needed for servant examples
-- servant-github-webhook-0.3.2.1
-packages:
-- .
-- location: ./examples/servant-simple
-  extra-dep: true
-- location: ./examples/servant
-  extra-dep: true
-- location: ./examples/scotty
-  extra-dep: true
+- servant-github-webhook-0.4.1.0
+# Examples
+- ./examples/servant-simple
+- ./examples/servant
+- ./examples/scotty
