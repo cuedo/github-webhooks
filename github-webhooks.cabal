@@ -1,11 +1,10 @@
-cabal-version: 1.12
-
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.21.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 775de7faa84c8f4257610b37b511794b653375220df83b4cd597eccc2b187ede
+-- hash: 130fa1f214f1a7fb2d980e89fe31ff7957fdd2cab4c01e36fa7424bc5e75894c
 
+cabal-version:  >= 1.10
 name:           github-webhooks
 version:        0.10.1
 synopsis:       Aeson instances for GitHub Webhook payloads.
@@ -22,12 +21,8 @@ copyright:      (c) 2017-2019 ONROCK
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
+
 extra-source-files:
-    package.yaml
-    stack.yaml
-    stack-ghc-7.10.yaml
-    stack-ghc-7.8.yaml
-    stack-ghc-8.0.yaml
     CHANGELOG.md
     fixtures/commit-comment-event.json
     fixtures/create-event.json
@@ -62,6 +57,11 @@ extra-source-files:
     fixtures/team-add-event.json
     fixtures/team-event.json
     fixtures/watch-event.json
+    package.yaml
+    stack-ghc-7.10.yaml
+    stack-ghc-7.8.yaml
+    stack-ghc-8.0.yaml
+    stack.yaml
 
 source-repository head
   type: git
@@ -71,7 +71,7 @@ library
   hs-source-dirs:
       src
   default-extensions: DeriveDataTypeable DeriveGeneric OverloadedStrings
-  ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates
+  ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
   build-depends:
       aeson
     , base ==4.*
@@ -98,7 +98,7 @@ test-suite spec
   hs-source-dirs:
       spec
   default-extensions: DeriveDataTypeable DeriveGeneric OverloadedStrings ScopedTypeVariables
-  ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates
+  ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
   build-depends:
       aeson
     , base ==4.*

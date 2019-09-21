@@ -23,7 +23,7 @@ description:
     See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
 
 ghc-options:
-  - -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates
+  - -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
 
 default-extensions:
   - DeriveDataTypeable
