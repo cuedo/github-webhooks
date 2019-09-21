@@ -7,8 +7,8 @@ maintainer: Kyle Van Berendonck <foss@onrock.online>
 
 ghc-options:
   - -Wall
-  - -Wincomplete-uni-patterns
-  - -Wincomplete-record-updates
+  - -fwarn-incomplete-uni-patterns
+  - -fwarn-incomplete-record-updates
 
 default-extensions:
   - OverloadedStrings
