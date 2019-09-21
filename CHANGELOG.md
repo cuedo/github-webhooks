@@ -1,3 +1,11 @@
+# 0.11.0
+
+* OwnerType of Bot is now supported (by Domen Kozar, resolves #22)
+* GHC-7.10 requires less changes to build the bundled examples (resolves #6)
+* Fixed issues to do with updated stack package format and CI build (resolves #23, et al.)
+* Added a security policy clarifying how security issues should be disclosed (resolves #24)
+* The latest release is now available on the `release` branch (resolves #10)
+
 # 0.10.1
 
 * Fixed a bug parsing related PR with empty body (by Rob Berry)
