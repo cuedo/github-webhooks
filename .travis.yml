@@ -35,7 +35,7 @@ before_install:
 # any command which exits with a non-zero exit code causes the build to fail.
 script:
   - source .ci-scripts/travis/run-hlint.sh
-  - travis_wait 45 stack --no-terminal --skip-ghc-check test --haddock --no-haddock-deps
+  - travis_wait 45 stack --no-terminal --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
   - source .ci-scripts/travis/run-weeder.sh
 
   # Build the integration examples

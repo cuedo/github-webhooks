@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e9dfdc3a652132da2d0ec1b4f6d422a3212c3521a47902c30a7bdbdc3a757159
+-- hash: a8a3058292d764f69ecdc7ddb3fcea6b948e8950609abee98f65e13a591d63d1
 
 cabal-version:  >= 1.10
 name:           github-webhooks
@@ -68,11 +68,15 @@ source-repository head
   type: git
   location: https://github.com/onrock-eng/github-webhooks
 
+flag ci
+  description: A stricter build designed for continuous integration.
+  manual: True
+  default: False
+
 library
   hs-source-dirs:
       src
   default-extensions: DeriveDataTypeable DeriveGeneric OverloadedStrings
-  ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
   build-depends:
       aeson
     , base ==4.*
@@ -85,6 +89,8 @@ library
     , text
     , time
     , vector
+  if flag(ci)
+    ghc-options: -Wall -Werror -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
   exposed-modules:
       GitHub.Data.Webhooks.Events
       GitHub.Data.Webhooks.Payload
@@ -99,7 +105,6 @@ test-suite spec
   hs-source-dirs:
       spec
   default-extensions: DeriveDataTypeable DeriveGeneric OverloadedStrings ScopedTypeVariables
-  ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
   build-depends:
       aeson
     , base ==4.*
@@ -108,6 +113,8 @@ test-suite spec
     , hspec ==2.*
     , text
     , vector
+  if flag(ci)
+    ghc-options: -Wall -Werror -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
   other-modules:
       DecodeEventsSpec
       Paths_github_webhooks

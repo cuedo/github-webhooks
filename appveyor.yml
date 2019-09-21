@@ -19,7 +19,7 @@ install:
   - stack --no-terminal --verbosity=error setup 2>&1 >stack-setup.log || type stack-setup.log
 
 test_script:
-  - stack --no-terminal --skip-ghc-check test --haddock --no-haddock-deps
+  - stack --no-terminal --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
   - stack --no-terminal --skip-ghc-check build
     github-webhooks-scotty-example
     github-webhooks-servant-simple-example

@@ -22,9 +22,16 @@ github: onrock-eng/github-webhooks
 description:
     Complete instances for decoding GitHub Webhook payloads (using @aeson@).
     See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
+flags:
+  ci:
+    description: A stricter build designed for continuous integration.
+    default: false
+    manual: true
 
-ghc-options:
-  - -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
+
+when:
+  - condition: flag(ci)
+    ghc-options: -Wall -Werror -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
 
 default-extensions:
   - DeriveDataTypeable

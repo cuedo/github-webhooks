@@ -1,10 +1,11 @@
--- This file has been generated from package.yaml by hpack version 0.21.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 11035414b03cdbc50e83bb54009d87266031f5dc204b6ba81e1e51baf5c72fc1
+-- hash: 879ccec7655889178f4f20000e981739dc2ba5ebb75109f1ddc36b1c572bdfa0
 
-cabal-version:  >= 1.10
 name:           github-webhooks-servant-example
 version:        0.0.0
 author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
