@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 130fa1f214f1a7fb2d980e89fe31ff7957fdd2cab4c01e36fa7424bc5e75894c
+-- hash: f7f69a733f6a32c375fd2e81939688d27bfe2138dfd794195836a7a22767c473
 
 cabal-version:  >= 1.10
 name:           github-webhooks
@@ -15,7 +15,8 @@ bug-reports:    https://github.com/onrock-eng/github-webhooks/issues
 author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.online>,
                 Christian Sakai <christianmsakai@gmail.com>,
                 Thomas DuBuisson <thomas.dubuisson@gmail.com>,
-                Rob Berry
+                Rob Berry,
+                Domen Kozar <domen@dev.si>
 maintainer:     Kyle Van Berendonck <foss@onrock.online>
 copyright:      (c) 2017-2019 ONROCK
 license:        MIT
