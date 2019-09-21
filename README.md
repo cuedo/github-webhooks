@@ -9,7 +9,7 @@ github-webhooks
 |             | `release` | `master` |
 |-------------|---------|----------|
 | Linux & OSX | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks/release.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) |
-| Windows     | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/master.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/master.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) |
+| Windows     | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/release.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/master.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) |
 
 Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 
