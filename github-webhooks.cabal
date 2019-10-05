@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a8a3058292d764f69ecdc7ddb3fcea6b948e8950609abee98f65e13a591d63d1
+-- hash: 53e392c223a6c9b9667f45cd1fdac1ee1588fb5b1b31d7789bd9d10de1151de6
 
 cabal-version:  >= 1.10
 name:           github-webhooks
@@ -62,6 +62,7 @@ extra-source-files:
     stack-ghc-7.10.yaml
     stack-ghc-7.8.yaml
     stack-ghc-8.0.yaml
+    stack-nightly.yaml
     stack.yaml
 
 source-repository head
