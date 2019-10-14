@@ -12,7 +12,9 @@ import           Crypto.MAC.HMAC          (HMAC(..), hmac)
 import           Control.Monad            (unless)
 import           Control.Exception        (Exception, throwIO)
 import           Data.ByteArray           (convert, constEq)
+import           Data.Data                (Typeable)
 import           Data.Monoid              ((<>))
+import           Data.Functor             ((<$>))
 import           Data.ByteString          (ByteString)
 import           Data.Text                (Text)
 import qualified Data.ByteString.Base16   as B16
@@ -38,6 +40,7 @@ isSecurePayload secret shaOpt payload = maybe False (constEq ourSig) theirSig
 
 -- | An exception indicating that the given payload is not secure.
 data PayloadNotSecure = PayloadNotSecure
+    deriving (Typeable)
 
 instance Exception PayloadNotSecure
 

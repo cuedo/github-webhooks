@@ -1,8 +1,1 @@
 resolver: lts-11.5
-extra-deps:
-# Needed for servant examples
-- servant-github-webhook-0.4.1.0
-# Examples
-- ./examples/servant-simple
-- ./examples/servant
-- ./examples/scotty

@@ -103,9 +103,12 @@ module GitHub.Data.Webhooks.Events
     ) where
 
 import           Data.Aeson               (FromJSON(..), withObject, withText, (.:), (.:?), (.!=))
+import           Control.Applicative      ((<*>), pure)
 import           Control.DeepSeq          (NFData(..))
 import           Control.DeepSeq.Generics (genericRnf)
 import           Data.Data                (Data, Typeable)
+import           Data.Functor             ((<$>))
+import           Data.Monoid              (mempty)
 import           Data.Time                (UTCTime)
 import           Data.Text                (Text)
 import           Data.Vector              (Vector)

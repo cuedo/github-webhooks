@@ -47,8 +47,9 @@ module GitHub.Data.Webhooks.Payload
 import           Data.Aeson               (FromJSON(..), withObject, withText, (.!=), (.:), (.:?))
 import           Control.DeepSeq          (NFData (..))
 import           Control.DeepSeq.Generics (genericRnf)
-import           Control.Applicative      ((<|>))
+import           Control.Applicative      ((<|>), (<*>), pure)
 import           Data.Data                (Data, Typeable)
+import           Data.Functor             ((<$>))
 import           Data.Time                (UTCTime)
 import           Data.Time.Clock.POSIX    (posixSecondsToUTCTime)
 import           Data.Text                (Text)
@@ -723,9 +724,9 @@ instance FromJSON HookRepository where
       <*> o .: "labels_url"
       <*> o .: "releases_url"
       -- FIXME: Wrap optional number/stringified UTCTime in a helper function? See PushEvent fixture
-      <*> ((o .: "created_at")  <|> (posixSecondsToUTCTime <$> o .: "created_at"))
-      <*> ((o .: "updated_at")  <|> (posixSecondsToUTCTime <$> o .: "updated_at"))
-      <*> ((o .: "pushed_at")   <|> (posixSecondsToUTCTime <$> o .: "pushed_at"))
+      <*> ((o .: "created_at")  <|> (posixSecondsToUTCTime . fromInteger <$> o .: "created_at"))
+      <*> ((o .: "updated_at")  <|> (posixSecondsToUTCTime . fromInteger <$> o .: "updated_at"))
+      <*> ((o .: "pushed_at")   <|> (posixSecondsToUTCTime . fromInteger <$> o .: "pushed_at"))
       <*> o .: "git_url"
       <*> o .: "ssh_url"
       <*> o .: "clone_url"

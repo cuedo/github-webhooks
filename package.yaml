@@ -31,7 +31,7 @@ flags:
 
 when:
   - condition: flag(ci)
-    ghc-options: -Wall -Werror -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
+    ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
 
 default-extensions:
   - DeriveDataTypeable

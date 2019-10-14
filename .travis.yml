@@ -8,7 +8,7 @@ matrix:
   include:
     # Previous lts releases
     - os: linux
-      env: STACK_YAML=stack-ghc-7.8.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
+      env: STACK_YAML=stack-ghc-7.8.yaml STACK_PKG_URL=https://github.com/commercialhaskell/stack/releases/download/v1.9.3/stack-1.9.3-linux-x86_64-static.tar.gz
     - os: linux
       env: STACK_YAML=stack-ghc-7.10.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
     - os: linux
@@ -23,9 +23,6 @@ matrix:
       env: STACK_YAML=stack-nightly.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
   allow_failures:
     # These are not stable yet
-    - env: STACK_YAML=stack-ghc-7.8.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
-    - env: STACK_YAML=stack-ghc-7.10.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
-    - env: STACK_YAML=stack-ghc-8.0.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
     - env: STACK_YAML=stack-nightly.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
 
 cache:
@@ -41,10 +38,3 @@ script:
   - source .ci-scripts/travis/run-hlint.sh
   - travis_wait 45 stack --no-terminal --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
   - source .ci-scripts/travis/run-weeder.sh
-
-  # Build the integration examples
-  - travis_wait 45 stack --no-terminal --skip-ghc-check build
-    github-webhooks-scotty-example
-    github-webhooks-servant-simple-example
-    github-webhooks-servant-example
-

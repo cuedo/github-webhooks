@@ -1,10 +1,11 @@
--- This file has been generated from package.yaml by hpack version 0.21.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 53e392c223a6c9b9667f45cd1fdac1ee1588fb5b1b31d7789bd9d10de1151de6
+-- hash: 1a0d06526485495c6980a45d68f584ba73282c28be0394d5530961bd0e0f0de2
 
-cabal-version:  >= 1.10
 name:           github-webhooks
 version:        0.11.0
 synopsis:       Aeson instances for GitHub Webhook payloads.
@@ -22,8 +23,14 @@ copyright:      (c) 2017-2019 ONROCK
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
-
 extra-source-files:
+    package.yaml
+    stack.yaml
+    stack-examples.yaml
+    stack-ghc-7.10.yaml
+    stack-ghc-7.8.yaml
+    stack-ghc-8.0.yaml
+    stack-nightly.yaml
     CHANGELOG.md
     fixtures/commit-comment-event.json
     fixtures/create-event.json
@@ -58,12 +65,6 @@ extra-source-files:
     fixtures/team-add-event.json
     fixtures/team-event.json
     fixtures/watch-event.json
-    package.yaml
-    stack-ghc-7.10.yaml
-    stack-ghc-7.8.yaml
-    stack-ghc-8.0.yaml
-    stack-nightly.yaml
-    stack.yaml
 
 source-repository head
   type: git
@@ -91,7 +92,7 @@ library
     , time
     , vector
   if flag(ci)
-    ghc-options: -Wall -Werror -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
+    ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
   exposed-modules:
       GitHub.Data.Webhooks.Events
       GitHub.Data.Webhooks.Payload
@@ -115,7 +116,7 @@ test-suite spec
     , text
     , vector
   if flag(ci)
-    ghc-options: -Wall -Werror -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
+    ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
   other-modules:
       DecodeEventsSpec
       Paths_github_webhooks

@@ -3,14 +3,7 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages:
-- completed:
-    hackage: servant-github-webhook-0.4.1.0@sha256:6ac456ccc6a2a96b30a7b80cd91b121f1b7e9bd33635641a6afbd6137700a753,2754
-    pantry-tree:
-      size: 576
-      sha256: f00112fb96ffe1caa7076a466868af0b47eed0ffea92792b3cde5a5e369a7005
-  original:
-    hackage: servant-github-webhook-0.4.1.0
+packages: []
 snapshots:
 - completed:
     size: 507344
