@@ -30,6 +30,19 @@ module GitHub.Data.Webhooks.Payload
     , HookProjectColumn(..)
     , HookIssueLabels(..)
     , HookCommit(..)
+    , HookCheckSuiteStatus(..)
+    , HookCheckSuiteConclusion(..)
+    , HookCheckSuite(..)
+    , HookCheckSuiteCommit(..)
+    , HookCheckRunStatus(..)
+    , HookCheckRunConclusion(..)
+    , HookCheckRun(..)
+    , HookCheckRunOutput(..)
+    , HookCheckRunRequestedAction(..)
+    , HookChecksInstallation(..)
+    , HookChecksPullRequest(..)
+    , HookChecksPullRequestRepository(..)
+    , HookChecksPullRequestTarget(..)
     , HookRelease(..)
     , HookPullRequest(..)
     , PullRequestTarget(..)
@@ -412,9 +425,247 @@ data HookIssueLabels = HookIssueLabels
 
 instance NFData HookIssueLabels where rnf = genericRnf
 
+-- | Represents the "status" field in the
+-- 'HookCheckSuite' payload.
+data HookCheckSuiteStatus
+    -- | Decodes from "requested"
+    = HookCheckSuiteStatusRequested
+    -- | Decodes from "queued".
+    | HookCheckSuiteStatusQueued
+    -- | Decodes from "in_progress"
+    | HookCheckSuiteStatusInProgress
+    -- | Decodes from "completed"
+    | HookCheckSuiteStatusCompleted
+    -- | The result of decoding an unknown check suite status type
+    | HookCheckSuiteStatusOther !Text
+    deriving (Eq, Ord, Show, Generic, Typeable, Data)
 
--- FIXME: Missing nested metadata that provides commit description
--- FIXME: Missing property "parent" (no examples provided)
+instance NFData HookCheckSuiteStatus where rnf = genericRnf
+
+instance FromJSON HookCheckSuiteStatus where
+  parseJSON = withText "Hook check suite status" $ \t ->
+      case t of
+          "requested"          -> pure HookCheckSuiteStatusRequested
+          "queued"             -> pure HookCheckSuiteStatusQueued
+          "in_progress"        -> pure HookCheckSuiteStatusInProgress
+          "completed"          -> pure HookCheckSuiteStatusCompleted
+          _                    -> pure (HookCheckSuiteStatusOther t)
+
+-- | Represents the "conclusion" field in the
+-- 'HookCheckSuite' payload.
+data HookCheckSuiteConclusion
+    -- | Decodes from "success"
+    = HookCheckSuiteConclusionSuccess
+    -- | Decodes from "failure"
+    | HookCheckSuiteConclusionFailure
+    -- | Decodes from "neutral"
+    | HookCheckSuiteConclusionNeutral
+    -- | Decodes from "cancelled"
+    | HookCheckSuiteConclusionCancelled
+    -- | Decodes from "timed_out"
+    | HookCheckSuiteConclusionTimedOut
+    -- | Decodes from "action_required"
+    | HookCheckSuiteConclusionActionRequired
+    -- | Decodes from "stale"
+    | HookCheckSuiteConclusionStale
+    -- | The result of decoding an unknown check suite conclusion type
+    | HookCheckSuiteConclusionOther !Text
+    deriving (Eq, Ord, Show, Generic, Typeable, Data)
+
+instance NFData HookCheckSuiteConclusion where rnf = genericRnf
+
+instance FromJSON HookCheckSuiteConclusion where
+  parseJSON = withText "Hook check suite status" $ \t ->
+      case t of
+          "success"               -> pure HookCheckSuiteConclusionSuccess
+          "failure"               -> pure HookCheckSuiteConclusionFailure
+          "neutral"               -> pure HookCheckSuiteConclusionNeutral
+          "cancelled"             -> pure HookCheckSuiteConclusionCancelled
+          "timed_out"             -> pure HookCheckSuiteConclusionTimedOut
+          "action_required"       -> pure HookCheckSuiteConclusionActionRequired
+          "stale"                 -> pure HookCheckSuiteConclusionStale
+          _                       -> pure (HookCheckSuiteConclusionOther t)
+
+-- FIXME: Missing nested "app", there are examples, but no documentation.
+-- | Represents the "check_suite" field in the
+-- 'CheckSuiteEvent' payload.
+data HookCheckSuite = HookCheckSuite
+    { whCheckSuiteId                   :: !Int
+    , whCheckSuiteHeadBranch           :: !(Maybe Text) -- ^ The Checks API only looks for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty pull_requests array and a null value for head_branch.
+    , whCheckSuiteHeadSha              :: !Text
+    , whCheckSuiteStatus               :: !HookCheckSuiteStatus
+    , whCheckSuiteConclusion           :: !(Maybe HookCheckSuiteConclusion)
+    , whCheckSuiteUrl                  :: !URL
+    , whCheckSuiteBeforeSha            :: !(Maybe Text)
+    , whCheckSuiteAfterSha             :: !Text
+    , whCheckSuitePullRequests         :: !(Vector HookChecksPullRequest)
+    , whCheckSuiteCreatedAt            :: !UTCTime
+    , whCheckSuiteUpdatedAt            :: !UTCTime
+    , whCheckSuiteLatestCheckRunsCount :: !(Maybe Int) -- not included in the check run nested payload
+    , whCheckSuiteCheckRunsUrl         :: !(Maybe URL) -- not included in the check run nested payload
+    , whCheckSuiteHeadCommit           :: !(Maybe HookCheckSuiteCommit) -- not included in the check run nested payload
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookCheckSuite where rnf = genericRnf
+
+-- | Represents the "head_commit" field in the
+--  'CheckSuiteEvent' payload.
+data HookCheckSuiteCommit = HookCheckSuiteCommit
+    { whCheckSuiteCommitSha               :: !Text          -- ^ Sometimes called the commit 'id'.
+    , whCheckSuiteCommitAuthor            :: !HookSimpleUser
+    , whCheckSuiteCommitCommitter         :: !HookSimpleUser
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookCheckSuiteCommit where rnf = genericRnf
+
+-- | Represents the "status" field in the
+--  'HookCheckRun' payload.
+data HookCheckRunStatus
+    -- | Decodes from "queued"
+    = HookCheckRunStatusQueued
+    -- | Decodes from "in_progress"
+    | HookCheckRunStatusInProgress
+    -- | Decodes from "completed"
+    | HookCheckRunStatusCompleted
+    -- | The result of decoding an unknown check run status type
+    | HookCheckRunStatusOther !Text
+    deriving (Eq, Ord, Show, Generic, Typeable, Data)
+
+instance NFData HookCheckRunStatus where rnf = genericRnf
+
+instance FromJSON HookCheckRunStatus where
+  parseJSON = withText "Hook check suite status" $ \t ->
+      case t of
+          "queued"             -> pure HookCheckRunStatusQueued
+          "in_progress"        -> pure HookCheckRunStatusInProgress
+          "completed"          -> pure HookCheckRunStatusCompleted
+          _                    -> pure (HookCheckRunStatusOther t)
+
+-- | Represents the "conclusion" field in the
+--  'HookCheckRun' payload.
+data HookCheckRunConclusion
+    -- | Decodes from "success"
+    = HookCheckRunConclusionSuccess
+    -- | Decodes from "failure"
+    | HookCheckRunConclusionFailure
+    -- | Decodes from "neutral"
+    | HookCheckRunConclusionNeutral
+    -- | Decodes from "cancelled"
+    | HookCheckRunConclusionCancelled
+    -- | Decodes from "timed_out"
+    | HookCheckRunConclusionTimedOut
+    -- | Decodes from "action_required"
+    | HookCheckRunConclusionActionRequired
+    -- | Decodes from "stale"
+    | HookCheckRunConclusionStale
+    -- | The result of decoding an unknown check run conclusion type
+    | HookCheckRunConclusionOther !Text
+    deriving (Eq, Ord, Show, Generic, Typeable, Data)
+
+instance NFData HookCheckRunConclusion where rnf = genericRnf
+
+instance FromJSON HookCheckRunConclusion where
+  parseJSON = withText "Hook check suite status" $ \t ->
+      case t of
+          "success"               -> pure HookCheckRunConclusionSuccess
+          "failure"               -> pure HookCheckRunConclusionFailure
+          "neutral"               -> pure HookCheckRunConclusionNeutral
+          "cancelled"             -> pure HookCheckRunConclusionCancelled
+          "timed_out"             -> pure HookCheckRunConclusionTimedOut
+          "action_required"       -> pure HookCheckRunConclusionActionRequired
+          "stale"                 -> pure HookCheckRunConclusionStale
+          _                       -> pure (HookCheckRunConclusionOther t)
+
+-- FIXME: Missing nested "app", there are examples, but no documentation.
+-- | Represents the "check_run" field in the
+--  'CheckRunEvent' payload.
+data HookCheckRun = HookCheckRun
+    { whCheckRunId                   :: !Int
+    , whCheckRunHeadSha              :: !Text
+    , whCheckRunExternalId           :: !Text
+    , whCheckRunUrl                  :: !URL
+    , whCheckRunHtmlUrl              :: !URL
+    , whCheckRunDetailsUrl           :: !URL
+    , whCheckRunStatus               :: !HookCheckRunStatus
+    , whCheckRunConclusion           :: !(Maybe HookCheckRunConclusion)
+    , whCheckRunStartedAt            :: !UTCTime
+    , whCheckRunCompletedAt          :: !(Maybe UTCTime)
+    , whCheckRunOutput               :: !HookCheckRunOutput
+    , whCheckRunName                 :: !Text
+    , weCheckRunCheckSuite           :: !HookCheckSuite
+    , whCheckRunPullRequests         :: !(Vector HookChecksPullRequest)
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookCheckRun where rnf = genericRnf
+
+-- | Represents the "output" field in the
+--  'HookCheckRun' payload.
+data HookCheckRunOutput = HookCheckRunOutput
+    { whCheckRunOutputTitle            :: !(Maybe Text)
+    , whCheckRunOutputSummary          :: !(Maybe Text)
+    , whCheckRunOutputText             :: !(Maybe Text)
+    , whCheckRunOutputAnnotationsCount :: !Int
+    , whCheckRunOutputAnnotationsUrl   :: !URL
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookCheckRunOutput where rnf = genericRnf
+
+-- | Represents the "requested_action" field in the
+--  'CheckRunEvent' payload.
+newtype HookCheckRunRequestedAction = HookCheckRunRequestedAction
+    { whCheckRunRequestedActionIdentifier       :: Text
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookCheckRunRequestedAction where rnf = genericRnf
+
+-- | Represents the "installation" field in the checks payloads.
+newtype HookChecksInstallation = HookChecksInstallation
+    { whChecksInstallationId    :: Int
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookChecksInstallation where rnf = genericRnf
+
+-- | Represents the "pull_requests" field in the checks payloads.
+data HookChecksPullRequest = HookChecksPullRequest
+    { whChecksPullRequestUrl              :: !URL
+    , whChecksPullRequestId               :: !Int
+    , whChecksPullRequestNumber           :: !Int
+    , whChecksPullRequestHead             :: !HookChecksPullRequestTarget
+    , whChecksPullRequestBase             :: !HookChecksPullRequestTarget
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookChecksPullRequest where rnf = genericRnf
+
+-- | Represents the "repo" field in the checks pull_request payloads.
+data HookChecksPullRequestRepository = HookChecksPullRequestRepository
+    { whChecksPullRequestRepositoryId                  :: !Int
+    , whChecksPullRequestRepositoryUrl                 :: !URL
+    , whChecksPullRequestRepositoryName                :: !Text
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookChecksPullRequestRepository where rnf = genericRnf
+
+-- | Represents the repo targets in
+--  the checks pull requests repository payloads.
+data  HookChecksPullRequestTarget = HookChecksPullRequestTarget
+    { whChecksPullRequestTargetSha  :: !Text
+    , whChecksPullRequestTargetRef  :: !Text -- ex "somebranch"
+    , whChecksPullRequestTargetRepo :: !HookChecksPullRequestRepository
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookChecksPullRequestTarget where rnf = genericRnf
+
+--- FIXME: Missing nested metadata that provides commit description
+--- FIXME: Missing property "parent" (no examples provided)
 data HookCommit = HookCommit
     { whCommitSha               :: !Text          -- ^ Sometimes called the commit 'id'.
     , whCommitUrl               :: !URL
@@ -426,7 +677,6 @@ data HookCommit = HookCommit
     deriving (Eq, Show, Typeable, Data, Generic)
 
 instance NFData HookCommit where rnf = genericRnf
-
 
 -- FIXME: Missing property "assets" (no examples provided)
 data HookRelease = HookRelease
@@ -892,6 +1142,82 @@ instance FromJSON HookIssueLabels where
       <*> o .: "name"
       <*> o .: "color"
       <*> o .:? "default" .!= False
+
+instance FromJSON HookCheckSuite where
+  parseJSON = withObject "HookCheckSuite" $ \o -> HookCheckSuite
+      <$> o .: "id"
+      <*> o .:? "head_branch"
+      <*> o .: "head_sha"
+      <*> o .: "status"
+      <*> o .:? "conclusion"
+      <*> o .: "url"
+      <*> o .:? "before"
+      <*> o .: "after"
+      <*> o .: "pull_requests"
+      <*> o .: "created_at"
+      <*> o .: "updated_at"
+      <*> o .:? "latest_check_runs_count"
+      <*> o .:? "check_runs_url"
+      <*> o .:? "head_commit"
+
+instance FromJSON HookCheckSuiteCommit where
+  parseJSON = withObject "HookCheckSuiteCommit" $ \o -> HookCheckSuiteCommit
+      <$> o .: "id"
+      <*> o .: "author"
+      <*> o .: "committer"
+
+instance FromJSON HookCheckRun where
+  parseJSON = withObject "HookCheckRun" $ \o -> HookCheckRun
+      <$> o .: "id"
+      <*> o .: "head_sha"
+      <*> o .: "external_id"
+      <*> o .: "url"
+      <*> o .: "html_url"
+      <*> o .: "details_url"
+      <*> o .: "status"
+      <*> o .:? "conclusion"
+      <*> o .: "started_at"
+      <*> o .:? "completed_at"
+      <*> o .: "output"
+      <*> o .: "name"
+      <*> o .: "check_suite"
+      <*> o .: "pull_requests"
+
+instance FromJSON HookCheckRunOutput where
+  parseJSON = withObject "HookCheckRunOutput" $ \o -> HookCheckRunOutput
+      <$> o .: "title"
+      <*> o .: "summary"
+      <*> o .: "text"
+      <*> o .: "annotations_count"
+      <*> o .: "annotations_url"
+
+instance FromJSON HookCheckRunRequestedAction where
+  parseJSON = withObject "HookCheckRunRequestedAction" $ \o -> HookCheckRunRequestedAction
+      <$> o .: "identifier"
+
+instance FromJSON HookChecksInstallation where
+  parseJSON = withObject "HookChecksInstallation" $ \o -> HookChecksInstallation
+      <$> o .: "id"
+
+instance FromJSON HookChecksPullRequest where
+  parseJSON = withObject "HookChecksPullRequest" $ \o -> HookChecksPullRequest
+      <$> o .: "url"
+      <*> o .: "id"
+      <*> o .: "number"
+      <*> o .: "head"
+      <*> o .: "base"
+
+instance FromJSON HookChecksPullRequestTarget where
+    parseJSON = withObject "PullRequestTarget" $ \o -> HookChecksPullRequestTarget
+      <$> o .: "sha"
+      <*> o .: "ref"
+      <*> o .: "repo"
+
+instance FromJSON HookChecksPullRequestRepository where
+  parseJSON = withObject "HookChecksPullRequestRepository" $ \o -> HookChecksPullRequestRepository
+      <$> o .: "id"
+      <*> o .: "url"
+      <*> o .: "name"
 
 instance FromJSON HookCommit where
   parseJSON = withObject "HookCommit" $ \o -> HookCommit
