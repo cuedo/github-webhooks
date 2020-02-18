@@ -11,6 +11,12 @@ module GitHub.Data.Webhooks.Events
     ( EventHasSender(..)
     , EventHasRepo(..)
       --
+    , CheckSuiteEventAction(..)
+    , CheckSuiteEvent(..)
+      --
+    , CheckRunEventAction(..)
+    , CheckRunEvent(..)
+      --
     , CommitCommentEvent(..)
     , CommitCommentEventAction(..)
       --
@@ -125,6 +131,88 @@ class EventHasSender eventKind where
 class EventHasRepo eventKind where
     -- | Provides the repository context of a Webhook event.
     repoForEvent :: eventKind -> HookRepository
+
+-- | Represents the "action" field in the
+-- 'CheckSuiteEvent' payload.
+data CheckSuiteEventAction
+    -- | Decodes from "completed"
+    = CheckSuiteEventActionCompleted
+    -- | Decodes from "requested"
+    | CheckSuiteEventActionRequested
+    -- | Decodes from "rerequested"
+    | CheckSuiteEventActionRerequested
+    -- | The result of decoding an unknown check suite event action type
+    | CheckSuiteEventActionOther !Text
+    deriving (Eq, Ord, Show, Generic, Typeable, Data)
+
+instance NFData CheckSuiteEventAction where rnf = genericRnf
+
+instance FromJSON CheckSuiteEventAction where
+  parseJSON = withText "Check suite event action" $ \t ->
+      case t of
+          "completed"          -> pure CheckSuiteEventActionCompleted
+          "requested"          -> pure CheckSuiteEventActionRequested
+          "rerequested"        -> pure CheckSuiteEventActionRerequested
+          _                    -> pure (CheckSuiteEventActionOther t)
+
+-- | Triggered when a check suite is completed, requested, or rerequested.
+-- See <https://developer.github.com/v3/activity/events/types/#checksuiteevent>.
+data CheckSuiteEvent = CheckSuiteEvent
+    { evCheckSuiteAction              :: !CheckSuiteEventAction
+    , evCheckSuiteCheckSuite          :: !HookCheckSuite
+    , evCheckSuiteRepository          :: !HookRepository
+    , evCheckSuiteOrganization        :: !(Maybe HookOrganization)
+    , evCheckSuiteSender              :: !HookUser
+    , evCheckSuiteInstallation        :: !(Maybe HookChecksInstallation)
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance EventHasSender CheckSuiteEvent where senderOfEvent = evCheckSuiteSender
+instance EventHasRepo CheckSuiteEvent where repoForEvent = evCheckSuiteRepository
+instance NFData CheckSuiteEvent where rnf = genericRnf
+
+-- | Represents the "action" field in the
+-- 'CheckRunEvent' payload.
+data CheckRunEventAction
+    -- | Decodes from "created"
+    = CheckRunEventActionCreated
+    -- | Decodes from "completed"
+    | CheckRunEventActionCompleted
+    -- | Decodes from "rerequested"
+    | CheckRunEventActionRerequested
+    -- | Decodes from "requested_action"
+    | CheckRunEventActionRequestedAction
+    -- | The result of decoding an unknown check run event action type
+    | CheckRunEventActionOther !Text
+    deriving (Eq, Ord, Show, Generic, Typeable, Data)
+
+instance NFData CheckRunEventAction where rnf = genericRnf
+
+instance FromJSON CheckRunEventAction where
+  parseJSON = withText "Check suite event action" $ \t ->
+      case t of
+          "created"            -> pure CheckRunEventActionCreated
+          "completed"          -> pure CheckRunEventActionCompleted
+          "requested"          -> pure CheckRunEventActionRerequested
+          "requested_action"   -> pure CheckRunEventActionRequestedAction
+          _                    -> pure (CheckRunEventActionOther t)
+
+-- | Triggered when a check run is created, rerequested, completed, or has a requested_action.
+-- See <https://developer.github.com/v3/activity/events/types/#checkrunevent>.
+data CheckRunEvent = CheckRunEvent
+    { evCheckRunAction              :: !CheckRunEventAction
+    , evCheckRunCheckRun            :: !HookCheckRun
+    , evCheckRunRequestedAction     :: !(Maybe HookCheckRunRequestedAction)
+    , evCheckRunRepository          :: !HookRepository
+    , evCheckRunOrganization        :: !(Maybe HookOrganization)
+    , evCheckRunSender              :: !HookUser
+    , evCheckRunInstallation        :: !(Maybe HookChecksInstallation)
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance EventHasSender CheckRunEvent where senderOfEvent = evCheckRunSender
+instance EventHasRepo CheckRunEvent where repoForEvent = evCheckRunRepository
+instance NFData CheckRunEvent where rnf = genericRnf
 
 -- | Represents the "action" field in the
 -- 'CommitCommentEvent' payload.
@@ -1193,6 +1281,25 @@ instance NFData WatchEvent where rnf = genericRnf
 
 
 -- Aeson Instances
+
+instance FromJSON CheckSuiteEvent where
+    parseJSON = withObject "CheckSuiteEvent" $ \o -> CheckSuiteEvent
+        <$> o .: "action"
+        <*> o .: "check_suite"
+        <*> o .: "repository"
+        <*> o .:? "organization"
+        <*> o .: "sender"
+        <*> o .:? "installation"
+
+instance FromJSON CheckRunEvent where
+    parseJSON = withObject "CheckRunEvent" $ \o -> CheckRunEvent
+        <$> o .: "action"
+        <*> o .: "check_run"
+        <*> o .:? "requested_action"
+        <*> o .: "repository"
+        <*> o .:? "organization"
+        <*> o .: "sender"
+        <*> o .:? "installation"
 
 instance FromJSON CommitCommentEvent where
     parseJSON = withObject "CommitCommentEvent" $ \o -> CommitCommentEvent
