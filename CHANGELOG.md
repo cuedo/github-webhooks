@@ -1,3 +1,7 @@
+# 0.12.0
+
+* Support for CheckSuiteEvent and CheckRunEvent was added (resolves #25)
+
 # 0.11.0
 
 * OwnerType of Bot is now supported (by Domen Kozar, resolves #22)
