@@ -6,6 +6,7 @@
     "upload_url": "https://uploads.github.com/repos/baxterthehacker/public-repo/releases/1261438/assets{?name}",
     "html_url": "https://github.com/baxterthehacker/public-repo/releases/tag/0.0.1",
     "id": 1261438,
+    "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
     "tag_name": "0.0.1",
     "target_commitish": "master",
     "name": null,
@@ -13,6 +14,7 @@
     "author": {
       "login": "baxterthehacker",
       "id": 6752317,
+      "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
       "avatar_url": "https://avatars.githubusercontent.com/u/6752317?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/baxterthehacker",
@@ -41,11 +43,13 @@
   },
   "repository": {
     "id": 35129377,
+    "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
     "name": "public-repo",
     "full_name": "baxterthehacker/public-repo",
     "owner": {
       "login": "baxterthehacker",
       "id": 6752317,
+      "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
       "avatar_url": "https://avatars.githubusercontent.com/u/6752317?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/baxterthehacker",
@@ -129,6 +133,7 @@
   "sender": {
     "login": "baxterthehacker",
     "id": 6752317,
+    "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
     "avatar_url": "https://avatars.githubusercontent.com/u/6752317?v=3",
     "gravatar_id": "",
     "url": "https://api.github.com/users/baxterthehacker",
