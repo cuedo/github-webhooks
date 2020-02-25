@@ -119,6 +119,7 @@ data HookIssue = HookIssue
     , whIssueEventsUrl          :: !URL
     , whIssueHtmlUrl            :: !URL
     , whIssueId                 :: !Int
+    , whIssueNodeId             :: !Text
     , whIssueNumber             :: !Int
     , whIssueTitle              :: !Text
     , whIssueUser               :: !HookUser
@@ -140,6 +141,7 @@ instance NFData HookIssue where rnf = genericRnf
 -- | Represents the "repository" field in all types of payload.
 data HookRepository = HookRepository
     { whRepoId                  :: !Int
+    , whRepoNodeId              :: !Text
     , whRepoName                :: !Text
     , whRepoFullName            :: !Text
     , whRepoOwner               :: !(Either HookSimpleUser HookUser)
@@ -212,6 +214,7 @@ instance NFData HookRepository where rnf = genericRnf
 -- field in the 'InstallationRepositoriesEvent' payload.
 data HookRepositorySimple = HookRepositorySimple
   { whSimplRepoId               :: !Int
+  , whSimplRepoNodeId           :: !Text
   , whSimplRepoName             :: !Text
   , whSimplRepoFullName         :: !Text
   , whSimplRepoIsPrivate        :: !Bool
@@ -222,7 +225,8 @@ instance NFData HookRepositorySimple where rnf = genericRnf
 
 -- | Represents the "label" field in the 'LabelEvent' payload.
 data HookRepositoryLabel = HookRepositoryLabel
-    { whRepoLabelUrl            :: !URL
+    { whRepoLabelNodeId         :: !(Maybe Text)
+    , whRepoLabelUrl            :: !URL
     , whRepoLabelName           :: !Text
     , whRepoLabelColor          :: !Text
     }
@@ -234,6 +238,7 @@ instance NFData HookRepositoryLabel where rnf = genericRnf
 data HookUser = HookUser
     { whUserLogin               :: !Text
     , whUserId                  :: !Int
+    , whUserNodeId              :: !Text
     , whUserAvatarUrl           :: !URL
     , whUserGravatarId          :: !URL
     , whUserUrl                 :: !URL
@@ -268,6 +273,7 @@ instance NFData HookSimpleUser where rnf = genericRnf
 data HookOrganization = HookOrganization
     { whOrgLogin                :: !Text
     , whOrgId                   :: !Int
+    , whOrgNodeId               :: !Text
     , whOrgUrl                  :: !URL
     , whOrgReposUrl             :: !URL
     , whOrgEventsUrl            :: !URL
@@ -285,6 +291,7 @@ instance NFData HookOrganization where rnf = genericRnf
 -- | Represents the "invitation" field in the 'OrganizationEvent' payload.
 data HookOrganizationInvitation = HookOrganizationInvitation
     { whOrgInvitationId         :: !Int
+    , whOrgInvitationNodeId     :: !Text
     , whOrgInvitationLogin      :: !Text
     , whOrgInvitationEmail      :: !(Maybe Text)
     , whOrgInvitationRole       :: !Text
@@ -310,6 +317,7 @@ instance NFData HookOrganizationMembership where rnf = genericRnf
 data HookTeam = HookTeam
     { whTeamName                :: !Text
     , whTeamId                  :: !Int
+    , whTeamNodeId              :: !Text
     , whTeamSlug                :: !Text
     , whTeamPermission          :: !Text
     , whTeamUrl                 :: !URL
@@ -329,6 +337,7 @@ data HookMilestone = HookMilestone
     , whMilestoneHtmlUrl        :: !URL
     , whMilestoneLabelsUrl      :: !URL
     , whMilestoneId             :: !Int
+    , whMilestoneNodeId         :: !Text
     , whMilestoneNumber         :: !Int
     , whMilestoneTitle          :: !Text
     , whMilestoneDescription    :: !(Maybe Text)
@@ -370,6 +379,7 @@ data HookProject = HookProject
     , whProjectUrl              :: !URL
     , whProjectColumnsUrl       :: !URL
     , whProjectId               :: !Int
+    , whProjectNodeId           :: !Text
     , whProjectName             :: !Text
     , whProjectBody             :: !Text
     , whProjectNumber           :: !Int
@@ -388,6 +398,7 @@ data HookProjectCard = HookProjectCard
     , whProjectCardColumnUrl    :: !URL
     , whProjectCardColumnId     :: !Int
     , whProjectCardId           :: !Int
+    , whProjectCardNodeId       :: !Text
     , whProjectCardNote         :: !(Maybe Text)
     , whProjectCardCreator      :: !HookUser
     , whProjectCardCreatedAt    :: !UTCTime
@@ -404,6 +415,7 @@ data HookProjectColumn = HookProjectColumn
     , whProjectColumnProjUrl    :: !URL
     , whProjectColumnCardsUrl   :: !URL
     , whProjectColumnId         :: !Int
+    , whProjectColumnNodeId     :: !Text
     , whProjectColumnName       :: !Text
     , whProjectColumnCreatedAt  :: !UTCTime
     , whProjectColumnUpdatedAt  :: !UTCTime
@@ -416,6 +428,7 @@ instance NFData HookProjectColumn where rnf = genericRnf
 -- 'IssueCommentEvent' and 'IssueEvent' payloads.
 data HookIssueLabels = HookIssueLabels
     { whIssueLabelId            :: !(Maybe Int)   -- ^ Not always sent.
+    , whIssueLabelNodeId        :: !(Maybe Text)
     , whIssueLabelUrl           :: !URL
     , whIssueLabelName          :: !Text
     , whIssueLabelColor         :: !Text
@@ -491,6 +504,7 @@ instance FromJSON HookCheckSuiteConclusion where
 -- 'CheckSuiteEvent' payload.
 data HookCheckSuite = HookCheckSuite
     { whCheckSuiteId                   :: !Int
+    , whCheckSuiteNodeId               :: !Text
     , whCheckSuiteHeadBranch           :: !(Maybe Text) -- ^ The Checks API only looks for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty pull_requests array and a null value for head_branch.
     , whCheckSuiteHeadSha              :: !Text
     , whCheckSuiteStatus               :: !HookCheckSuiteStatus
@@ -583,6 +597,7 @@ instance FromJSON HookCheckRunConclusion where
 --  'CheckRunEvent' payload.
 data HookCheckRun = HookCheckRun
     { whCheckRunId                   :: !Int
+    , whCheckRunNodeId               :: !Text
     , whCheckRunHeadSha              :: !Text
     , whCheckRunExternalId           :: !Text
     , whCheckRunUrl                  :: !URL
@@ -624,8 +639,9 @@ newtype HookCheckRunRequestedAction = HookCheckRunRequestedAction
 instance NFData HookCheckRunRequestedAction where rnf = genericRnf
 
 -- | Represents the "installation" field in the checks payloads.
-newtype HookChecksInstallation = HookChecksInstallation
-    { whChecksInstallationId    :: Int
+data HookChecksInstallation = HookChecksInstallation
+    { whChecksInstallationId     :: Int
+    , whChecksInstallationNodeId :: Text
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
@@ -685,6 +701,7 @@ data HookRelease = HookRelease
     , whReleaseUploadUrl        :: !URL
     , whReleaseHtmlUrl          :: !URL
     , whReleaseId               :: !Int
+    , whReleaseNodeId           :: !Text
     , whReleaseTagName          :: !Text
     , whReleaseTargetCommitish  :: !Text
     , whReleaseName             :: !(Maybe Text)
@@ -704,6 +721,7 @@ instance NFData HookRelease where rnf = genericRnf
 data HookPullRequest = HookPullRequest
     { whPullReqUrl              :: !URL
     , whPullReqId               :: !Int
+    , whPullReqNodeId           :: !Text
     , whPullReqHtmlUrl          :: !URL
     , whPullReqDiffUrl          :: !URL
     , whPullReqPatchUrl         :: !URL
@@ -757,6 +775,7 @@ instance NFData PullRequestTarget where rnf = genericRnf
 -- | Represents the "pull_request" field in the 'PullRequestReviewEvent' payload.
 data HookPullRequestReview = HookPullRequestReview
     { whPullReqReviewId         :: !Int
+    , whPullReqReviewNodeId     :: !Text
     , whPullReqReviewUser       :: !HookUser
     , whPullReqReviewBody       :: !Text
     , whPullReqReviewSubmittedAt :: !UTCTime
@@ -785,6 +804,7 @@ instance NFData HookInstallation where rnf = genericRnf
 data HookDeployment = HookDeployment
     { whDeploymentUrl           :: !URL
     , whDeploymentId            :: !Int
+    , whDeploymentNodeId        :: !Text
     , whDeploymentSha           :: !Text
     , whDeploymentRef           :: !Text
     , whDeploymentTask          :: !Text
@@ -806,6 +826,7 @@ instance NFData HookDeployment where rnf = genericRnf
 data HookDeploymentStatus = HookDeploymentStatus
     { whDeploymentStatusUrl     :: !URL
     , whDeploymentStatusId      :: !Int
+    , whDeploymentStatusNodeId  :: !Text
     , whDeploymentStatusState   :: !Text
     , whDeploymentStatusCreator :: !HookUser
     , whDeploymentStatusDesc    :: !(Maybe Text)
@@ -853,6 +874,7 @@ data HookIssueComment = HookIssueComment
     , whIssueCommentHtmlUrl     :: !URL
     , whIssueCommentIssueUrl    :: !URL
     , whIssueCommentId          :: !Int
+    , whIssueCommentNodeId      :: !Text
     , whIssueCommentUser        :: !HookUser
     , whIssueCommentCreatedAt   :: !UTCTime
     , whIssueCommentUpdatedAt   :: !UTCTime
@@ -867,6 +889,7 @@ data HookCommitComment = HookCommitComment
     { whCommitCommentUrl        :: !URL
     , whCommitCommentHtmlUrl    :: !URL
     , whCommitCommentId         :: !Int
+    , whCommitCommentNodeId     :: !Text
     , whCommitCommentUser       :: !HookUser
     , whCommitCommentPos        :: !(Maybe Int)
     , whCommitCommentLine       :: !(Maybe Int)
@@ -885,6 +908,7 @@ instance NFData HookCommitComment where rnf = genericRnf
 data HookPullRequestReviewComment = HookPullRequestReviewComment
     { whPullReqRevComUrl        :: !URL
     , whPullReqRevComId         :: !Int
+    , whPullReqRevComNodeId     :: !Text
     , whPullReqRevComDiffHunk   :: !Text
     , whPullReqRevComPath       :: !Text
     , whPullReqRevComPos        :: !Int
@@ -913,6 +937,7 @@ instance FromJSON HookIssue where
       <*> o .: "events_url"
       <*> o .: "html_url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "number"
       <*> o .: "title"
       <*> o .: "user"
@@ -930,6 +955,7 @@ instance FromJSON HookIssue where
 instance FromJSON HookRepository where
   parseJSON = withObject "HookRepository" $ \o -> HookRepository
       <$> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "name"
       <*> o .: "full_name"
       <*> ((Right <$> o .: "owner") <|> (Left <$> o .: "owner")) -- try complex form first
@@ -998,13 +1024,15 @@ instance FromJSON HookRepository where
 instance FromJSON HookRepositorySimple where
   parseJSON = withObject "HookRepositorySimple" $ \o -> HookRepositorySimple
       <$> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "name"
       <*> o .: "full_name"
       <*> o .: "private"
 
 instance FromJSON HookRepositoryLabel where
   parseJSON = withObject "HookRepositoryLabel" $ \o -> HookRepositoryLabel
-      <$> o .: "url"
+      <$> o .:? "node_id"
+      <*> o .: "url"
       <*> o .: "name"
       <*> o .: "color"
 
@@ -1012,6 +1040,7 @@ instance FromJSON HookUser where
   parseJSON = withObject "HookUser" $ \o -> HookUser
       <$> o .: "login"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "avatar_url"
       <*> o .: "gravatar_id"
       <*> o .: "url"
@@ -1038,6 +1067,7 @@ instance FromJSON HookOrganization where
   parseJSON = withObject "HookOrganization" $ \o -> HookOrganization
       <$> o .: "login"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "url"
       <*> o .: "repos_url"
       <*> o .: "events_url"
@@ -1051,6 +1081,7 @@ instance FromJSON HookOrganization where
 instance FromJSON HookOrganizationInvitation where
   parseJSON = withObject "HookOrganizationInvitation" $ \o -> HookOrganizationInvitation
       <$> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "login"
       <*> o .: "email"
       <*> o .: "role"
@@ -1067,6 +1098,7 @@ instance FromJSON HookTeam where
   parseJSON = withObject "HookTeam" $ \o -> HookTeam
       <$> o .: "name"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "slug"
       <*> o .: "permission"
       <*> o .: "url"
@@ -1079,6 +1111,7 @@ instance FromJSON HookMilestone where
       <*> o .: "html_url"
       <*> o .: "labels_url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "number"
       <*> o .: "title"
       <*> o .: "description"
@@ -1105,6 +1138,7 @@ instance FromJSON HookProject where
       <*> o .: "url"
       <*> o .: "columns_url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "name"
       <*> o .: "body"
       <*> o .: "number"
@@ -1119,6 +1153,7 @@ instance FromJSON HookProjectCard where
       <*> o .: "column_url"
       <*> o .: "column_id"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .:? "note"
       <*> o .: "creator"
       <*> o .: "created_at"
@@ -1131,6 +1166,7 @@ instance FromJSON HookProjectColumn where
       <*> o .: "project_url"
       <*> o .: "cards_url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "name"
       <*> o .: "created_at"
       <*> o .: "updated_at"
@@ -1138,6 +1174,7 @@ instance FromJSON HookProjectColumn where
 instance FromJSON HookIssueLabels where
   parseJSON = withObject "HookIssueLabels" $ \o -> HookIssueLabels
       <$> o .:? "id"
+      <*> o .:? "node_id"
       <*> o .: "url"
       <*> o .: "name"
       <*> o .: "color"
@@ -1146,6 +1183,7 @@ instance FromJSON HookIssueLabels where
 instance FromJSON HookCheckSuite where
   parseJSON = withObject "HookCheckSuite" $ \o -> HookCheckSuite
       <$> o .: "id"
+      <*> o .: "node_id"
       <*> o .:? "head_branch"
       <*> o .: "head_sha"
       <*> o .: "status"
@@ -1169,6 +1207,7 @@ instance FromJSON HookCheckSuiteCommit where
 instance FromJSON HookCheckRun where
   parseJSON = withObject "HookCheckRun" $ \o -> HookCheckRun
       <$> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "head_sha"
       <*> o .: "external_id"
       <*> o .: "url"
@@ -1198,6 +1237,7 @@ instance FromJSON HookCheckRunRequestedAction where
 instance FromJSON HookChecksInstallation where
   parseJSON = withObject "HookChecksInstallation" $ \o -> HookChecksInstallation
       <$> o .: "id"
+      <*> o .: "node_id"
 
 instance FromJSON HookChecksPullRequest where
   parseJSON = withObject "HookChecksPullRequest" $ \o -> HookChecksPullRequest
@@ -1235,6 +1275,7 @@ instance FromJSON HookRelease where
       <*> o .: "upload_url"
       <*> o .: "html_url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "tag_name"
       <*> o .: "target_commitish"
       <*> o .:? "name"
@@ -1251,6 +1292,7 @@ instance FromJSON HookPullRequest where
   parseJSON = withObject "HookPullRequest" $ \o -> HookPullRequest
       <$> o .: "url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "html_url"
       <*> o .: "diff_url"
       <*> o .: "patch_url"
@@ -1297,6 +1339,7 @@ instance FromJSON PullRequestTarget where
 instance FromJSON HookPullRequestReview where
   parseJSON = withObject "HookPullRequestReview" $ \o -> HookPullRequestReview
       <$> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "user"
       <*> o .: "body"
       <*> o .: "submitted_at"
@@ -1316,6 +1359,7 @@ instance FromJSON HookDeployment where
   parseJSON = withObject "HookDeployment" $ \o -> HookDeployment
       <$> o .: "url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "sha"
       <*> o .: "ref"
       <*> o .: "task"
@@ -1331,6 +1375,7 @@ instance FromJSON HookDeploymentStatus where
   parseJSON = withObject "HookDeploymentStatus" $ \o -> HookDeploymentStatus
       <$> o .: "url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "state"
       <*> o .: "creator"
       <*> o .:? "description"
@@ -1366,6 +1411,7 @@ instance FromJSON HookIssueComment where
       <*> o .: "html_url"
       <*> o .: "issue_url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "user"
       <*> o .: "created_at"
       <*> o .: "updated_at"
@@ -1376,6 +1422,7 @@ instance FromJSON HookCommitComment where
       <$> o .: "url"
       <*> o .: "html_url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "user"
       <*> o .:? "position"
       <*> o .:? "line"
@@ -1389,6 +1436,7 @@ instance FromJSON HookPullRequestReviewComment where
   parseJSON = withObject "HookPullRequestReviewComment" $ \o -> HookPullRequestReviewComment
       <$> o .: "url"
       <*> o .: "id"
+      <*> o .: "node_id"
       <*> o .: "diff_hunk"
       <*> o .: "path"
       <*> o .: "position"

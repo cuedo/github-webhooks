@@ -2,6 +2,7 @@
   "action": "member_invited",
   "invitation": {
     "id": 3294302,
+    "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
     "login": "baxterthehacker",
     "email": null,
     "role": "direct_member"
@@ -14,6 +15,7 @@
     "user": {
       "login": "baxterthehacker",
       "id": 7649605,
+      "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
       "avatar_url": "https://avatars.githubusercontent.com/u/17085448?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/baxterthehacker",
@@ -34,6 +36,7 @@
   "organization": {
     "login": "baxterandthehackers",
     "id": 4312013,
+    "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
     "url": "https://api.github.com/orgs/baxterandthehackers",
     "repos_url": "https://api.github.com/orgs/baxterandthehackers/repos",
     "events_url": "https://api.github.com/orgs/baxterandthehackers/events",
@@ -47,6 +50,7 @@
   "sender":{
     "login":"baxterthehacker",
     "id":7649605,
+    "node_id": "MDg6Q2hlY2tSdW4xMjg2MjAyMjg=",
     "avatar_url":"https://avatars.githubusercontent.com/u/7649605?v=3",
     "gravatar_id":"",
     "url":"https://api.github.com/users/baxterthehacker",
