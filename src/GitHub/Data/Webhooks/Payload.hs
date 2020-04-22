@@ -480,7 +480,7 @@ data HookPullRequest = HookPullRequest
     , whPullReqHead             :: !PullRequestTarget
     -- , whPullReqIsMerged         :: !Bool
     -- , whPullReqIsMergeable      :: !Bool
-    -- , whPullReqMergeableState   :: !Text
+    , whPullReqMergeableState   :: !(Maybe Text)              -- ^ Not sent with all events.
     -- , whPullReqMergedBy         :: !(Maybe HookUser)
     , whPullReqCommentCount     :: !(Maybe Int)               -- ^ Not sent with all events.
     , whPullReqRevCommentCount  :: !(Maybe Int)               -- ^ Not sent with all events.
@@ -965,7 +965,7 @@ instance FromJSON HookPullRequest where
       <*> o .: "head"
       -- <*> o .: "merged"
       -- <*> o .: "mergeable"
-      -- <*> o .: "mergeable_state"
+      <*> o .:? "mergeable_state"
       -- <*> o .: "merged_by"
       <*> o .:? "comments"
       <*> o .:? "review_comments"
