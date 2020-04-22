@@ -3698,6 +3698,7 @@ pullRequestEventFixture = PullRequestEvent
                 , whPullReqTargetLabel = "baxterthehacker:changes"
                 , whPullReqTargetRef = "changes"
                 }
+          , whPullReqMergeableState = Just "unknown"
           , whPullReqCommentCount = Just 0
           , whPullReqRevCommentCount = Just 0
           , whPullReqCommitCount = Just 1
@@ -4100,6 +4101,7 @@ pullRequestEventNullBodyFixture = PullRequestEvent
                 , whPullReqTargetLabel = "baxterthehacker:changes"
                 , whPullReqTargetRef = "changes"
                 }
+          , whPullReqMergeableState = Just "unknown"
           , whPullReqCommentCount = Just 0
           , whPullReqRevCommentCount = Just 0
           , whPullReqCommitCount = Just 1
@@ -4546,6 +4548,7 @@ pullRequestReviewCommentEventFixture = PullRequestReviewCommentEvent
                 , whPullReqTargetLabel = "baxterthehacker:changes"
                 , whPullReqTargetRef = "changes"
                 }
+          , whPullReqMergeableState = Nothing
           }
     , evPullReqRevRepo =
         HookRepository
@@ -4972,6 +4975,7 @@ pullRequestReviewEventFixture = PullRequestReviewEvent
               , whPullReqTargetLabel = "skalnik:patch-2"
               , whPullReqTargetRef = "patch-2"
               }
+        , whPullReqMergeableState = Nothing
         , whPullReqCommentCount = Nothing
         , whPullReqRevCommentCount = Nothing
         , whPullReqCommitCount = Nothing
