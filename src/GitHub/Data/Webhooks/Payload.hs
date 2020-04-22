@@ -950,7 +950,7 @@ instance FromJSON HookIssue where
       <*> o .: "created_at"
       <*> o .: "updated_at"
       <*> o .:? "closed_at"
-      <*> o .: "body"
+      <*> o .:? "body" .!= ""
 
 instance FromJSON HookRepository where
   parseJSON = withObject "HookRepository" $ \o -> HookRepository
