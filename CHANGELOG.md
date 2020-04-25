@@ -1,10 +1,16 @@
+# 0.13.0
+
+* Support for `node_id`, which is used by the GraphQL API (by Alistair Burrowes)
+* Handle the case where `issue.body` is `null` (by Rob Berry)
+* Support for `mergeable_state` option in pull requests (by Matthew Bauer)
+
 # 0.12.0
 
 * Support for CheckSuiteEvent and CheckRunEvent was added (resolves #25)
 
 # 0.11.0
 
-* OwnerType of Bot is now supported (by Domen Kozar, resolves #22)
+* `OwnerType` of `Bot` is now supported (by Domen Kozar, resolves #22)
 * GHC-7.10 requires less changes to build the bundled examples (resolves #6)
 * Fixed issues to do with updated stack package format and CI build (resolves #23, et al.)
 * Added a security policy clarifying how security issues should be disclosed (resolves #24)
@@ -18,8 +24,8 @@
 # 0.10.0
 
 * Significantly improved documentation coverage and added module descriptions (by Christian Sakai, resolves #5)
-* Fixed a bug where the installation id field of 'PullRequestEvent' was not optional (by Rob Berry)
-* Implementing "head" and "base" fields to PullRequestReview (by Rob Berry and Thomas DuBuisson)
+* Fixed a bug where the installation id field of `PullRequestEvent` was not optional (by Rob Berry)
+* Implementing `head` and `base` fields to `PullRequestReview` (by Rob Berry and Thomas DuBuisson)
 
 # 0.9.1
 

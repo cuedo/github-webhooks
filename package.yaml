@@ -1,5 +1,5 @@
 name: github-webhooks
-version: 0.12.0
+version: 0.13.0
 
 category: GitHub
 license: MIT
@@ -10,7 +10,7 @@ extra-source-files:
   - CHANGELOG.md
   - fixtures/*.json
 synopsis: Aeson instances for GitHub Webhook payloads.
-copyright: (c) 2017-2019 ONROCK
+copyright: (c) 2017-2020 ONROCK
 author:
   - Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
   - Christian Sakai <christianmsakai@gmail.com>
@@ -18,6 +18,7 @@ author:
   - Rob Berry
   - Domen Kozar <domen@dev.si>
   - Alistair Burrowes
+  - Matthew Bauer
 maintainer: Kyle Van Berendonck <foss@onrock.online>
 github: onrock-eng/github-webhooks
 description:
