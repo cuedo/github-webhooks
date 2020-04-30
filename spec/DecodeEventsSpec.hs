@@ -303,7 +303,7 @@ checkRunEventFixture = CheckRunEvent
                 , whCheckRunOutputAnnotationsUrl = URL "https://api.github.com/repos/baxterthehacker/public-repo/check-runs/454339238/annotations"
                 }
           , whCheckRunName = "Test Check Run"
-          , weCheckRunCheckSuite =
+          , whCheckRunCheckSuite =
               HookCheckSuite
                 { whCheckSuiteId = 12341234111
                 , whCheckSuiteNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="

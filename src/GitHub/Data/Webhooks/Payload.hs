@@ -609,7 +609,7 @@ data HookCheckRun = HookCheckRun
     , whCheckRunCompletedAt          :: !(Maybe UTCTime)
     , whCheckRunOutput               :: !HookCheckRunOutput
     , whCheckRunName                 :: !Text
-    , weCheckRunCheckSuite           :: !HookCheckSuite
+    , whCheckRunCheckSuite           :: !HookCheckSuite
     , whCheckRunPullRequests         :: !(Vector HookChecksPullRequest)
     }
     deriving (Eq, Show, Typeable, Data, Generic)
