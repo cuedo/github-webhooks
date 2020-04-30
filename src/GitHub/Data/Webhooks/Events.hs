@@ -193,7 +193,7 @@ instance FromJSON CheckRunEventAction where
       case t of
           "created"            -> pure CheckRunEventActionCreated
           "completed"          -> pure CheckRunEventActionCompleted
-          "requested"          -> pure CheckRunEventActionRerequested
+          "rerequested"        -> pure CheckRunEventActionRerequested
           "requested_action"   -> pure CheckRunEventActionRequestedAction
           _                    -> pure (CheckRunEventActionOther t)
 
