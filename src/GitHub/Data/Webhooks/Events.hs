@@ -189,7 +189,7 @@ data CheckRunEventAction
 instance NFData CheckRunEventAction where rnf = genericRnf
 
 instance FromJSON CheckRunEventAction where
-  parseJSON = withText "Check suite event action" $ \t ->
+  parseJSON = withText "Check run event action" $ \t ->
       case t of
           "created"            -> pure CheckRunEventActionCreated
           "completed"          -> pure CheckRunEventActionCompleted
