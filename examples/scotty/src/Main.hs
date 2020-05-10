@@ -23,4 +23,4 @@ main = do
         post "/" $ do
             -- FIXME: Secret key is not verified in scotty example
             ev <- jsonData
-            liftIO . putStrLn $ (show . whIssueCommentBody . evIssueCommentPayload) (ev :: IssueCommentEvent)
+            liftIO . print $ (whIssueCommentBody . evIssueCommentPayload) (ev :: IssueCommentEvent)
