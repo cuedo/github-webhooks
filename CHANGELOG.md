@@ -1,3 +1,9 @@
+# 0.14.0
+
+* Corrected description for CheckRunEventAction
+* Fixed a decoding error for CheckRunEventActionRerequested
+* Corrected a new hlint failure that was introduced by a recent hlint release
+
 # 0.13.0
 
 * Support for `node_id`, which is used by the GraphQL API (by Alistair Burrowes)

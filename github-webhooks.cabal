@@ -2,11 +2,11 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c220237f263ab5131d0f96f71a332ce4433e6c3f7853816f0b5b7977d03ccdff
+-- hash: 6c431c3db76ffff220d18dccd2a9b34d8ed8e36c4789fde3e8e45d324d47cf05
 
 cabal-version:  >= 1.10
 name:           github-webhooks
-version:        0.13.0
+version:        0.14.0
 synopsis:       Aeson instances for GitHub Webhook payloads.
 description:    Complete instances for decoding GitHub Webhook payloads (using @aeson@). See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
 category:       GitHub
@@ -67,6 +67,8 @@ extra-source-files:
     stack-ghc-7.10.yaml
     stack-ghc-7.8.yaml
     stack-ghc-8.0.yaml
+    stack-ghc-8.2.yaml
+    stack-ghc-8.4.yaml
     stack-nightly.yaml
     stack.yaml
 
