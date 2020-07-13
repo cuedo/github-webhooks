@@ -1,1 +1,1 @@
-resolver: nightly-2019-10-15 # Overriden by --resolver nightly on CI matrix
+resolver: nightly-2020-07-12

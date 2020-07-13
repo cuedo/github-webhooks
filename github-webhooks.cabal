@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6c431c3db76ffff220d18dccd2a9b34d8ed8e36c4789fde3e8e45d324d47cf05
+-- hash: 3ecaf28341b22a1bd64edf93c46278d73183c6c1d8d64bdb8a7c72822883b054
 
 cabal-version:  >= 1.10
 name:           github-webhooks
@@ -18,7 +18,8 @@ author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.online>,
                 Rob Berry,
                 Domen Kozar <domen@dev.si>,
                 Alistair Burrowes,
-                Matthew Bauer
+                Matthew Bauer,
+                Julien Debon
 maintainer:     Kyle Van Berendonck <foss@onrock.online>
 copyright:      (c) 2017-2020 ONROCK
 license:        MIT

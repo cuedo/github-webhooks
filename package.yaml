@@ -19,6 +19,7 @@ author:
   - Domen Kozar <domen@dev.si>
   - Alistair Burrowes
   - Matthew Bauer
+  - Julien Debon
 maintainer: Kyle Van Berendonck <foss@onrock.online>
 github: onrock-eng/github-webhooks
 description:
