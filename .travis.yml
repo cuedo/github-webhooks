@@ -25,9 +25,6 @@ matrix:
     # Nightly
     - os: linux
       env: STACK_YAML=stack-nightly.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
-  allow_failures:
-    # These are not stable yet
-    - env: STACK_YAML=stack-nightly.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
 
 cache:
   directories:
