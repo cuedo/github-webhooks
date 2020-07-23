@@ -17,6 +17,10 @@ matrix:
       env: STACK_YAML=stack-ghc-8.2.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
     - os: linux
       env: STACK_YAML=stack-ghc-8.4.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
+    - os: linux
+      env: STACK_YAML=stack-ghc-8.6.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
+    - os: linux
+      env: STACK_YAML=stack-ghc-8.8.yaml STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64
     # Current releases
     - os: linux
       env: STACK_PKG_URL=https://www.stackage.org/stack/linux-x86_64

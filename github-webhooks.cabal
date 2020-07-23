@@ -1,12 +1,13 @@
--- This file has been generated from package.yaml by hpack version 0.21.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3ecaf28341b22a1bd64edf93c46278d73183c6c1d8d64bdb8a7c72822883b054
+-- hash: fc4ab955c62cdd181b1557e931d1c790d5b28eb4ca7c837d32a3c0749f8d412d
 
-cabal-version:  >= 1.10
 name:           github-webhooks
-version:        0.14.0
+version:        0.15.0
 synopsis:       Aeson instances for GitHub Webhook payloads.
 description:    Complete instances for decoding GitHub Webhook payloads (using @aeson@). See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
 category:       GitHub
@@ -25,8 +26,18 @@ copyright:      (c) 2017-2020 ONROCK
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
-
 extra-source-files:
+    package.yaml
+    stack.yaml
+    stack-examples.yaml
+    stack-ghc-7.10.yaml
+    stack-ghc-7.8.yaml
+    stack-ghc-8.0.yaml
+    stack-ghc-8.2.yaml
+    stack-ghc-8.4.yaml
+    stack-ghc-8.6.yaml
+    stack-ghc-8.8.yaml
+    stack-nightly.yaml
     CHANGELOG.md
     fixtures/check-run-event.json
     fixtures/check-suite-event.json
@@ -63,15 +74,6 @@ extra-source-files:
     fixtures/team-add-event.json
     fixtures/team-event.json
     fixtures/watch-event.json
-    package.yaml
-    stack-examples.yaml
-    stack-ghc-7.10.yaml
-    stack-ghc-7.8.yaml
-    stack-ghc-8.0.yaml
-    stack-ghc-8.2.yaml
-    stack-ghc-8.4.yaml
-    stack-nightly.yaml
-    stack.yaml
 
 source-repository head
   type: git

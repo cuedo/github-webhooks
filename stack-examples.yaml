@@ -1,4 +1,4 @@
-resolver: lts-11.5
+resolver: lts-16.6
 packages:
 - .
 - examples/scotty
@@ -6,4 +6,6 @@ packages:
 - examples/servant-simple
 extra-deps:
 # Needed for servant examples
-- servant-github-webhook-0.4.1.0
+- servant-github-webhook-0.4.2.0
+- github-0.26
+- binary-instances-1.0.0.1

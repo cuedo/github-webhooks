@@ -1,3 +1,7 @@
+# 0.15.0
+
+* Corrected false failures in the test suite when using `time-1.9` and later (by Julien Debon)
+
 # 0.14.0
 
 * Corrected description for CheckRunEventAction
