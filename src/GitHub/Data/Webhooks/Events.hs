@@ -704,8 +704,8 @@ instance FromJSON OrganizationEventAction where
 -- See <https://developer.github.com/v3/activity/events/types/#organizationevent>.
 data OrganizationEvent = OrganizationEvent
     { evOrganizationAction      :: !OrganizationEventAction
-    , evOrganizationInvitation  :: !HookOrganizationInvitation
-    , evOrganizationMembership  :: !HookOrganizationMembership
+    , evOrganizationInvitation  :: !(Maybe HookOrganizationInvitation)
+    , evOrganizationMembership  :: !(Maybe HookOrganizationMembership)
     , evOrganizationOrg         :: !HookOrganization
     , evOrganizationSender      :: !HookUser
     }
@@ -1417,8 +1417,8 @@ instance FromJSON MilestoneEvent where
 instance FromJSON OrganizationEvent where
     parseJSON = withObject "OrganizationEvent" $ \o -> OrganizationEvent
         <$> o .: "action"
-        <*> o .: "invitation"
-        <*> o .: "membership"
+        <*> o .:? "invitation"
+        <*> o .:? "membership"
         <*> o .: "organization"
         <*> o .: "sender"
 
