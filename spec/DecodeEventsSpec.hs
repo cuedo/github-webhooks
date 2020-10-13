@@ -2618,7 +2618,7 @@ organizationEventFixture :: OrganizationEvent
 organizationEventFixture = OrganizationEvent
     { evOrganizationAction = OrgMemberInvitedAction
     , evOrganizationInvitation =
-        HookOrganizationInvitation
+        Just $ HookOrganizationInvitation
           { whOrgInvitationId = 3294302
           , whOrgInvitationNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
           , whOrgInvitationLogin = "baxterthehacker"
@@ -2626,7 +2626,7 @@ organizationEventFixture = OrganizationEvent
           , whOrgInvitationRole = "direct_member"
           }
     , evOrganizationMembership =
-        HookOrganizationMembership
+        Just $ HookOrganizationMembership
           { whOrgMembershipUrl = URL "https://api.github.com/orgs/baxterandthehackers/memberships/baxterthehacker"
           , whOrgMembershipState = "active"
           , whOrgMembershipRole = "member"
