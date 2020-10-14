@@ -1,6 +1,12 @@
 {-# LANGUAGE Trustworthy #-}
+{-|
+Module      : Github.Data.Webhooks.Secure
+Copyright   : (c) Cuedo Business Solutions 2017-2020
+License     : MIT
+Maintainer  : Kyle Van Berendonck <foss@cuedo.com.au>
 
--- | See <https://developer.github.com/webhooks/securing/>.
+See <https://developer.github.com/webhooks/securing/>.
+-}
 module GitHub.Data.Webhooks.Secure
     ( PayloadNotSecure(..)
     , isSecurePayload

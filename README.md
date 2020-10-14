@@ -32,7 +32,7 @@ Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 * Full support for [these event types](https://developer.github.com/v3/activity/events/types/#event-types--payloads).
 
 ## Installation
-`github-webhooks` is available via installation on [Hackage](https://hackage.haskell.org/package/github-webhooks).
+`github-webhooks` is available via installation on [Hackage](https://hackage.haskell.org/package/github-webhooks) and [Stackage](https://www.stackage.org/package/github-webhooks).
 
 ## Examples
 Minimal working example:
@@ -64,13 +64,9 @@ See [AUTHORS](./AUTHORS) for a list of significant authors.
 
 ## License
 
-<a href="https://opensource.org/licenses/MIT" target="_blank">
-<img align="right" src="https://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png">
-</a>
-
     MIT License
 
-    Copyright (c) 2017 ONROCK (https://onrock.online)
+    Copyright (c) 2017-2020 Cuedo Business Solutions (https://cuedo.com.au)
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -90,9 +86,9 @@ See [AUTHORS](./AUTHORS) for a list of significant authors.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-Free open source software, sponsored by \
+Free open source software, sponsored by [cuedo.com.au](https://cuedo.com.au). \
 \
-<a href="https://onrock.online" rel="sponsor">![ONROCK](./doc/onrock-color-196.svg)</a>
+<a href="https://cuedo.com.au" rel="sponsor">![Cuedo Business Solutions](./doc/cuedo-color-256.svg)</a>
 
 [Webhook]: https://developer.github.com/webhooks/
 

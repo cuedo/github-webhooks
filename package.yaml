@@ -10,9 +10,9 @@ extra-source-files:
   - CHANGELOG.md
   - fixtures/*.json
 synopsis: Aeson instances for GitHub Webhook payloads.
-copyright: (c) 2017-2020 ONROCK
+copyright: (c) 2017-2020 Cuedo Business Solutions
 author:
-  - Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
+  - Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
   - Christian Sakai <christianmsakai@gmail.com>
   - Thomas DuBuisson <thomas.dubuisson@gmail.com>
   - Rob Berry
@@ -20,11 +20,12 @@ author:
   - Alistair Burrowes
   - Matthew Bauer
   - Julien Debon
-maintainer: Kyle Van Berendonck <foss@onrock.online>
+maintainer: Kyle Van Berendonck <foss@cuedo.com.au>
 github: onrock-eng/github-webhooks
 description:
     Complete instances for decoding GitHub Webhook payloads (using @aeson@).
     See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples.
+    Sponsored by <https://cuedo.com.au>.
 flags:
   ci:
     description: A stricter build designed for continuous integration.

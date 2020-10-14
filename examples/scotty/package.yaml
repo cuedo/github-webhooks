@@ -1,9 +1,9 @@
 name: github-webhooks-scotty-example
 version: 0.0.0
 license: MIT
-copyright: (c) 2017-2019 ONROCK
-author: Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
-maintainer: Kyle Van Berendonck <foss@onrock.online>
+copyright: (c) 2017-2020 Cuedo Business Solutions
+author: Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
+maintainer: Kyle Van Berendonck <foss@cuedo.com.au>
 
 ghc-options:
   - -Wall

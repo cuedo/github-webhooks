@@ -1,16 +1,15 @@
-cabal-version: 1.12
-
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.21.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ec9a5d0f673953f16afca93ad06e6d3722f9d853a5901b2a9f499d67ea2d0258
+-- hash: 05938c93633bfc6a6dc46b8492aec232e08d2d0cd35104ab17b4188b2d42357d
 
+cabal-version:  >= 1.10
 name:           github-webhooks-scotty-example
 version:        0.0.0
-author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
-maintainer:     Kyle Van Berendonck <foss@onrock.online>
-copyright:      (c) 2017-2019 ONROCK
+author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
+maintainer:     Kyle Van Berendonck <foss@cuedo.com.au>
+copyright:      (c) 2017-2020 Cuedo Business Solutions
 license:        MIT
 build-type:     Simple
 

@@ -1,16 +1,15 @@
-cabal-version: 1.12
-
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.21.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 879ccec7655889178f4f20000e981739dc2ba5ebb75109f1ddc36b1c572bdfa0
+-- hash: f135d8842861c67778a51759adb2b9e5ec97bac79e2da1e9b019b9c0a71c5943
 
+cabal-version:  >= 1.10
 name:           github-webhooks-servant-example
 version:        0.0.0
-author:         Kyle Van Berendonck <kyle.vanberendonck@onrock.online>
-maintainer:     Kyle Van Berendonck <foss@onrock.online>
-copyright:      (c) 2017-2019 ONROCK
+author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
+maintainer:     Kyle Van Berendonck <foss@cuedo.com.au>
+copyright:      (c) 2017-2020 Cuedo Business Solutions
 license:        MIT
 build-type:     Simple
 

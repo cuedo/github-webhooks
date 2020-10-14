@@ -1,3 +1,8 @@
+# 0.16.0
+
+* The invitation and membership fields were made optional for `OrganizationEvent` (resolves #37)
+* The maintaining sponsor [onrock.online](https://onrock.online) has rebranded to [Cuedo Business Solutions](https://cuedo.com.au)
+
 # 0.15.0
 
 * Corrected false failures in the test suite when using `time-1.9` and later (by Julien Debon)

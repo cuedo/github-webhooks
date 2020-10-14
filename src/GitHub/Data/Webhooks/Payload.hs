@@ -1,9 +1,9 @@
 {-# LANGUAGE Trustworthy #-}
 {-|
 Module      : Github.Data.Webhooks.Payload
-Copyright   : (c) ONROCK, 2018
+Copyright   : (c) Cuedo Business Solutions 2017-2020
 License     : MIT
-Maintainer  : Kyle Van Berendonck <foss@onrock.online>
+Maintainer  : Kyle Van Berendonck <foss@cuedo.com.au>
 
 This module contains types that represent GitHub webhook's payload contents.
 -}
