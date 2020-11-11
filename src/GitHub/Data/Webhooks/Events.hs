@@ -397,8 +397,8 @@ instance NFData InstallationEvent where rnf = genericRnf
 
 
 data InstallationRepoEventAction
-  -- | Decodes from "created"
-  = InstallationRepoCreatedAction
+  -- | Decodes from "added"
+  = InstallationRepoAddedAction
   -- | Decodes from "removed"
   | InstallationRepoRemovedAction
   -- | The result of decoding an unknown installation repo event action type
@@ -410,7 +410,7 @@ instance NFData InstallationRepoEventAction where rnf = genericRnf
 instance FromJSON InstallationRepoEventAction where
   parseJSON = withText "Installation repo event action" $ \t ->
     case t of
-        "created"       -> pure InstallationRepoCreatedAction
+        "added"         -> pure InstallationRepoAddedAction
         "removed"       -> pure InstallationRepoRemovedAction
         _               -> pure (InstallationRepoActionOther t)
 
