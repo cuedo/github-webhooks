@@ -369,6 +369,12 @@ data InstallationEventAction
   = InstallationCreatedAction
   -- | Decodes from "deleted"
   | InstallationDeletedAction
+  -- | Decodes from "suspend"
+  | InstallationSuspendAction
+  -- | Decodes from "unsuspend"
+  | InstallationUnsuspendAction
+  -- | Decodes from "new_permissions_accepted"
+  | InstallationNewPermissionsAcceptedAction
   -- | The result of decoding an unknown installation event action type
   | InstallationActionOther !Text
   deriving (Eq, Ord, Show, Generic, Typeable, Data)
@@ -378,9 +384,12 @@ instance NFData InstallationEventAction where rnf = genericRnf
 instance FromJSON InstallationEventAction where
   parseJSON = withText "Installation event action" $ \t ->
     case t of
-        "created"       -> pure InstallationCreatedAction
-        "deleted"       -> pure InstallationDeletedAction
-        _               -> pure (InstallationActionOther t)
+        "created"                  -> pure InstallationCreatedAction
+        "deleted"                  -> pure InstallationDeletedAction
+        "suspend"                  -> pure InstallationSuspendAction
+        "unsuspend"                -> pure InstallationUnsuspendAction
+        "new_permissions_accepted" -> pure InstallationNewPermissionsAcceptedAction
+        _                          -> pure (InstallationActionOther t)
 
 -- | Triggered when a GitHub App has been installed or uninstalled.
 -- See <https://developer.github.com/v3/activity/events/types/#installationevent>.
