@@ -48,7 +48,7 @@ eitherDecode' json :: Either String WatchEvent
 Some practical integration examples are also provided:
 * [Servant Integration (Simple)](./examples/servant-simple#readme)  
   Minimal working example of integrating this package with [servant] and [servant-github-webhook].
-* [Servant Integration (Typical)](./examples/servant-adv#readme)  
+* [Servant Integration (Typical)](./examples/servant#readme)  
   This example demonstrates more advanced use-cases with [servant] by decoding multiple different types of payloads on the same endpoint.
 * [Scotty Integration](./examples/scotty#readme)  
   Minimal working example of integrating this package with [scotty].
