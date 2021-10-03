@@ -2,6 +2,7 @@
 
 * The invitation and membership fields were made optional for `OrganizationEvent` (resolves #37)
 * The maintaining sponsor [onrock.online](https://onrock.online) has rebranded to [Cuedo Business Solutions](https://cuedo.com.au)
+* Support for marketplace purchase event (by Alistair Burrowes, resolves #46)
 
 # 0.15.0
 

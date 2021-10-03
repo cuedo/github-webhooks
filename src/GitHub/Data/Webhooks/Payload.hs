@@ -23,6 +23,11 @@ module GitHub.Data.Webhooks.Payload
     , HookOrganizationInvitation(..)
     , HookOrganizationMembership(..)
     , HookTeam(..)
+    , HookMarketplaceAccount(..)
+    , HookMarketplaceBillingCycle(..)
+    , HookMarketplacePlan(..)
+    , HookMarketplacePlanPriceModel(..)
+    , HookMarketplacePurchase(..)
     , HookMilestone(..)
     , HookMembership(..)
     , HookProject(..)
@@ -328,6 +333,90 @@ data HookTeam = HookTeam
 
 instance NFData HookTeam where rnf = genericRnf
 
+-- | Represents the "billing_cycle" field in the
+-- 'HookMarketplacePurchase' payload.
+data HookMarketplaceBillingCycle
+    -- | Decodes from "yearly"
+    = HookMarketplaceBillingCycleYearly
+    -- | Decodes from "monthly".
+    | HookMarketplaceBillingCycleMonthly
+    -- | The result of decoding an unknown marketplace purchase billing cycle type
+    | HookMarketplaceBillingCycleOther !Text
+    deriving (Eq, Ord, Show, Generic, Typeable, Data)
+
+instance NFData HookMarketplaceBillingCycle where rnf = genericRnf
+
+instance FromJSON HookMarketplaceBillingCycle where
+  parseJSON = withText "Hook marketplace billing cycle" $ \t ->
+      case t of
+          "yearly"          -> pure HookMarketplaceBillingCycleYearly
+          "monthly"         -> pure HookMarketplaceBillingCycleMonthly
+          _                 -> pure (HookMarketplaceBillingCycleOther t)
+
+-- | Represents the "marketplace_purchase" field in the 'MarketplacePurchaseEvent' payload.
+data HookMarketplacePurchase = HookMarketplacePurchase
+    { whMarketplacePurchaseAccount         :: !HookMarketplaceAccount
+    , whMarketplacePurchaseBillingCycle    :: !(Maybe HookMarketplaceBillingCycle)
+    , whMarketplacePurchaseUnitCount       :: !Int
+    , whMarketplacePurchaseOnFreeTrial     :: !Bool
+    , whMarketplacePurchaseFreeTrialEndsOn :: !(Maybe UTCTime)
+    , whMarketplacePurchaseNextBillingDate :: !(Maybe UTCTime)
+    , whMarketplacePurchasePlan            :: !HookMarketplacePlan
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookMarketplacePurchase where rnf = genericRnf
+
+-- | Represents the "account" field in the 'HookMarketplacePurchase' payload.
+data HookMarketplaceAccount = HookMarketplaceAccount
+    { whMarketplaceAccountType                     :: !OwnerType
+    , whMarketplaceAccountId                       :: !Int
+    , whMarketplaceAccountNodeId                   :: !Text
+    , whMarketplaceAccountLogin                    :: !Text
+    , whMarketplaceAccountOrganizationBillingEmail :: !(Maybe Text)
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookMarketplaceAccount where rnf = genericRnf
+
+-- | Represents the "plan" field in the 'HookMarketplacePurchase' payload.
+data HookMarketplacePlan = HookMarketplacePlan
+    { whMarketplacePlanId                  :: !Int
+    , whMarketplacePlanName                :: !Text
+    , whMarketplacePlanDescription         :: !Text
+    , whMarketplacePlanMonthlyPriceInCents :: !Int
+    , whMarketplacePlanYearlyPriceInCents  :: !Int
+    , whMarketplacePlanPriceModel          :: !HookMarketplacePlanPriceModel
+    , whMarketplacePlanHasFreeTrial        :: !Bool
+    , whMarketplacePlanUnitName            :: !(Maybe Text)
+    , whMarketplacePlanBullet              :: !(Vector Text)
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookMarketplacePlan where rnf = genericRnf
+
+-- | Represents the "price_model" field in the
+-- 'HookMarketplacePlan' payload.
+data HookMarketplacePlanPriceModel
+    -- | Decodes from "flat-rate"
+    = HookMarketplacePlanPriceModelFlatRate
+    -- | Decodes from "per-unit".
+    | HookMarketplacePlanPriceModelPerUnit
+    -- | Decodes from "free".
+    | HookMarketplacePlanPriceModelFree
+    -- | The result of decoding an unknown marketplace plan price model
+    | HookMarketplacePlanPriceModelOther !Text
+    deriving (Eq, Ord, Show, Generic, Typeable, Data)
+
+instance NFData HookMarketplacePlanPriceModel where rnf = genericRnf
+
+instance FromJSON HookMarketplacePlanPriceModel where
+  parseJSON = withText "Hook marketplace plan price model" $ \t ->
+      case t of
+          "flat-rate"       -> pure HookMarketplacePlanPriceModelFlatRate
+          "per-unit"        -> pure HookMarketplacePlanPriceModelPerUnit
+          "free"            -> pure HookMarketplacePlanPriceModelFree
+          _                 -> pure (HookMarketplacePlanPriceModelOther t)
 
 type MilestoneState = Text
 
@@ -1104,6 +1193,36 @@ instance FromJSON HookTeam where
       <*> o .: "url"
       <*> o .: "members_url"
       <*> o .: "repositories_url"
+
+instance FromJSON HookMarketplacePurchase where
+  parseJSON = withObject "HookMarketplacePurchase" $ \o -> HookMarketplacePurchase
+      <$> o .: "account"
+      <*> o .: "billing_cycle"
+      <*> o .: "unit_count"
+      <*> o .: "on_free_trial"
+      <*> o .: "free_trial_ends_on"
+      <*> o .:? "next_billing_date"
+      <*> o .: "plan"
+
+instance FromJSON HookMarketplaceAccount where
+  parseJSON = withObject "HookMarketplaceAccount" $ \o -> HookMarketplaceAccount
+      <$> o .: "type"
+      <*> o .: "id"
+      <*> o .: "node_id"
+      <*> o .: "login"
+      <*> o .:? "organization_billing_email"
+
+instance FromJSON HookMarketplacePlan where
+  parseJSON = withObject "HookMarketplacePlan" $ \o -> HookMarketplacePlan
+      <$> o .: "id"
+      <*> o .: "name"
+      <*> o .: "description"
+      <*> o .: "monthly_price_in_cents"
+      <*> o .: "yearly_price_in_cents"
+      <*> o .: "price_model"
+      <*> o .: "has_free_trial"
+      <*> o .: "unit_name"
+      <*> o .: "bullets"
 
 instance FromJSON HookMilestone where
   parseJSON = withObject "HookMilestone" $ \o -> HookMilestone

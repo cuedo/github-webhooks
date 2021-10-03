@@ -53,6 +53,7 @@ spec = do
   it "can decode IssueCommentEvent"       $ fixtureShouldMatch "fixtures/issue-comment-event.json" issueCommentEventFixture
   it "can decode IssuesEvent"             $ fixtureShouldMatch "fixtures/issues-event.json" issuesEventFixture
   it "can decode LabelEvent"              $ fixtureShouldMatch "fixtures/label-event.json" labelEventFixture
+  it "can decode MarketplacePurchaseEvent" $ fixtureShouldMatch "fixtures/marketplace-purchase-event.json" marketplacePurchaseEventFixture
   it "can decode MemberEvent"             $ fixtureShouldMatch "fixtures/member-event.json" memberEventFixture
   it "can decode MembershipEvent"         $ fixtureShouldMatch "fixtures/membership-event.json" membershipEventFixture
   it "can decode MilestoneEvent"          $ fixtureShouldMatch "fixtures/milestone-event.json" milestoneEventFixture
@@ -2172,6 +2173,90 @@ labelEventFixture = LabelEvent
           , whUserType = OwnerUser
           , whUserIsAdminOfSite = True
           }
+    }
+
+marketplacePurchaseEventFixture :: MarketplacePurchaseEvent
+marketplacePurchaseEventFixture = MarketplacePurchaseEvent
+    { evMarketplacePurchaseAction = MarketplacePurchaseChangedAction
+    , evMarketplacePurchaseEffectiveDate = read "2017-10-25 00:00:00 UTC"
+    , evMarketplacePurchaseSender =
+        HookUser
+          { whUserLogin = "username"
+          , whUserId = 3877742
+          , whUserNodeId = "MDEyOk9yZ2FuaXphdGlvbjE="
+          , whUserAvatarUrl = URL "https://avatars2.githubusercontent.com/u/3877742?v=4"
+          , whUserGravatarId = URL ""
+          , whUserUrl = URL "https://api.github.com/users/username"
+          , whUserHtmlUrl = URL "https://github.com/username"
+          , whUserFollowersUrl = URL "https://api.github.com/users/username/followers"
+          , whUserFollowingUrl = URL "https://api.github.com/users/username/following{/other_user}"
+          , whUserGistsUrl = URL "https://api.github.com/users/username/gists{/gist_id}"
+          , whUserStarredUrl = URL "https://api.github.com/users/username/starred{/owner}{/repo}"
+          , whUserSubscriptionsUrl = URL "https://api.github.com/users/username/subscriptions"
+          , whUserOrganizationsUrl = URL "https://api.github.com/users/username/orgs"
+          , whUserReposUrl = URL "https://api.github.com/users/username/repos"
+          , whUserEventsUrl = URL "https://api.github.com/users/username/events{/privacy}"
+          , whUserReceivedEventsUrl = URL "https://api.github.com/users/username/received_events"
+          , whUserType = OwnerUser
+          , whUserIsAdminOfSite = True
+          }
+    , evMarketplacePurchaseNew =
+        HookMarketplacePurchase
+          { whMarketplacePurchaseAccount =
+              HookMarketplaceAccount
+                { whMarketplaceAccountType = OwnerOrganization
+                , whMarketplaceAccountId = 18404719
+                , whMarketplaceAccountNodeId = "MDEyOk9yZ2FuaXphdGlvbjE="
+                , whMarketplaceAccountLogin = "username"
+                , whMarketplaceAccountOrganizationBillingEmail = Just "username@email.com"
+              }
+          , whMarketplacePurchaseBillingCycle = Just HookMarketplaceBillingCycleMonthly
+          , whMarketplacePurchaseUnitCount = 10
+          , whMarketplacePurchaseOnFreeTrial = False
+          , whMarketplacePurchaseFreeTrialEndsOn = Nothing
+          , whMarketplacePurchaseNextBillingDate = Just (read "2017-11-05 00:00:00 UTC")
+          , whMarketplacePurchasePlan =
+              HookMarketplacePlan
+                { whMarketplacePlanId = 435
+                , whMarketplacePlanName = "Basic Plan"
+                , whMarketplacePlanDescription = "Basic Plan"
+                , whMarketplacePlanMonthlyPriceInCents = 1000
+                , whMarketplacePlanYearlyPriceInCents = 10000
+                , whMarketplacePlanPriceModel = HookMarketplacePlanPriceModelPerUnit
+                , whMarketplacePlanHasFreeTrial = True
+                , whMarketplacePlanUnitName = Just "seat"
+                , whMarketplacePlanBullet = V.fromList ["Is Basic","Because Basic "]
+                }
+          }
+    , evMarketplacePurchasePrevious =
+        Just (
+          HookMarketplacePurchase
+            { whMarketplacePurchaseAccount =
+                HookMarketplaceAccount
+                  { whMarketplaceAccountType = OwnerOrganization
+                  , whMarketplaceAccountId = 18404719
+                  , whMarketplaceAccountNodeId = "MDEyOk9yZ2FuaXphdGlvbjE="
+                  , whMarketplaceAccountLogin = "username"
+                  , whMarketplaceAccountOrganizationBillingEmail = Just "username@email.com"
+                  }
+              , whMarketplacePurchaseBillingCycle = Just HookMarketplaceBillingCycleMonthly
+              , whMarketplacePurchaseUnitCount = 1
+              , whMarketplacePurchaseOnFreeTrial = False
+              , whMarketplacePurchaseFreeTrialEndsOn = Nothing
+              , whMarketplacePurchaseNextBillingDate = Nothing
+              , whMarketplacePurchasePlan =
+                  HookMarketplacePlan
+                    { whMarketplacePlanId = 435
+                    , whMarketplacePlanName = "Basic Plan"
+                    , whMarketplacePlanDescription = "Basic Plan"
+                    , whMarketplacePlanMonthlyPriceInCents = 1000
+                    , whMarketplacePlanYearlyPriceInCents = 10000
+                    , whMarketplacePlanPriceModel = HookMarketplacePlanPriceModelPerUnit
+                    , whMarketplacePlanHasFreeTrial = True
+                    , whMarketplacePlanUnitName = Just "seat"
+                    , whMarketplacePlanBullet = V.fromList ["Is Basic","Because Basic "]
+                    }
+            })
     }
 
 memberEventFixture :: MemberEvent
