@@ -51,6 +51,9 @@ module GitHub.Data.Webhooks.Events
     , LabelEvent(..)
     , LabelEventAction(..)
       --
+    , MarketplacePurchaseEvent(..)
+    , MarketplacePurchaseEventAction(..)
+      --
     , MemberEvent(..)
     , MemberEventAction(..)
       --
@@ -570,6 +573,48 @@ data LabelEvent = LabelEvent
 instance EventHasSender LabelEvent where senderOfEvent = evLabelEventSender
 instance EventHasRepo LabelEvent where repoForEvent = evLabelEventRepo
 instance NFData LabelEvent where rnf = genericRnf
+
+
+data MarketplacePurchaseEventAction
+  -- | Decodes from "purchased"
+  = MarketplacePurchasePurchasedAction
+  -- | Decodes from "cancelled"
+  | MarketplacePurchaseCancelledAction
+  -- | Decodes from "pending_change"
+  | MarketplacePurchasePendingChangeAction
+  -- | Decodes from "pending_change_cancelled"
+  | MarketplacePurchasePendingChangeCancelledAction
+  -- | Decodes from "changed"
+  | MarketplacePurchaseChangedAction
+  -- | The result of decoding an unknown marketplace purchase event action type
+  | MarketplacePurchaseActionOther !Text
+  deriving (Eq, Ord, Show, Generic, Typeable, Data)
+
+instance NFData MarketplacePurchaseEventAction where rnf = genericRnf
+
+instance FromJSON MarketplacePurchaseEventAction where
+  parseJSON = withText "Marketplace purchase event action" $ \t ->
+    case t of
+        "purchased"                -> pure MarketplacePurchasePurchasedAction
+        "cancelled"                -> pure MarketplacePurchaseCancelledAction
+        "pending_change"           -> pure MarketplacePurchasePendingChangeAction
+        "pending_change_cancelled" -> pure MarketplacePurchasePendingChangeCancelledAction
+        "changed"                  -> pure MarketplacePurchaseChangedAction
+        _                          -> pure (MarketplacePurchaseActionOther t)
+
+-- | A GitHub Marketplace app receives information about changes to a user's plan from the Marketplace purchase event webhook. A Marketplace purchase event is triggered when a user purchases, cancels, or changes their payment plan.
+-- See <https://docs.github.com/en/developers/github-marketplace/using-the-github-marketplace-api-in-your-app/webhook-events-for-the-github-marketplace-api#github-marketplace-purchase-webhook-payload>.
+data MarketplacePurchaseEvent = MarketplacePurchaseEvent
+    { evMarketplacePurchaseAction        :: !MarketplacePurchaseEventAction
+    , evMarketplacePurchaseEffectiveDate :: !UTCTime
+    , evMarketplacePurchaseSender        :: !HookUser
+    , evMarketplacePurchaseNew           :: !HookMarketplacePurchase
+    , evMarketplacePurchasePrevious      :: !(Maybe HookMarketplacePurchase)
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance EventHasSender MarketplacePurchaseEvent where senderOfEvent = evMarketplacePurchaseSender
+instance NFData MarketplacePurchaseEvent where rnf = genericRnf
 
 
 data MemberEventAction
@@ -1398,6 +1443,14 @@ instance FromJSON LabelEvent where
         <*> o .: "repository"
         <*> o .:? "organization"
         <*> o .: "sender"
+
+instance FromJSON MarketplacePurchaseEvent where
+    parseJSON = withObject "MarketplacePurchaseEvent" $ \o -> MarketplacePurchaseEvent
+        <$> o .: "action"
+        <*> o .: "effective_date"
+        <*> o .: "sender"
+        <*> o .: "marketplace_purchase"
+        <*> o .:? "previous_marketplace_purchase"
 
 instance FromJSON MemberEvent where
     parseJSON = withObject "MemberEvent" $ \o -> MemberEvent
