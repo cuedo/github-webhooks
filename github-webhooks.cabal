@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5a028828c4e5056c7fc8d333f19dd2540fcc483536c4181b5ce34c987f1066be
+-- hash: aa1082b50f20ff4d2ed5d10d0f215c3fa9be961cd238536a50df29ee96172bb1
 
 name:           github-webhooks
 version:        0.15.0
@@ -33,6 +33,7 @@ extra-source-files:
     stack-ghc-7.10.yaml
     stack-ghc-7.8.yaml
     stack-ghc-8.0.yaml
+    stack-ghc-8.10.yaml
     stack-ghc-8.2.yaml
     stack-ghc-8.4.yaml
     stack-ghc-8.6.yaml
@@ -53,6 +54,7 @@ extra-source-files:
     fixtures/issue-comment-event.json
     fixtures/issues-event.json
     fixtures/label-event.json
+    fixtures/marketplace-purchase-event.json
     fixtures/member-event.json
     fixtures/membership-event.json
     fixtures/milestone-event.json
@@ -87,7 +89,10 @@ flag ci
 library
   hs-source-dirs:
       src
-  default-extensions: DeriveDataTypeable DeriveGeneric OverloadedStrings
+  default-extensions:
+      DeriveDataTypeable
+      DeriveGeneric
+      OverloadedStrings
   build-depends:
       aeson
     , base ==4.*
@@ -115,7 +120,11 @@ test-suite spec
   main-is: Spec.hs
   hs-source-dirs:
       spec
-  default-extensions: DeriveDataTypeable DeriveGeneric OverloadedStrings ScopedTypeVariables
+  default-extensions:
+      DeriveDataTypeable
+      DeriveGeneric
+      OverloadedStrings
+      ScopedTypeVariables
   build-depends:
       aeson
     , base ==4.*
