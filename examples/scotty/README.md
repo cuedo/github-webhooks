@@ -3,7 +3,7 @@ github-webhooks-scotty-example
 
 1. From the **root directory of this repository**, run:
 ```
-$ stack build github-webhooks-scotty-example
+$ stack build github-webhooks-scotty-example --stack-yaml "stack-examples.yaml"
 ```
 
 2. Then to start the server:

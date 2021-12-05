@@ -1,0 +1,44 @@
+on: [push]
+name: test-ubuntu-latest
+jobs:
+  test-package:
+    name: Test
+    runs-on: ubuntu-latest # or macOS-latest, or windows-latest
+
+    strategy:
+      matrix:
+        stack-yaml:
+          - stack.yaml
+          - stack-nightly.yaml
+          - stack-examples.yaml
+          - stack-ghc-7.8.yaml
+          - stack-ghc-7.10.yaml
+          - stack-ghc-8.0.yaml
+          - stack-ghc-8.2.yaml
+          - stack-ghc-8.4.yaml
+          - stack-ghc-8.6.yaml
+          - stack-ghc-8.8.yaml
+          - stack-ghc-8.10.yaml
+        stack-version:
+          - latest
+
+        exclude:
+          - stack-yaml: stack-ghc-7.8.yaml
+            stack-version: latest
+        include:
+          # ghc-7.8 resolver requires older stack
+          - stack-yaml: stack-ghc-7.8.yaml
+            stack-version: 1.9
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: haskell/actions/setup@v1
+        with:
+          enable-stack: true
+          stack-no-global: true
+          stack-version: ${{ matrix.stack-version }}
+
+      - env:
+          STACK_YAML: ${{matrix.stack-yaml }}
+        run: stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps

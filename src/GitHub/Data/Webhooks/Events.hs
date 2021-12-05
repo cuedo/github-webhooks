@@ -119,6 +119,7 @@ import           Data.Data                (Data, Typeable)
 import           Data.Functor             ((<$>))
 import           Data.Monoid              (mempty)
 import           Data.Time                (UTCTime)
+import           Data.Time.LocalTime      (zonedTimeToUTC)
 import           Data.Text                (Text)
 import           Data.Vector              (Vector)
 import           GHC.Generics             (Generic)
@@ -1447,7 +1448,7 @@ instance FromJSON LabelEvent where
 instance FromJSON MarketplacePurchaseEvent where
     parseJSON = withObject "MarketplacePurchaseEvent" $ \o -> MarketplacePurchaseEvent
         <$> o .: "action"
-        <*> o .: "effective_date"
+        <*> (zonedTimeToUTC <$> o .: "effective_date")
         <*> o .: "sender"
         <*> o .: "marketplace_purchase"
         <*> o .:? "previous_marketplace_purchase"

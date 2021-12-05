@@ -2,13 +2,15 @@
 github-webhooks
 ---------------
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/cuedo/github-webhooks?style=flat-square)
 [![Hackage](https://img.shields.io/hackage/v/github-webhooks.svg?style=flat-square)](https://hackage.haskell.org/package/github-webhooks)
 [![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=flat-square)](#license)
 
-|             | `release` | `master` |
+|             | `release` | `develop` |
 |-------------|---------|----------|
-| Linux & OSX | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks/release.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) |
-| Windows     | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/release.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/master.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) |
+| Ubuntu | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-ubuntu-latest/release?style=flat-square) | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-ubuntu-latest/develop?style=flat-square) |
+| Mac OS | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-macos-latest/release?style=flat-square) | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-macos-latest/develop?style=flat-square) |
+| Windows | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-windows-latest/release?style=flat-square) |![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-windows-latest/develop?style=flat-square) |
 
 Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 

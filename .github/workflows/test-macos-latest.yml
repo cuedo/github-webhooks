@@ -1,0 +1,27 @@
+on: [push]
+name: test-macos-latest
+jobs:
+  test-package:
+    name: Test
+    runs-on: macOS-latest
+
+    strategy:
+      matrix:
+        stack-yaml:
+          - stack.yaml
+          - stack-examples.yaml
+        stack-version:
+          - latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: haskell/actions/setup@v1
+        with:
+          enable-stack: true
+          stack-no-global: true
+          stack-version: ${{ matrix.stack-version }}
+
+      - env:
+          STACK_YAML: ${{matrix.stack-yaml }}
+        run: stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps

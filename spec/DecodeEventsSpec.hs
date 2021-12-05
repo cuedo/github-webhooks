@@ -2178,7 +2178,7 @@ labelEventFixture = LabelEvent
 marketplacePurchaseEventFixture :: MarketplacePurchaseEvent
 marketplacePurchaseEventFixture = MarketplacePurchaseEvent
     { evMarketplacePurchaseAction = MarketplacePurchaseChangedAction
-    , evMarketplacePurchaseEffectiveDate = read "2017-10-25 00:00:00 UTC"
+    , evMarketplacePurchaseEffectiveDate = read "2017-10-25 00:00:00Z"
     , evMarketplacePurchaseSender =
         HookUser
           { whUserLogin = "username"
@@ -2214,7 +2214,7 @@ marketplacePurchaseEventFixture = MarketplacePurchaseEvent
           , whMarketplacePurchaseUnitCount = 10
           , whMarketplacePurchaseOnFreeTrial = False
           , whMarketplacePurchaseFreeTrialEndsOn = Nothing
-          , whMarketplacePurchaseNextBillingDate = Just (read "2017-11-05 00:00:00 UTC")
+          , whMarketplacePurchaseNextBillingDate = Just (read "2017-11-05 00:00:00Z")
           , whMarketplacePurchasePlan =
               HookMarketplacePlan
                 { whMarketplacePlanId = 435
