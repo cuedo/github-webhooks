@@ -1,10 +1,11 @@
--- This file has been generated from package.yaml by hpack version 0.21.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f135d8842861c67778a51759adb2b9e5ec97bac79e2da1e9b019b9c0a71c5943
+-- hash: 0f8ba64f2981c4f188157ff6f1d932983a6f9702a1d20beb163c0a1780fc6eed
 
-cabal-version:  >= 1.10
 name:           github-webhooks-servant-example
 version:        0.0.0
 author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
@@ -17,7 +18,14 @@ executable github-webhooks-servant-example
   main-is: Main.hs
   hs-source-dirs:
       src
-  default-extensions: OverloadedStrings DataKinds TypeFamilies TypeOperators FlexibleInstances MultiParamTypeClasses RankNTypes
+  default-extensions:
+      OverloadedStrings
+      DataKinds
+      TypeFamilies
+      TypeOperators
+      FlexibleInstances
+      MultiParamTypeClasses
+      RankNTypes
   ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates
   build-depends:
       base ==4.*

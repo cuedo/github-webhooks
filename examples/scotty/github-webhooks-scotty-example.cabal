@@ -1,10 +1,11 @@
--- This file has been generated from package.yaml by hpack version 0.21.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 05938c93633bfc6a6dc46b8492aec232e08d2d0cd35104ab17b4188b2d42357d
+-- hash: d8428034201293b018c5837284fb6fada822e5cc703563bad60b8d17ba0a5ef9
 
-cabal-version:  >= 1.10
 name:           github-webhooks-scotty-example
 version:        0.0.0
 author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
@@ -19,7 +20,8 @@ executable github-webhooks-scotty-example
       Paths_github_webhooks_scotty_example
   hs-source-dirs:
       src
-  default-extensions: OverloadedStrings
+  default-extensions:
+      OverloadedStrings
   ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates
   build-depends:
       base ==4.*
