@@ -1,5 +1,5 @@
 on: [push]
-name: macos-latest
+name: test-macos-latest
 jobs:
   test-package:
     name: Test

@@ -1,5 +1,5 @@
 on: [push]
-name: ubuntu-latest
+name: test-ubuntu-latest
 jobs:
   test-package:
     name: Test

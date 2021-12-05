@@ -1,5 +1,5 @@
 on: [push]
-name: windows-latest
+name: test-windows-latest
 jobs:
   test-package:
     name: Test
