@@ -2,6 +2,7 @@
 github-webhooks
 ---------------
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/cuedo/github-webhooks?style=flat-square)
 [![Hackage](https://img.shields.io/hackage/v/github-webhooks.svg?style=flat-square)](https://hackage.haskell.org/package/github-webhooks)
 [![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=flat-square)](#license)
 
