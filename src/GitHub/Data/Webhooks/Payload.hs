@@ -65,7 +65,7 @@ module GitHub.Data.Webhooks.Payload
 import           Data.Aeson               (FromJSON(..), withObject, withText, (.!=), (.:), (.:?))
 import           Control.DeepSeq          (NFData (..))
 import           Control.DeepSeq.Generics (genericRnf)
-import           Control.Applicative      ((<|>), (<*>), pure, liftA)
+import           Control.Applicative      ((<|>), (<*>), pure)
 import           Data.Data                (Data, Typeable)
 import           Data.Functor             ((<$>))
 import           Data.Time                (UTCTime)
