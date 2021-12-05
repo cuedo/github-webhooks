@@ -8,7 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - env:
-          HLINT_SETUP: "https://raw.github.com/ndmitchell/hlint/master/misc/run.sh"
-          HLINT_ARGUMENTS: ". -c -g"
-        run: curl -sSL $HLINT_SETUP | sh -s $HLINT_ARGUMENTS
+      - name: 'Setup hlint'
+        uses: rwe/actions-hlint-setup@v1
+        with:
+          version: '3.1.6'
+
+      - name: 'Run hlint and annotate results'
+        uses: rwe/actions-hlint-run@v2
+        with:
+          path: '["src/", "spec/", "examples/"]'
+          fail-on: warning
