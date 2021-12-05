@@ -7,4 +7,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/run.sh | sh
+      - run: curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/run.sh | sh -s -j -c -g
