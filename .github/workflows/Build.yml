@@ -1,0 +1,14 @@
+on: [push]
+name: Build
+jobs:
+  build-package:
+    name: Build Package
+    runs-on: ubuntu-latest # or macOS-latest, or windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-haskell@v1.1
+        with:
+          enable-stack: true
+          stack-no-global: true
+          stack-version: 'latest'
+      - run: STACK_YAML="stack.yaml" stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
