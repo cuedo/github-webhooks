@@ -5,19 +5,20 @@ jobs:
     name: Build Package
     runs-on: ubuntu-latest # or macOS-latest, or windows-latest
 
-    matrix:
-      stack-yaml:
-        - stack.yaml
-        - stack-nightly.yaml
-        - stack-examples.yaml
-        - stack-ghc-7.8.yaml
-        - stack-ghc-7.10.yaml
-        - stack-ghc-8.0.yaml
-        - stack-ghc-8.2.yaml
-        - stack-ghc-8.4.yaml
-        - stack-ghc-8.6.yaml
-        - stack-ghc-8.8.yaml
-        - stack-ghc-8.10.yaml
+    strategy:
+      matrix:
+        stack-yaml:
+          - stack.yaml
+          - stack-nightly.yaml
+          - stack-examples.yaml
+          - stack-ghc-7.8.yaml
+          - stack-ghc-7.10.yaml
+          - stack-ghc-8.0.yaml
+          - stack-ghc-8.2.yaml
+          - stack-ghc-8.4.yaml
+          - stack-ghc-8.6.yaml
+          - stack-ghc-8.8.yaml
+          - stack-ghc-8.10.yaml
 
     steps:
       - uses: actions/checkout@v2
