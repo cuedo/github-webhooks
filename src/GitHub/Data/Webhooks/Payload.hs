@@ -1201,8 +1201,8 @@ instance FromJSON HookMarketplacePurchase where
       <*> o .: "billing_cycle"
       <*> o .: "unit_count"
       <*> o .: "on_free_trial"
-      <*> (liftA (fmap zonedTimeToUTC) $ o .:? "free_trial_ends_on")
-      <*> (liftA (fmap zonedTimeToUTC) $ o .:? "next_billing_date")
+      <*> (fmap zonedTimeToUTC <$> o .:? "free_trial_ends_on")
+      <*> (fmap zonedTimeToUTC <$> o .:? "next_billing_date")
       <*> o .: "plan"
 
 instance FromJSON HookMarketplaceAccount where
