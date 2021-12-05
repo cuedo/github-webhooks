@@ -69,7 +69,7 @@ import           Control.Applicative      ((<|>), (<*>), pure, liftA)
 import           Data.Data                (Data, Typeable)
 import           Data.Functor             ((<$>))
 import           Data.Time                (UTCTime)
-import           Data.Time.LocalTime      (ZonedTime, zonedTimeToUTC)
+import           Data.Time.LocalTime      (zonedTimeToUTC)
 import           Data.Time.Clock.POSIX    (posixSecondsToUTCTime)
 import           Data.Text                (Text)
 import qualified Data.Text                as T
