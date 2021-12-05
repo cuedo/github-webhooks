@@ -11,4 +11,5 @@ jobs:
           enable-stack: true
           stack-no-global: true
           stack-version: 'latest'
-      - run: STACK_YAML="stack.yaml" stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
+      # STACK_YAML="stack.yaml"
+      - run: stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
