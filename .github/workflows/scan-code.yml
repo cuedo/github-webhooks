@@ -7,4 +7,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/run.sh | sh -s -j -c -g
+
+      - env:
+          HLINT_SETUP: "https://raw.github.com/ndmitchell/hlint/master/misc/run.sh"
+          HLINT_ARGUMENTS: "-j -c -g"
+        run: curl -sSL $HLINT_SETUP | sh -s $HLINT_ARGUMENTS
