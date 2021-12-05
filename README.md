@@ -2,13 +2,14 @@
 github-webhooks
 ---------------
 
-[![Hackage](https://img.shields.io/hackage/v/github-webhooks.svg?style=flat-square)](https://hackage.haskell.org/package/github-webhooks)
-[![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=flat-square)](#license)
+[![Hackage](https://img.shields.io/hackage/v/github-webhooks.svg?style=plastic)](https://hackage.haskell.org/package/github-webhooks)
+[![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=plastic)](#license)
 
-|             | `release` | `master` |
+|             | `release` | `develop` |
 |-------------|---------|----------|
-| Linux & OSX | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks/release.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) | [![travis-linux](https://img.shields.io/travis/onrock-eng/github-webhooks.svg?style=flat-square)](https://travis-ci.org/onrock-eng/github-webhooks) |
-| Windows     | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/release.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) | [![appveyor-windows](https://img.shields.io/appveyor/ci/OnRockEngineering/github-webhooks/master.svg?style=flat-square)](https://ci.appveyor.com/project/OnRockEngineering/github-webhooks) |
+| Ubuntu | [![test-ubuntu-latest release](https://github.com/cuedo/github-webhooks/actions/workflows/test-ubuntu-latest.yml/badge.svg?branch=release)](https://github.com/cuedo/github-webhooks/actions/workflows/test-ubuntu-latest.yml) | [![test-ubuntu-latest develop](https://github.com/cuedo/github-webhooks/actions/workflows/test-ubuntu-latest.yml/badge.svg?branch=develop)](https://github.com/cuedo/github-webhooks/actions/workflows/test-ubuntu-latest.yml) |
+| Mac OS | [![test-macos-latest release](https://github.com/cuedo/github-webhooks/actions/workflows/test-macos-latest.yml/badge.svg?branch=release)](https://github.com/cuedo/github-webhooks/actions/workflows/test-macos-latest.yml) | [![test-macos-latest develop](https://github.com/cuedo/github-webhooks/actions/workflows/test-macos-latest.yml/badge.svg?branch=develop)](https://github.com/cuedo/github-webhooks/actions/workflows/test-macos-latest.yml) |
+| Windows | [![test-windows-latest release](https://github.com/cuedo/github-webhooks/actions/workflows/test-windows-latest.yml/badge.svg?branch=release)](https://github.com/cuedo/github-webhooks/actions/workflows/test-windows-latest.yml) | [![test-windows-latest develop](https://github.com/cuedo/github-webhooks/actions/workflows/test-windows-latest.yml/badge.svg?branch=develop)](https://github.com/cuedo/github-webhooks/actions/workflows/test-windows-latest.yml) |
 
 Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 
