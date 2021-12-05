@@ -66,6 +66,7 @@ spec = do
   it "can decode PublicEvent"             $ fixtureShouldMatch "fixtures/public-event.json" publicEventFixture
   it "can decode PullRequestEvent"        $ fixtureShouldMatch "fixtures/pull-request-event.json" pullRequestEventFixture
   it "can decode PullRequestEvent when body is null" $ fixtureShouldMatch "fixtures/pull-request-event-null-body.json" pullRequestEventNullBodyFixture
+  it "can decode PullRequestEvent when head.repo is null" $ fixtureShouldMatch "fixtures/pull-request-delete-null-head-repo-anomaly.json" pullRequestEventDeleteNullHeadRepoAnomalyFixture
   it "can decode PullRequestReviewCommentEvent" $ fixtureShouldMatch  "fixtures/pull-request-review-comment-event.json" pullRequestReviewCommentEventFixture
   it "can decode PullRequestReviewEvent"  $ fixtureShouldMatch "fixtures/pull-request-review-event.json" pullRequestReviewEventFixture
   it "can decode PushEvent"               $ fixtureShouldMatch "fixtures/push-event.json" pushEventFixture
@@ -3576,7 +3577,7 @@ pullRequestEventFixture = PullRequestEvent
                       , whUserIsAdminOfSite = False
                       }
                 , whPullReqTargetRepo =
-                    HookRepository
+                    Just HookRepository
                       { whRepoId = 35129377
                       , whRepoNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
                       , whRepoName = "public-repo"
@@ -3692,7 +3693,7 @@ pullRequestEventFixture = PullRequestEvent
                       , whUserIsAdminOfSite = False
                       }
                 , whPullReqTargetRepo =
-                    HookRepository
+                    Just HookRepository
                       { whRepoId = 35129377
                       , whRepoNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
                       , whRepoName = "public-repo"
@@ -3979,7 +3980,7 @@ pullRequestEventNullBodyFixture = PullRequestEvent
                       , whUserIsAdminOfSite = False
                       }
                 , whPullReqTargetRepo =
-                    HookRepository
+                    Just HookRepository
                       { whRepoId = 35129377
                       , whRepoNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
                       , whRepoName = "public-repo"
@@ -4095,7 +4096,7 @@ pullRequestEventNullBodyFixture = PullRequestEvent
                       , whUserIsAdminOfSite = False
                       }
                 , whPullReqTargetRepo =
-                    HookRepository
+                    Just HookRepository
                       { whRepoId = 35129377
                       , whRepoNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
                       , whRepoName = "public-repo"
@@ -4306,6 +4307,328 @@ pullRequestEventNullBodyFixture = PullRequestEvent
     , evPullReqInstallationId = Just 234
     }
 
+pullRequestEventDeleteNullHeadRepoAnomalyFixture :: PullRequestEvent
+pullRequestEventDeleteNullHeadRepoAnomalyFixture =
+  PullRequestEvent
+    { evPullReqAction = PullRequestClosedAction,
+      evPullReqNumber = 254,
+      evPullReqPayload =
+        HookPullRequest
+          { whPullReqUrl = URL "https://api.github.com/repos/upstreamowner/therepo/pulls/254",
+            whPullReqId = 57285673867,
+            whPullReqNodeId = "PR_kwODAywNcw4ukzp6",
+            whPullReqHtmlUrl = URL "https://github.com/upstreamowner/therepo/pull/254",
+            whPullReqDiffUrl = URL "https://github.com/upstreamowner/therepo/pull/254.diff",
+            whPullReqPatchUrl = URL "https://github.com/upstreamowner/therepo/pull/254.patch",
+            whPullReqIssueUrl = URL "https://api.github.com/repos/upstreamowner/therepo/issues/254",
+            whPullReqNumber = 254,
+            whPullReqState = "closed",
+            whPullReqIsLocked = False,
+            whPullReqTitle = "This was a PR title",
+            whPullReqUser =
+              HookUser
+                { whUserLogin = "thecontributor",
+                  whUserId = 8425382758,
+                  whUserNodeId = "MDV6XQlcQjN1EjNNQ4T3",
+                  whUserAvatarUrl = URL "https://avatars.githubusercontent.com/u/8425382758?v=4",
+                  whUserGravatarId = URL "",
+                  whUserUrl = URL "https://api.github.com/users/thecontributor",
+                  whUserHtmlUrl = URL "https://github.com/thecontributor",
+                  whUserFollowersUrl = URL "https://api.github.com/users/thecontributor/followers",
+                  whUserFollowingUrl = URL "https://api.github.com/users/thecontributor/following{/other_user}",
+                  whUserGistsUrl = URL "https://api.github.com/users/thecontributor/gists{/gist_id}",
+                  whUserStarredUrl = URL "https://api.github.com/users/thecontributor/starred{/owner}{/repo}",
+                  whUserSubscriptionsUrl = URL "https://api.github.com/users/thecontributor/subscriptions",
+                  whUserOrganizationsUrl = URL "https://api.github.com/users/thecontributor/orgs",
+                  whUserReposUrl = URL "https://api.github.com/users/thecontributor/repos",
+                  whUserEventsUrl = URL "https://api.github.com/users/thecontributor/events{/privacy}",
+                  whUserReceivedEventsUrl = URL "https://api.github.com/users/thecontributor/received_events",
+                  whUserType = OwnerUser,
+                  whUserIsAdminOfSite = False
+                },
+            whPullReqBody = "",
+            whPullReqCreatedAt = read "2021-11-20 20:00:00Z",
+            whPullReqUpdatedAt = read "2021-11-20 20:00:00Z",
+            whPullReqClosedAt = Just $ read "2021-11-20 20:00:00Z",
+            whPullReqMergedAt = Nothing,
+            whPullReqMergeCommitSha = Nothing,
+            whPullReqAssignee = Nothing,
+            whPullReqMilestone = Nothing,
+            whPullReqCommitsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/pulls/254/commits",
+            whPullReqRevCommentsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/pulls/254/comments",
+            whPullReqRevCommentUrl = URL "https://api.github.com/repos/upstreamowner/therepo/pulls/comments{/number}",
+            whPullReqCommentsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/issues/254/comments",
+            whPullReqStatusesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/statuses/b31c9f3501a256e212364c839050736f49e5fa6e",
+            whPullReqBase =
+              PullRequestTarget
+                { whPullReqTargetSha = "a42211bde42a98b41bc673f4e90f7b01b41fde5a",
+                  whPullReqTargetUser =
+                    HookUser
+                      { whUserLogin = "upstreamowner",
+                        whUserId = 23804562983764,
+                        whUserNodeId = "MDEykO9yZF2auXpdhGvlbjEM2kT3TOQ3",
+                        whUserAvatarUrl = URL "https://avatars.githubusercontent.com/u/23804562983764?v=4",
+                        whUserGravatarId = URL "",
+                        whUserUrl = URL "https://api.github.com/users/upstreamowner",
+                        whUserHtmlUrl = URL "https://github.com/upstreamowner",
+                        whUserFollowersUrl = URL "https://api.github.com/users/upstreamowner/followers",
+                        whUserFollowingUrl = URL "https://api.github.com/users/upstreamowner/following{/other_user}",
+                        whUserGistsUrl = URL "https://api.github.com/users/upstreamowner/gists{/gist_id}",
+                        whUserStarredUrl = URL "https://api.github.com/users/upstreamowner/starred{/owner}{/repo}",
+                        whUserSubscriptionsUrl = URL "https://api.github.com/users/upstreamowner/subscriptions",
+                        whUserOrganizationsUrl = URL "https://api.github.com/users/upstreamowner/orgs",
+                        whUserReposUrl = URL "https://api.github.com/users/upstreamowner/repos",
+                        whUserEventsUrl = URL "https://api.github.com/users/upstreamowner/events{/privacy}",
+                        whUserReceivedEventsUrl = URL "https://api.github.com/users/upstreamowner/received_events",
+                        whUserType = OwnerOrganization,
+                        whUserIsAdminOfSite = False
+                      },
+                  whPullReqTargetRepo =
+                    Just
+                      ( HookRepository
+                          { whRepoId = 53218753,
+                            whRepoNodeId = "MDEwOlJlcG9zaXRvcnk1MzIxODc1Mw==",
+                            whRepoName = "therepo",
+                            whRepoFullName = "upstreamowner/therepo",
+                            whRepoOwner =
+                              Right
+                                ( HookUser
+                                    { whUserLogin = "upstreamowner",
+                                      whUserId = 23804562983764,
+                                      whUserNodeId = "MDEyOk9yZ2FuaXphdGlvbjE2MTk3OTQ3",
+                                      whUserAvatarUrl = URL "https://avatars.githubusercontent.com/u/23804562983764?v=4",
+                                      whUserGravatarId = URL "",
+                                      whUserUrl = URL "https://api.github.com/users/upstreamowner",
+                                      whUserHtmlUrl = URL "https://github.com/upstreamowner",
+                                      whUserFollowersUrl = URL "https://api.github.com/users/upstreamowner/followers",
+                                      whUserFollowingUrl = URL "https://api.github.com/users/upstreamowner/following{/other_user}",
+                                      whUserGistsUrl = URL "https://api.github.com/users/upstreamowner/gists{/gist_id}",
+                                      whUserStarredUrl = URL "https://api.github.com/users/upstreamowner/starred{/owner}{/repo}",
+                                      whUserSubscriptionsUrl = URL "https://api.github.com/users/upstreamowner/subscriptions",
+                                      whUserOrganizationsUrl = URL "https://api.github.com/users/upstreamowner/orgs",
+                                      whUserReposUrl = URL "https://api.github.com/users/upstreamowner/repos",
+                                      whUserEventsUrl = URL "https://api.github.com/users/upstreamowner/events{/privacy}",
+                                      whUserReceivedEventsUrl = URL "https://api.github.com/users/upstreamowner/received_events",
+                                      whUserType = OwnerOrganization,
+                                      whUserIsAdminOfSite = False
+                                    }
+                                ),
+                            whRepoIsPrivate = False,
+                            whRepoHtmlUrl = URL "https://github.com/upstreamowner/therepo",
+                            whRepoDescription = "Build scripts for the server",
+                            whRepoIsAFork = False,
+                            whRepoUrl = URL "https://api.github.com/repos/upstreamowner/therepo",
+                            whRepoForksUrl = URL "https://api.github.com/repos/upstreamowner/therepo/forks",
+                            whRepoKeysUrl = URL "https://api.github.com/repos/upstreamowner/therepo/keys{/key_id}",
+                            whRepoCollaboratorsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/collaborators{/collaborator}",
+                            whRepoTeamsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/teams",
+                            whRepoHooksUrl = URL "https://api.github.com/repos/upstreamowner/therepo/hooks",
+                            whRepoIssueEventsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/issues/events{/number}",
+                            whRepoEventsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/events",
+                            whRepoAssigneesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/assignees{/user}",
+                            whRepoBranchesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/branches{/branch}",
+                            whRepoTagsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/tags",
+                            whRepoBlobsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/blobs{/sha}",
+                            whRepoGitTagsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/tags{/sha}",
+                            whRepoGitRefsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/refs{/sha}",
+                            whRepoTreesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/trees{/sha}",
+                            whRepoStatusesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/statuses/{sha}",
+                            whRepoLanguagesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/languages",
+                            whRepoStargazersUrl = URL "https://api.github.com/repos/upstreamowner/therepo/stargazers",
+                            whRepoContributorsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/contributors",
+                            whRepoSubscribersUrl = URL "https://api.github.com/repos/upstreamowner/therepo/subscribers",
+                            whRepoSubscriptionUrl = URL "https://api.github.com/repos/upstreamowner/therepo/subscription",
+                            whRepoCommitsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/commits{/sha}",
+                            whRepoGitCommitsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/commits{/sha}",
+                            whRepoCommentsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/comments{/number}",
+                            whRepoIssueCommentsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/issues/comments{/number}",
+                            whRepoContentsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/contents/{+path}",
+                            whRepoCompareUrl = URL "https://api.github.com/repos/upstreamowner/therepo/compare/{base}...{head}",
+                            whRepoMergesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/merges",
+                            whRepoArchiveUrl = URL "https://api.github.com/repos/upstreamowner/therepo/{archive_format}{/ref}",
+                            whRepoDownloadsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/downloads",
+                            whRepoIssuesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/issues{/number}",
+                            whRepoPullsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/pulls{/number}",
+                            whRepoMilestonesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/milestones{/number}",
+                            whRepoNotificationsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/notifications{?since,all,participating}",
+                            whRepoLabelsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/labels{/name}",
+                            whRepoReleasesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/releases{/id}",
+                            whRepoCreatedAt = read "2016-01-01 00:00:00Z",
+                            whRepoUpdatedAt = read "2021-11-13 22:00:00Z",
+                            whRepoPushedAt = read "2021-11-20 20:00:00Z",
+                            whRepoGitUrl = URL "git://github.com/upstreamowner/therepo.git",
+                            whRepoSshUrl = URL "git@github.com:upstreamowner/therepo.git",
+                            whRepoCloneUrl = URL "https://github.com/upstreamowner/therepo.git",
+                            whRepoSvnUrl = URL "https://github.com/upstreamowner/therepo",
+                            whRepoHomepage = Just (URL ""),
+                            whRepoSize = 429518,
+                            whRepoStargazersCount = 8,
+                            whRepoWatchersCount = 8,
+                            whRepoLanguage = Just "SomeLanguage",
+                            whRepoHasIssues = True,
+                            whRepoHasDownloads = True,
+                            whRepoHasWiki = True,
+                            whRepoHasPages = False,
+                            whRepoForkCount = 17,
+                            whRepoMirrorUrl = Nothing,
+                            whRepoOpenIssuesCount = 3,
+                            whRepoDefaultBranchName = "master"
+                          }
+                      ),
+                  whPullReqTargetLabel = "upstreamowner:master",
+                  whPullReqTargetRef = "master"
+                },
+            whPullReqHead =
+              PullRequestTarget
+                { whPullReqTargetSha = "b319cf3510a25e621236c483950073f6495ef6ae",
+                  whPullReqTargetUser =
+                    HookUser
+                      { whUserLogin = "thecontributor",
+                        whUserId = 8425382758,
+                        whUserNodeId = "MDQ6VXNlcjQ1NjE4NTQ3",
+                        whUserAvatarUrl = URL "https://avatars.githubusercontent.com/u/8425382758?v=4",
+                        whUserGravatarId = URL "",
+                        whUserUrl = URL "https://api.github.com/users/thecontributor",
+                        whUserHtmlUrl = URL "https://github.com/thecontributor",
+                        whUserFollowersUrl = URL "https://api.github.com/users/thecontributor/followers",
+                        whUserFollowingUrl = URL "https://api.github.com/users/thecontributor/following{/other_user}",
+                        whUserGistsUrl = URL "https://api.github.com/users/thecontributor/gists{/gist_id}",
+                        whUserStarredUrl = URL "https://api.github.com/users/thecontributor/starred{/owner}{/repo}",
+                        whUserSubscriptionsUrl = URL "https://api.github.com/users/thecontributor/subscriptions",
+                        whUserOrganizationsUrl = URL "https://api.github.com/users/thecontributor/orgs",
+                        whUserReposUrl = URL "https://api.github.com/users/thecontributor/repos",
+                        whUserEventsUrl = URL "https://api.github.com/users/thecontributor/events{/privacy}",
+                        whUserReceivedEventsUrl = URL "https://api.github.com/users/thecontributor/received_events",
+                        whUserType = OwnerUser,
+                        whUserIsAdminOfSite = False
+                      },
+                  whPullReqTargetRepo = Nothing,
+                  whPullReqTargetLabel = "thecontributor:master",
+                  whPullReqTargetRef = "master"
+                },
+            whPullReqMergeableState = Just "dirty",
+            whPullReqCommentCount = Just 2,
+            whPullReqRevCommentCount = Just 0,
+            whPullReqCommitCount = Just 4,
+            whPullReqAdditionsCount = Just 21424,
+            whPullReqDeletionsCount = Just 0,
+            whPullReqFileChangeCount = Just 1605
+          },
+      evPullReqRepo =
+        HookRepository
+          { whRepoId = 53218753,
+            whRepoNodeId = "MDEwOlJlcG9zaXRvcnk1MzIxODc1Mw==",
+            whRepoName = "therepo",
+            whRepoFullName = "upstreamowner/therepo",
+            whRepoOwner =
+              Right
+                ( HookUser
+                    { whUserLogin = "upstreamowner",
+                      whUserId = 23804562983764,
+                      whUserNodeId = "MDEyOk9yZ2FuaXphdGlvbjE2MTk3OTQ3",
+                      whUserAvatarUrl = URL "https://avatars.githubusercontent.com/u/23804562983764?v=4",
+                      whUserGravatarId = URL "",
+                      whUserUrl = URL "https://api.github.com/users/upstreamowner",
+                      whUserHtmlUrl = URL "https://github.com/upstreamowner",
+                      whUserFollowersUrl = URL "https://api.github.com/users/upstreamowner/followers",
+                      whUserFollowingUrl = URL "https://api.github.com/users/upstreamowner/following{/other_user}",
+                      whUserGistsUrl = URL "https://api.github.com/users/upstreamowner/gists{/gist_id}",
+                      whUserStarredUrl = URL "https://api.github.com/users/upstreamowner/starred{/owner}{/repo}",
+                      whUserSubscriptionsUrl = URL "https://api.github.com/users/upstreamowner/subscriptions",
+                      whUserOrganizationsUrl = URL "https://api.github.com/users/upstreamowner/orgs",
+                      whUserReposUrl = URL "https://api.github.com/users/upstreamowner/repos",
+                      whUserEventsUrl = URL "https://api.github.com/users/upstreamowner/events{/privacy}",
+                      whUserReceivedEventsUrl = URL "https://api.github.com/users/upstreamowner/received_events",
+                      whUserType = OwnerOrganization,
+                      whUserIsAdminOfSite = False
+                    }
+                ),
+            whRepoIsPrivate = False,
+            whRepoHtmlUrl = URL "https://github.com/upstreamowner/therepo",
+            whRepoDescription = "Build scripts for the server",
+            whRepoIsAFork = False,
+            whRepoUrl = URL "https://api.github.com/repos/upstreamowner/therepo",
+            whRepoForksUrl = URL "https://api.github.com/repos/upstreamowner/therepo/forks",
+            whRepoKeysUrl = URL "https://api.github.com/repos/upstreamowner/therepo/keys{/key_id}",
+            whRepoCollaboratorsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/collaborators{/collaborator}",
+            whRepoTeamsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/teams",
+            whRepoHooksUrl = URL "https://api.github.com/repos/upstreamowner/therepo/hooks",
+            whRepoIssueEventsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/issues/events{/number}",
+            whRepoEventsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/events",
+            whRepoAssigneesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/assignees{/user}",
+            whRepoBranchesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/branches{/branch}",
+            whRepoTagsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/tags",
+            whRepoBlobsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/blobs{/sha}",
+            whRepoGitTagsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/tags{/sha}",
+            whRepoGitRefsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/refs{/sha}",
+            whRepoTreesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/trees{/sha}",
+            whRepoStatusesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/statuses/{sha}",
+            whRepoLanguagesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/languages",
+            whRepoStargazersUrl = URL "https://api.github.com/repos/upstreamowner/therepo/stargazers",
+            whRepoContributorsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/contributors",
+            whRepoSubscribersUrl = URL "https://api.github.com/repos/upstreamowner/therepo/subscribers",
+            whRepoSubscriptionUrl = URL "https://api.github.com/repos/upstreamowner/therepo/subscription",
+            whRepoCommitsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/commits{/sha}",
+            whRepoGitCommitsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/git/commits{/sha}",
+            whRepoCommentsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/comments{/number}",
+            whRepoIssueCommentsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/issues/comments{/number}",
+            whRepoContentsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/contents/{+path}",
+            whRepoCompareUrl = URL "https://api.github.com/repos/upstreamowner/therepo/compare/{base}...{head}",
+            whRepoMergesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/merges",
+            whRepoArchiveUrl = URL "https://api.github.com/repos/upstreamowner/therepo/{archive_format}{/ref}",
+            whRepoDownloadsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/downloads",
+            whRepoIssuesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/issues{/number}",
+            whRepoPullsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/pulls{/number}",
+            whRepoMilestonesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/milestones{/number}",
+            whRepoNotificationsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/notifications{?since,all,participating}",
+            whRepoLabelsUrl = URL "https://api.github.com/repos/upstreamowner/therepo/labels{/name}",
+            whRepoReleasesUrl = URL "https://api.github.com/repos/upstreamowner/therepo/releases{/id}",
+            whRepoCreatedAt = read "2016-01-01 00:00:00Z",
+            whRepoUpdatedAt = read "2021-11-13 22:00:00Z",
+            whRepoPushedAt = read "2021-11-20 20:00:00Z",
+            whRepoGitUrl = URL "git://github.com/upstreamowner/therepo.git",
+            whRepoSshUrl = URL "git@github.com:upstreamowner/therepo.git",
+            whRepoCloneUrl = URL "https://github.com/upstreamowner/therepo.git",
+            whRepoSvnUrl = URL "https://github.com/upstreamowner/therepo",
+            whRepoHomepage = Just (URL ""),
+            whRepoSize = 429518,
+            whRepoStargazersCount = 8,
+            whRepoWatchersCount = 8,
+            whRepoLanguage = Just "SomeLanguage",
+            whRepoHasIssues = True,
+            whRepoHasDownloads = True,
+            whRepoHasWiki = True,
+            whRepoHasPages = False,
+            whRepoForkCount = 17,
+            whRepoMirrorUrl = Nothing,
+            whRepoOpenIssuesCount = 3,
+            whRepoDefaultBranchName = "master"
+          },
+      evPullReqSender =
+        HookUser
+          { whUserLogin = "thesender",
+            whUserId = 3290456203984,
+            whUserNodeId = "MDQV6XlNcjwIzNkMzjQ=",
+            whUserAvatarUrl = URL "https://avatars.githubusercontent.com/u/3290456203984?v=4",
+            whUserGravatarId = URL "",
+            whUserUrl = URL "https://api.github.com/users/thesender",
+            whUserHtmlUrl = URL "https://github.com/thesender",
+            whUserFollowersUrl = URL "https://api.github.com/users/thesender/followers",
+            whUserFollowingUrl = URL "https://api.github.com/users/thesender/following{/other_user}",
+            whUserGistsUrl = URL "https://api.github.com/users/thesender/gists{/gist_id}",
+            whUserStarredUrl = URL "https://api.github.com/users/thesender/starred{/owner}{/repo}",
+            whUserSubscriptionsUrl = URL "https://api.github.com/users/thesender/subscriptions",
+            whUserOrganizationsUrl = URL "https://api.github.com/users/thesender/orgs",
+            whUserReposUrl = URL "https://api.github.com/users/thesender/repos",
+            whUserEventsUrl = URL "https://api.github.com/users/thesender/events{/privacy}",
+            whUserReceivedEventsUrl = URL "https://api.github.com/users/thesender/received_events",
+            whUserType = OwnerUser,
+            whUserIsAdminOfSite = False
+          },
+      evPullReqInstallationId = Just 6678514558
+    }
+
+
 pullRequestReviewCommentEventFixture :: PullRequestReviewCommentEvent
 pullRequestReviewCommentEventFixture = PullRequestReviewCommentEvent
     { evPullReqRevComAction = PullRequestReviewCommentCreatedAction
@@ -4426,7 +4749,7 @@ pullRequestReviewCommentEventFixture = PullRequestReviewCommentEvent
                       , whUserIsAdminOfSite = False
                       }
                 , whPullReqTargetRepo =
-                    HookRepository
+                    Just HookRepository
                       { whRepoId = 35129377
                       , whRepoNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
                       , whRepoName = "public-repo"
@@ -4542,7 +4865,7 @@ pullRequestReviewCommentEventFixture = PullRequestReviewCommentEvent
                       , whUserIsAdminOfSite = False
                       }
                 , whPullReqTargetRepo =
-                    HookRepository
+                    Just HookRepository
                       { whRepoId = 35129377
                       , whRepoNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
                       , whRepoName = "public-repo"
@@ -4853,7 +5176,7 @@ pullRequestReviewEventFixture = PullRequestReviewEvent
                     , whUserIsAdminOfSite = False
                     }
               , whPullReqTargetRepo =
-                  HookRepository
+                  Just HookRepository
                     { whRepoId = 35129377
                     , whRepoNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
                     , whRepoName = "public-repo"
@@ -4969,7 +5292,7 @@ pullRequestReviewEventFixture = PullRequestReviewEvent
                     , whUserIsAdminOfSite = True
                     }
               , whPullReqTargetRepo =
-                  HookRepository
+                  Just HookRepository
                     { whRepoId = 69919152
                     , whRepoNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
                     , whRepoName = "public-repo"
