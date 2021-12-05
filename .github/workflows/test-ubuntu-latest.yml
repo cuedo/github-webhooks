@@ -1,8 +1,8 @@
 on: [push]
-name: Build
+name: ubuntu-latest
 jobs:
-  build-package:
-    name: Build Package
+  test-package:
+    name: Test
     runs-on: ubuntu-latest # or macOS-latest, or windows-latest
 
     strategy:

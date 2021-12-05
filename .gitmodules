@@ -1,3 +1,0 @@
-[submodule "ci-scripts"]
-	path = .ci-scripts
-	url = https://github.com/onrock-eng/ci-scripts.git
