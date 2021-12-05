@@ -1,0 +1,10 @@
+on: [push]
+name: scan-code
+jobs:
+  scan-hlint:
+    name: hlint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/run.sh | sh
