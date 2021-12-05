@@ -2,14 +2,14 @@
 github-webhooks
 ---------------
 
-[![Hackage](https://img.shields.io/hackage/v/github-webhooks.svg?style=plastic)](https://hackage.haskell.org/package/github-webhooks)
-[![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=plastic)](#license)
+[![Hackage](https://img.shields.io/hackage/v/github-webhooks.svg?style=flat-square)](https://hackage.haskell.org/package/github-webhooks)
+[![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=flat-square)](#license)
 
 |             | `release` | `develop` |
 |-------------|---------|----------|
-| Ubuntu | [![test-ubuntu-latest release](https://github.com/cuedo/github-webhooks/actions/workflows/test-ubuntu-latest.yml/badge.svg?branch=release)](https://github.com/cuedo/github-webhooks/actions/workflows/test-ubuntu-latest.yml) | [![test-ubuntu-latest develop](https://github.com/cuedo/github-webhooks/actions/workflows/test-ubuntu-latest.yml/badge.svg?branch=develop)](https://github.com/cuedo/github-webhooks/actions/workflows/test-ubuntu-latest.yml) |
-| Mac OS | [![test-macos-latest release](https://github.com/cuedo/github-webhooks/actions/workflows/test-macos-latest.yml/badge.svg?branch=release)](https://github.com/cuedo/github-webhooks/actions/workflows/test-macos-latest.yml) | [![test-macos-latest develop](https://github.com/cuedo/github-webhooks/actions/workflows/test-macos-latest.yml/badge.svg?branch=develop)](https://github.com/cuedo/github-webhooks/actions/workflows/test-macos-latest.yml) |
-| Windows | [![test-windows-latest release](https://github.com/cuedo/github-webhooks/actions/workflows/test-windows-latest.yml/badge.svg?branch=release)](https://github.com/cuedo/github-webhooks/actions/workflows/test-windows-latest.yml) | [![test-windows-latest develop](https://github.com/cuedo/github-webhooks/actions/workflows/test-windows-latest.yml/badge.svg?branch=develop)](https://github.com/cuedo/github-webhooks/actions/workflows/test-windows-latest.yml) |
+| Ubuntu | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-ubuntu-latest/release?style=flat-square) | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-ubuntu-latest/develop?style=flat-square) |
+| Mac OS | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-macos-latest/release?style=flat-square) | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-macos-latest/develop?style=flat-square) |
+| Windows | ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-windows-latest/release?style=flat-square) |![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/cuedo/github-webhooks/test-windows-latest/develop?style=flat-square) |
 
 Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 
