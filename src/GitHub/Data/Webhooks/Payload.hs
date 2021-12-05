@@ -65,10 +65,11 @@ module GitHub.Data.Webhooks.Payload
 import           Data.Aeson               (FromJSON(..), withObject, withText, (.!=), (.:), (.:?))
 import           Control.DeepSeq          (NFData (..))
 import           Control.DeepSeq.Generics (genericRnf)
-import           Control.Applicative      ((<|>), (<*>), pure)
+import           Control.Applicative      ((<|>), (<*>), pure, liftA)
 import           Data.Data                (Data, Typeable)
 import           Data.Functor             ((<$>))
 import           Data.Time                (UTCTime)
+import           Data.Time.LocalTime      (ZonedTime, zonedTimeToUTC)
 import           Data.Time.Clock.POSIX    (posixSecondsToUTCTime)
 import           Data.Text                (Text)
 import qualified Data.Text                as T
@@ -1200,8 +1201,8 @@ instance FromJSON HookMarketplacePurchase where
       <*> o .: "billing_cycle"
       <*> o .: "unit_count"
       <*> o .: "on_free_trial"
-      <*> o .: "free_trial_ends_on"
-      <*> o .:? "next_billing_date"
+      <*> (liftA (fmap zonedTimeToUTC) $ o .:? "free_trial_ends_on")
+      <*> (liftA (fmap zonedTimeToUTC) $ o .:? "next_billing_date")
       <*> o .: "plan"
 
 instance FromJSON HookMarketplaceAccount where
