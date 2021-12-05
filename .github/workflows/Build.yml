@@ -19,7 +19,8 @@ jobs:
           - stack-ghc-8.6.yaml
           - stack-ghc-8.8.yaml
           - stack-ghc-8.10.yaml
-        stack-version: latest
+        stack-version:
+          - latest
 
         include:
           # ghc-7.8 resolver requires older stack
