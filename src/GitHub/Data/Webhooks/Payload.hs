@@ -854,7 +854,7 @@ instance NFData HookPullRequest where rnf = genericRnf
 data PullRequestTarget = PullRequestTarget
     { whPullReqTargetSha :: !Text
     , whPullReqTargetUser :: !HookUser
-    , whPullReqTargetRepo :: !HookRepository
+    , whPullReqTargetRepo :: !(Maybe HookRepository) -- maybe null, see #47
     , whPullReqTargetLabel :: !Text -- ex "user:branch"
     , whPullReqTargetRef :: !Text -- ex "somebranch"
     }

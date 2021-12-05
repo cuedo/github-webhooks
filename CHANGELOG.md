@@ -1,8 +1,9 @@
 # 0.16.0
 
 * The invitation and membership fields were made optional for `OrganizationEvent` (resolves #37)
-* The maintaining sponsor [onrock.online](https://onrock.online) has rebranded to [Cuedo Business Solutions](https://cuedo.com.au)
+* The target repository field was made optional for `PullRequestTarget` (by Robert Hensing, resolves #51)
 * Support for marketplace purchase event (by Alistair Burrowes, resolves #46)
+* The maintaining sponsor [onrock.online](https://onrock.online) has rebranded to [Cuedo Business Solutions](https://cuedo.com.au)
 
 # 0.15.0
 
