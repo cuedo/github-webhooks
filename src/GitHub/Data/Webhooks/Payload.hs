@@ -1,7 +1,7 @@
 {-# LANGUAGE Trustworthy #-}
 {-|
 Module      : Github.Data.Webhooks.Payload
-Copyright   : (c) Cuedo Business Solutions 2017-2020
+Copyright   : (c) Cuedo Control Engineering 2017-2022
 License     : MIT
 Maintainer  : Kyle Van Berendonck <foss@cuedo.com.au>
 

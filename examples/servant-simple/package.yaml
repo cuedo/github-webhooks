@@ -1,7 +1,7 @@
 name: github-webhooks-servant-simple-example
 version: 0.0.0
 license: MIT
-copyright: (c) 2017-2020 Cuedo Business Solutions
+copyright: (c) 2017-2022 Cuedo Control Engineering
 author: Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
 maintainer: Kyle Van Berendonck <foss@cuedo.com.au>
 

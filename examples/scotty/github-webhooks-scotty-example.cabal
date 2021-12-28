@@ -10,7 +10,7 @@ name:           github-webhooks-scotty-example
 version:        0.0.0
 author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
 maintainer:     Kyle Van Berendonck <foss@cuedo.com.au>
-copyright:      (c) 2017-2020 Cuedo Business Solutions
+copyright:      (c) 2017-2022 Cuedo Control Engineering
 license:        MIT
 build-type:     Simple
 

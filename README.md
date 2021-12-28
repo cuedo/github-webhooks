@@ -4,7 +4,7 @@ github-webhooks
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/cuedo/github-webhooks?style=flat-square)
 [![Hackage](https://img.shields.io/hackage/v/github-webhooks.svg?style=flat-square)](https://hackage.haskell.org/package/github-webhooks)
-[![License](https://img.shields.io/github/license/onrock-eng/github-webhooks.svg?style=flat-square)](#license)
+[![License](https://img.shields.io/github/license/cuedo/github-webhooks.svg?style=flat-square)](#license)
 
 |             | `release` | `develop` |
 |-------------|---------|----------|
@@ -68,7 +68,7 @@ See [AUTHORS](./AUTHORS) for a list of significant authors.
 
     MIT License
 
-    Copyright (c) 2017-2020 Cuedo Business Solutions (https://cuedo.com.au)
+    Copyright (c) 2017-2022 Cuedo Control Engineering (https://cuedo.com.au)
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -90,7 +90,7 @@ See [AUTHORS](./AUTHORS) for a list of significant authors.
 
 Free open source software, sponsored by [cuedo.com.au](https://cuedo.com.au). \
 \
-<a href="https://cuedo.com.au" rel="sponsor">![Cuedo Business Solutions](./doc/cuedo-color-256.svg)</a>
+<a href="https://cuedo.com.au" rel="sponsor">![Cuedo Control Engineering](./doc/cuedo-color-256.svg)</a>
 
 [Webhook]: https://developer.github.com/webhooks/
 
