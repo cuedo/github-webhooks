@@ -7,10 +7,10 @@ cabal-version: 1.12
 name:           github-webhooks
 version:        0.15.0
 synopsis:       Aeson instances for GitHub Webhook payloads.
-description:    Complete instances for decoding GitHub Webhook payloads (using @aeson@). See the README at <https://github.com/onrock-eng/github-webhooks#readme> for examples. Sponsored by <https://cuedo.com.au>.
+description:    Complete instances for decoding GitHub Webhook payloads (using @aeson@). See the README at <https://github.com/cuedo/github-webhooks#readme> for examples. Sponsored by <https://cuedo.com.au>.
 category:       GitHub
-homepage:       https://github.com/onrock-eng/github-webhooks#readme
-bug-reports:    https://github.com/onrock-eng/github-webhooks/issues
+homepage:       https://github.com/cuedo/github-webhooks#readme
+bug-reports:    https://github.com/cuedo/github-webhooks/issues
 author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>,
                 Christian Sakai <christianmsakai@gmail.com>,
                 Thomas DuBuisson <thomas.dubuisson@gmail.com>,
@@ -21,7 +21,7 @@ author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>,
                 Julien Debon,
                 Robert Hensing
 maintainer:     Kyle Van Berendonck <foss@cuedo.com.au>
-copyright:      (c) 2017-2020 Cuedo Business Solutions
+copyright:      (c) 2017-2022 Cuedo Control Engineering
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
@@ -79,7 +79,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/onrock-eng/github-webhooks
+  location: https://github.com/cuedo/github-webhooks
 
 flag ci
   description: A stricter build designed for continuous integration.
