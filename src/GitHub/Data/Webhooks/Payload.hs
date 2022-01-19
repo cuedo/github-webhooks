@@ -601,7 +601,7 @@ data HookCheckSuite = HookCheckSuite
     , whCheckSuiteConclusion           :: !(Maybe HookCheckSuiteConclusion)
     , whCheckSuiteUrl                  :: !URL
     , whCheckSuiteBeforeSha            :: !(Maybe Text)
-    , whCheckSuiteAfterSha             :: !Text
+    , whCheckSuiteAfterSha             :: !(Maybe Text)
     , whCheckSuitePullRequests         :: !(Vector HookChecksPullRequest)
     , whCheckSuiteCreatedAt            :: !UTCTime
     , whCheckSuiteUpdatedAt            :: !UTCTime
@@ -1310,7 +1310,7 @@ instance FromJSON HookCheckSuite where
       <*> o .:? "conclusion"
       <*> o .: "url"
       <*> o .:? "before"
-      <*> o .: "after"
+      <*> o .:? "after"
       <*> o .: "pull_requests"
       <*> o .: "created_at"
       <*> o .: "updated_at"
