@@ -94,7 +94,7 @@ checkSuiteEventFixture = CheckSuiteEvent
           , whCheckSuiteConclusion = Just HookCheckSuiteConclusionActionRequired
           , whCheckSuiteUrl = URL "https://api.github.com/repos/baxterthehacker/public-repo/check-suites/123451234"
           , whCheckSuiteBeforeSha = Just "15c99c3e0b9d840d8465be47813cf39686815f2e"
-          , whCheckSuiteAfterSha = "45deaf5013c757e58e2665849c3fd3add3edfa59"
+          , whCheckSuiteAfterSha = Just "45deaf5013c757e58e2665849c3fd3add3edfa59"
           , whCheckSuitePullRequests =
               V.fromList [
                 HookChecksPullRequest
@@ -315,7 +315,7 @@ checkRunEventFixture = CheckRunEvent
                 , whCheckSuiteConclusion = Nothing
                 , whCheckSuiteUrl = URL "https://api.github.com/repos/baxterthehacker/public-repo/check-suites/123451234"
                 , whCheckSuiteBeforeSha = Just "15c99c3e0b9d840d8465be47813cf39686815f2e"
-                , whCheckSuiteAfterSha = "45deaf5013c757e58e2665849c3fd3add3edfa59"
+                , whCheckSuiteAfterSha = Just "45deaf5013c757e58e2665849c3fd3add3edfa59"
                 , whCheckSuitePullRequests =
                     V.fromList [
                       HookChecksPullRequest
