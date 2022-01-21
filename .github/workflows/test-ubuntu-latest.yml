@@ -42,7 +42,8 @@ jobs:
       - env:
           STACK_YAML: ${{matrix.stack-yaml }}
         run: |
-          stack --skip-ghc-check sdist --test --flag github-webhooks:ci --haddock --no-haddock-deps
+          stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
+          stack sdist
 
       - uses: actions/upload-artifact@v2
         with:
