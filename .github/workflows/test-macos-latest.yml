@@ -25,3 +25,10 @@ jobs:
       - env:
           STACK_YAML: ${{matrix.stack-yaml }}
         run: stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
+
+      - run: stack sdist
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: github-webhooks-macos-${{ matrix.stack-yaml }}-${{ github.sha }}
+          path: .stack-work/dist/**/**/
