@@ -4,6 +4,8 @@ license: MIT
 copyright: (c) 2017-2022 Cuedo Control Engineering
 author: Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
 maintainer: Kyle Van Berendonck <foss@cuedo.com.au>
+synopsis: Sample program using scotty and github-webhooks together.
+description: Sample program using @scotty@ and @github-webhooks@ together.
 
 ghc-options:
   - -Wall
