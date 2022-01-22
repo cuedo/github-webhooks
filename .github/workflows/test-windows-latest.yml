@@ -31,4 +31,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: github-webhooks-windows-${{ matrix.stack-yaml }}-${{ github.sha }}
-          path: .stack-work/dist/**/**/
+          path: .stack-work/dist/
