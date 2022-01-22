@@ -3,15 +3,16 @@ cabal-version: 1.12
 -- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: adf0ce828a20e78e793bb6ca83763a25d3e00c778e5eaf1d6dfc1e722bb699a9
 
 name:           github-webhooks-servant-simple-example
 version:        0.0.0
+synopsis:       Simplified sample program using servant and github-webhooks together.
+description:    Simplified sample program using @servant@ and @github-webhooks@ together.
 author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
 maintainer:     Kyle Van Berendonck <foss@cuedo.com.au>
 copyright:      (c) 2017-2022 Cuedo Control Engineering
 license:        MIT
+license-file:   LICENSE
 build-type:     Simple
 
 executable github-webhooks-servant-example

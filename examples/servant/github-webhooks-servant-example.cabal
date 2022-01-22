@@ -3,19 +3,22 @@ cabal-version: 1.12
 -- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: 0f8ba64f2981c4f188157ff6f1d932983a6f9702a1d20beb163c0a1780fc6eed
 
 name:           github-webhooks-servant-example
 version:        0.0.0
+synopsis:       Sample program using servant and github-webhooks together.
+description:    Sample program using @servant@ and @github-webhooks@ together.
 author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
 maintainer:     Kyle Van Berendonck <foss@cuedo.com.au>
 copyright:      (c) 2017-2022 Cuedo Control Engineering
 license:        MIT
+license-file:   LICENSE
 build-type:     Simple
 
 executable github-webhooks-servant-example
   main-is: Main.hs
+  other-modules:
+      Paths_github_webhooks_servant_example
   hs-source-dirs:
       src
   default-extensions:
@@ -36,6 +39,4 @@ executable github-webhooks-servant-example
     , servant-server
     , wai
     , warp
-  other-modules:
-      Paths_github_webhooks_servant_example
   default-language: Haskell2010
