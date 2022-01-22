@@ -3,15 +3,16 @@ cabal-version: 1.12
 -- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: d8428034201293b018c5837284fb6fada822e5cc703563bad60b8d17ba0a5ef9
 
 name:           github-webhooks-scotty-example
 version:        0.0.0
+synopsis:       Sample program using scotty and github-webhooks together.
+description:    Sample program using @scotty@ and @github-webhooks@ together.
 author:         Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
 maintainer:     Kyle Van Berendonck <foss@cuedo.com.au>
 copyright:      (c) 2017-2022 Cuedo Control Engineering
 license:        MIT
+license-file:   LICENSE
 build-type:     Simple
 
 executable github-webhooks-scotty-example
