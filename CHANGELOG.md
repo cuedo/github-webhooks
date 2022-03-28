@@ -4,6 +4,7 @@
 * The target repository field was made optional for `PullRequestTarget` (by Robert Hensing, resolves #51)
 * Support for marketplace purchase event (by Alistair Burrowes, resolves #46)
 * The maintaining sponsor [onrock.online](https://onrock.online) has rebranded to [Cuedo Control Engineering](https://cuedo.com.au)
+* The CI pipeline was migrated to GitHub Actions, and tests for extra platforms were added.
 
 # 0.15.0
 
