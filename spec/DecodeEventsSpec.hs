@@ -70,6 +70,7 @@ spec = do
   it "can decode PullRequestReviewCommentEvent" $ fixtureShouldMatch  "fixtures/pull-request-review-comment-event.json" pullRequestReviewCommentEventFixture
   it "can decode PullRequestReviewEvent"  $ fixtureShouldMatch "fixtures/pull-request-review-event.json" pullRequestReviewEventFixture
   it "can decode PushEvent"               $ fixtureShouldMatch "fixtures/push-event.json" pushEventFixture
+  it "can decode PushEvent without sender" $ fixtureShouldMatch "fixtures/push-event-without-sender.json" pushEventFixtureWithoutSender
   it "can decode ReleaseEvent"            $ fixtureShouldMatch "fixtures/release-event.json" releaseEventFixture
   it "can decode RepositoryEvent"         $ fixtureShouldMatch "fixtures/repository-event.json" repositoryEventFixture
   it "can decode StatusEvent"             $ fixtureShouldMatch "fixtures/status-event.json" statusEventFixture
@@ -5631,7 +5632,7 @@ pushEventFixture = PushEvent
           }
     , evPushOrganization = Nothing
     , evPushSender =
-        HookUser
+        Just $ HookUser
           { whUserLogin = "baxterthehacker"
           , whUserId = 6752317
           , whUserNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
@@ -5651,6 +5652,129 @@ pushEventFixture = PushEvent
           , whUserType = OwnerUser
           , whUserIsAdminOfSite = False
           }
+    }
+
+pushEventFixtureWithoutSender :: PushEvent
+pushEventFixtureWithoutSender =
+  PushEvent
+    { evPushRef = "refs/heads/gh-readonly-queue/main/pr-3072-287d30540ac5a1acc57d0bdc138fa81dee315f48",
+      evPushHeadSha = Just "0000000000000000000000000000000000000000",
+      evPushBeforeSha = Just "a6bd77bbe77ee6ae8f9686621b192d70fcf83e2b",
+      evPushCreated = False,
+      evPushDeleted = True,
+      evPushForced = False,
+      evPushBaseRef = Nothing,
+      evPushCompareUrl = URL "https://github.com/some-organization/infra-core/compare/a6bd77bbe77e...000000000000",
+      evPushCommits = Just V.empty,
+      evPushHeadCommit = Nothing,
+      evPushRepository =
+        HookRepository
+          { whRepoId = 353322834,
+            whRepoNodeId = "MDEwOJllG9zcXaRcvknzNYyTzM4OUQD=",
+            whRepoName = "infra-core",
+            whRepoFullName = "some-organization/infra-core",
+            whRepoOwner =
+              Right
+                ( HookUser
+                    { whUserLogin = "some-organization",
+                      whUserId = 52709322,
+                      whUserNodeId = "MDEyO9ky2ZuaXpFdhlGvjbzNzczMTO3Y",
+                      whUserAvatarUrl = URL "https://avatars.githubusercontent.com/u/52709322?v=4",
+                      whUserGravatarId = URL "",
+                      whUserUrl = URL "https://api.github.com/users/some-organization",
+                      whUserHtmlUrl = URL "https://github.com/some-organization",
+                      whUserFollowersUrl = URL "https://api.github.com/users/some-organization/followers",
+                      whUserFollowingUrl = URL "https://api.github.com/users/some-organization/following{/other_user}",
+                      whUserGistsUrl = URL "https://api.github.com/users/some-organization/gists{/gist_id}",
+                      whUserStarredUrl = URL "https://api.github.com/users/some-organization/starred{/owner}{/repo}",
+                      whUserSubscriptionsUrl = URL "https://api.github.com/users/some-organization/subscriptions",
+                      whUserOrganizationsUrl = URL "https://api.github.com/users/some-organization/orgs",
+                      whUserReposUrl = URL "https://api.github.com/users/some-organization/repos",
+                      whUserEventsUrl = URL "https://api.github.com/users/some-organization/events{/privacy}",
+                      whUserReceivedEventsUrl = URL "https://api.github.com/users/some-organization/received_events",
+                      whUserType = OwnerOrganization,
+                      whUserIsAdminOfSite = False
+                    }
+                ),
+            whRepoIsPrivate = True,
+            whRepoHtmlUrl = URL "https://github.com/some-organization/infra-core",
+            whRepoDescription = "Homo sapiens non urinat in ventum",
+            whRepoIsAFork = False,
+            whRepoUrl = URL "https://github.com/some-organization/infra-core",
+            whRepoForksUrl = URL "https://api.github.com/repos/some-organization/infra-core/forks",
+            whRepoKeysUrl = URL "https://api.github.com/repos/some-organization/infra-core/keys{/key_id}",
+            whRepoCollaboratorsUrl = URL "https://api.github.com/repos/some-organization/infra-core/collaborators{/collaborator}",
+            whRepoTeamsUrl = URL "https://api.github.com/repos/some-organization/infra-core/teams",
+            whRepoHooksUrl = URL "https://api.github.com/repos/some-organization/infra-core/hooks",
+            whRepoIssueEventsUrl = URL "https://api.github.com/repos/some-organization/infra-core/issues/events{/number}",
+            whRepoEventsUrl = URL "https://api.github.com/repos/some-organization/infra-core/events",
+            whRepoAssigneesUrl = URL "https://api.github.com/repos/some-organization/infra-core/assignees{/user}",
+            whRepoBranchesUrl = URL "https://api.github.com/repos/some-organization/infra-core/branches{/branch}",
+            whRepoTagsUrl = URL "https://api.github.com/repos/some-organization/infra-core/tags",
+            whRepoBlobsUrl = URL "https://api.github.com/repos/some-organization/infra-core/git/blobs{/sha}",
+            whRepoGitTagsUrl = URL "https://api.github.com/repos/some-organization/infra-core/git/tags{/sha}",
+            whRepoGitRefsUrl = URL "https://api.github.com/repos/some-organization/infra-core/git/refs{/sha}",
+            whRepoTreesUrl = URL "https://api.github.com/repos/some-organization/infra-core/git/trees{/sha}",
+            whRepoStatusesUrl = URL "https://api.github.com/repos/some-organization/infra-core/statuses/{sha}",
+            whRepoLanguagesUrl = URL "https://api.github.com/repos/some-organization/infra-core/languages",
+            whRepoStargazersUrl = URL "https://api.github.com/repos/some-organization/infra-core/stargazers",
+            whRepoContributorsUrl = URL "https://api.github.com/repos/some-organization/infra-core/contributors",
+            whRepoSubscribersUrl = URL "https://api.github.com/repos/some-organization/infra-core/subscribers",
+            whRepoSubscriptionUrl = URL "https://api.github.com/repos/some-organization/infra-core/subscription",
+            whRepoCommitsUrl = URL "https://api.github.com/repos/some-organization/infra-core/commits{/sha}",
+            whRepoGitCommitsUrl = URL "https://api.github.com/repos/some-organization/infra-core/git/commits{/sha}",
+            whRepoCommentsUrl = URL "https://api.github.com/repos/some-organization/infra-core/comments{/number}",
+            whRepoIssueCommentsUrl = URL "https://api.github.com/repos/some-organization/infra-core/issues/comments{/number}",
+            whRepoContentsUrl = URL "https://api.github.com/repos/some-organization/infra-core/contents/{+path}",
+            whRepoCompareUrl = URL "https://api.github.com/repos/some-organization/infra-core/compare/{base}...{head}",
+            whRepoMergesUrl = URL "https://api.github.com/repos/some-organization/infra-core/merges",
+            whRepoArchiveUrl = URL "https://api.github.com/repos/some-organization/infra-core/{archive_format}{/ref}",
+            whRepoDownloadsUrl = URL "https://api.github.com/repos/some-organization/infra-core/downloads",
+            whRepoIssuesUrl = URL "https://api.github.com/repos/some-organization/infra-core/issues{/number}",
+            whRepoPullsUrl = URL "https://api.github.com/repos/some-organization/infra-core/pulls{/number}",
+            whRepoMilestonesUrl = URL "https://api.github.com/repos/some-organization/infra-core/milestones{/number}",
+            whRepoNotificationsUrl = URL "https://api.github.com/repos/some-organization/infra-core/notifications{?since,all,participating}",
+            whRepoLabelsUrl = URL "https://api.github.com/repos/some-organization/infra-core/labels{/name}",
+            whRepoReleasesUrl = URL "https://api.github.com/repos/some-organization/infra-core/releases{/id}",
+            whRepoCreatedAt = read "2021-04-11 18:30:22Z",
+            whRepoUpdatedAt = read "2022-11-07 17:04:28Z",
+            whRepoPushedAt = read "2022-12-05 17:41:57Z",
+            whRepoGitUrl = URL "git://github.com/some-organization/infra-core.git",
+            whRepoSshUrl = URL "git@github.com:some-organization/infra-core.git",
+            whRepoCloneUrl = URL "https://github.com/some-organization/infra-core.git",
+            whRepoSvnUrl = URL "https://github.com/some-organization/infra-core",
+            whRepoHomepage = Just (URL "https://github.com/orgs/some-organization/projects/7"),
+            whRepoSize = 23932,
+            whRepoStargazersCount = 4,
+            whRepoWatchersCount = 4,
+            whRepoLanguage = Just "Brainfuck",
+            whRepoHasIssues = True,
+            whRepoHasDownloads = True,
+            whRepoHasWiki = True,
+            whRepoHasPages = False,
+            whRepoForkCount = 1,
+            whRepoMirrorUrl = Nothing,
+            whRepoOpenIssuesCount = 130,
+            whRepoDefaultBranchName = "main"
+          },
+      evPushOrganization =
+        Just
+          ( HookOrganization
+              { whOrgLogin = "some-organization",
+                whOrgId = 52709322,
+                whOrgNodeId = "MDEyO9kZyFua2pXhGlvdjbzNcMzOTYz3",
+                whOrgUrl = URL "https://api.github.com/orgs/some-organization",
+                whOrgReposUrl = URL "https://api.github.com/orgs/some-organization/repos",
+                whOrgEventsUrl = URL "https://api.github.com/orgs/some-organization/events",
+                whOrgHooksUrl = Just (URL "https://api.github.com/orgs/some-organization/hooks"),
+                whOrgIssuesUrl = Just (URL "https://api.github.com/orgs/some-organization/issues"),
+                whOrgMembersUrl = URL "https://api.github.com/orgs/some-organization/members{/member}",
+                whOrgPublicMembersUrl = URL "https://api.github.com/orgs/some-organization/public_members{/member}",
+                whOrgAvatarUrl = URL "https://avatars.githubusercontent.com/u/52709322?v=4",
+                whOrgDescription = "Plurality Media"
+              }
+          ),
+      evPushSender = Nothing
     }
 
 releaseEventFixture :: ReleaseEvent

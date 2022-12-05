@@ -9,6 +9,7 @@ This module contains types that represent GitHub webhook's events.
 -}
 module GitHub.Data.Webhooks.Events
     ( EventHasSender(..)
+    , EventHasMaybeSender(..)
     , EventHasRepo(..)
       --
     , CheckSuiteEventAction(..)
@@ -130,6 +131,11 @@ import           GitHub.Data.Webhooks.Payload
 class EventHasSender eventKind where
     -- | Provides the sender context of a Webhook event.
     senderOfEvent :: eventKind -> HookUser
+
+-- | Represents an event that may contain its sender information.
+class EventHasMaybeSender eventKind where
+    -- | Provides the sender context of a Webhook event.
+    maybeSenderOfEvent :: eventKind -> Maybe HookUser
 
 -- | Represents an event that contains its repository information.
 class EventHasRepo eventKind where
@@ -1111,11 +1117,12 @@ data PushEvent = PushEvent
     , evPushHeadCommit          :: !(Maybe HookCommit)
     , evPushRepository          :: !HookRepository
     , evPushOrganization        :: !(Maybe HookOrganization)
-    , evPushSender              :: !HookUser
+      -- | In very rare cases, the sender may be missing.
+    , evPushSender              :: !(Maybe HookUser)
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
-instance EventHasSender PushEvent where senderOfEvent = evPushSender
+instance EventHasMaybeSender PushEvent where maybeSenderOfEvent = evPushSender
 instance EventHasRepo PushEvent where repoForEvent = evPushRepository
 instance NFData PushEvent where rnf = genericRnf
 
@@ -1567,7 +1574,7 @@ instance FromJSON PushEvent where
         <*> o .:? "head_commit"
         <*> o .: "repository"
         <*> o .:? "organization"
-        <*> o .: "sender"
+        <*> o .:? "sender"
 
 instance FromJSON ReleaseEvent where
     parseJSON = withObject "ReleaseEvent" $ \o -> ReleaseEvent

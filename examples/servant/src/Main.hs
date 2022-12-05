@@ -35,7 +35,7 @@ type PushHookAPI
 
 pushHook :: RepoWebhookEvent -> ((), PushEvent) -> Handler ()
 pushHook _ (_, ev) = liftIO $ do
-    putStrLn $ (show . whUserLogin . evPushSender) ev ++ " pushed a commit causing HEAD SHA to become:"
+    putStrLn $ (show . whUserLogin . fromJust . evPushSender) ev ++ " pushed a commit causing HEAD SHA to become:"
     print $ (fromJust . evPushHeadSha) ev
 
 -- Issue Comment Hook
