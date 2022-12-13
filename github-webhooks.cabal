@@ -69,6 +69,7 @@ extra-source-files:
     fixtures/pull-request-event.json
     fixtures/pull-request-review-comment-event.json
     fixtures/pull-request-review-event.json
+    fixtures/push-event-without-sender.json
     fixtures/push-event.json
     fixtures/release-event.json
     fixtures/repository-event.json
