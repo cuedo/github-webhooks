@@ -1,3 +1,7 @@
+# 0.17.0
+
+* The sender of a push event was made optional for `PushEvent` (resolves #61)
+
 # 0.16.0
 
 * The invitation and membership fields were made optional for `OrganizationEvent` (resolves #37)
