@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.35.2.
 --
 -- see: https://github.com/sol/hpack
 
@@ -37,6 +37,8 @@ extra-source-files:
     stack-ghc-8.4.yaml
     stack-ghc-8.6.yaml
     stack-ghc-8.8.yaml
+    stack-ghc-9.0.yaml
+    stack-ghc-9.2.yaml
     stack-nightly.yaml
     CHANGELOG.md
     fixtures/check-run-event.json
@@ -112,9 +114,9 @@ library
     , text
     , time
     , vector
+  default-language: Haskell2010
   if flag(ci)
     ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
-  default-language: Haskell2010
 
 test-suite spec
   type: exitcode-stdio-1.0
@@ -137,6 +139,6 @@ test-suite spec
     , hspec ==2.*
     , text
     , vector
+  default-language: Haskell2010
   if flag(ci)
     ghc-options: -Wall -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -ddump-to-file -ddump-hi
-  default-language: Haskell2010

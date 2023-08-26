@@ -19,6 +19,8 @@ jobs:
           - stack-ghc-8.6.yaml
           - stack-ghc-8.8.yaml
           - stack-ghc-8.10.yaml
+          - stack-ghc-9.0.yaml
+          - stack-ghc-9.2.yaml
         stack-version:
           - latest
 
