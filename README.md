@@ -28,42 +28,43 @@ Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 * [License](#license)
 
 ## Features
+`github-webhooks` comes with all the bells and whistles:
 
 * **Best-in-class JSON Decoding via `Aeson`**
 
-This library uses the [aeson] package, a fast and widely adopted Haskell library for working with JSON data. It ensures best-in-class JSON decoding, enabling you to parse GitHub webhooks payloads with high performance and accuracy.
+  This library uses the [aeson] package, a fast and widely adopted Haskell library for working with JSON data. It ensures best-in-class JSON decoding, enabling you to parse GitHub webhooks payloads with high performance and accuracy.
 
 * **i18n/Unicode String Support via `Text`**
 
-`github-webhooks` has first-class support for Unicode strings in all functions via the [text] package. This ensures that the library can handle any i18n text data in the payloads correctly, regardless of the character set.
+  `github-webhooks` has first-class support for Unicode strings in all functions via the [text] package. This ensures that the library can handle any i18n text data in the payloads correctly, regardless of the character set.
 
 * **Suitable for Large Data Payloads using `Vector`**
 
-The library uses the [vector] package to handle large data payloads efficiently. This means it is suitable for big data workloads and capable of processing large amounts of data without excessive CPU or memory usage.
+  This library uses the [vector] package to handle large data payloads efficiently. This means it is suitable for big data workloads and capable of processing large amounts of data without excessive CPU or memory usage.
 
 * **Type-safe Encoding of Optional Data**
 
-Optional data in the payloads are encoded in a type-safe manner (i.e. using `Maybe`). This ensures that your application will not encounter runtime errors due to missing or unexpected data and provides valuable signals during development where you should implement fault handling.
+  Optional data in the payloads are encoded in a type-safe manner (i.e. using `Maybe`). This ensures that your application will not encounter runtime errors due to missing or unexpected data and provides valuable signals during development where you should implement fault handling.
 
 * **Type-safe Event Action Encodings with Support for Future API Changes**
 
-The library encodes event actions in a type-safe manner that does not require the payload to be fully decoded. Thus, applications built using this library will generally be forward-compatible with future changes to the GitHub API and continue to work even if GitHub makes changes to the webhooks API.
+  This library encodes event actions in a type-safe manner that does not require the payload to be fully decoded. Thus, applications built using this library will generally be forward-compatible with future changes to the GitHub API and continue to work even if GitHub makes changes to the webhooks API.
 
 * **Instances for `Typeable`, `Data`, `Generic` and `NFData`**
 
-The data types in the library have instances for `Typeable`, `Data`, `Generic`, and `NFData`. This ensures compatibility with a wide range of Haskell libraries and metaprogramming tools.
+  The data types in this library have instances for `Typeable`, `Data`, `Generic`, and `NFData`. This ensures compatibility with a wide range of Haskell libraries and metaprogramming tools.
 
 * **Strongly Typed Utility Classes `EventHasSender`, `EventHasRepo` et al.**
 
-The library provides strongly typed utility classes such as `EventHasSender` and `EventHasRepo` to make it easier to work with the different event types and their associated data. You can define webhook event handlers that work on multiple events.
+  This library provides strongly typed utility classes such as `EventHasSender` and `EventHasRepo` to make it easier to work with the different event types and their associated data. You can define webhook event handlers that work on multiple events.
 
 * **Strict Data Types Suitable for High Performance Streaming Operations**
 
-The data types in the library are strict, making them suitable for high-performance streaming operations. This ensures that your application can process large streams of webhook events efficiently and without space leaks.
+  The data types in this library are strict, making them suitable for high-performance streaming operations. This ensures that your application can process large streams of webhook events efficiently and without space leaks.
 
 * **Full Support for Webhook Event Types**
 
-`github-webhooks` provides full support for [all the GitHub webhook event types](https://developer.github.com/v3/activity/events/types/#event-types--payloads). This means you can handle any event sent by GitHub without having to implement custom parsing or processing logic.
+  `github-webhooks` provides full support for [all the GitHub webhook event types](https://developer.github.com/v3/activity/events/types/#event-types--payloads). This means you can handle any event sent by GitHub without having to implement custom parsing or processing logic.
 
 ## Installation
 `github-webhooks` is available via installation on [Hackage](https://hackage.haskell.org/package/github-webhooks) and [Stackage](https://www.stackage.org/package/github-webhooks).
@@ -120,6 +121,11 @@ See [ROADMAP.md](./ROADMAP.md) for the project timeline and feature estimation o
 
 ## Authors
 See [AUTHORS](./AUTHORS) for a list of significant authors.
+
+## Support
+The best way to get free community support is to raise a well-written issue in this repository and one of the maintainers will endeavour to respond to it quickly.
+
+If you need enterprise support, you can write us: [foss@cuedo.com.au](mailto:foss@cuedo.com.au).
 
 ## License
 `github-webhooks` is free open source software, however you must use it according to the MIT-style [LICENSE](./LICENSE).
