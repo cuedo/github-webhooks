@@ -6,7 +6,7 @@ github-webhooks
 [![Hackage](https://img.shields.io/hackage/v/github-webhooks.svg)](https://hackage.haskell.org/package/github-webhooks)
 [![License](https://img.shields.io/github/license/cuedo/github-webhooks.svg)](#license)
 
-Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
+Complete Haskell types and instances for decoding GitHub API [webhook payloads].
 
 ### Build Status
 
@@ -25,6 +25,7 @@ Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 * [Changelog](#changelog)
 * [Roadmap](#roadmap)
 * [Authors](#authors)
+* [Support](#support)
 * [License](#license)
 
 ## Features
@@ -161,8 +162,9 @@ Free open source software, sponsored by CUEDO CONTROLS P/L ([cuedo.com.au](https
 \
 <a href="https://cuedo.com.au" rel="sponsor">![CUEDO CONTROLS PTY LTD](./doc/cuedo-color-256.svg)</a>
 
-[Webhook]: https://developer.github.com/webhooks/
+**Software defined mobility, just-so.**
 
+[webhook payloads]: https://developer.github.com/webhooks/
 [aeson]: https://www.stackage.org/package/aeson
 [text]: https://www.stackage.org/package/text
 [vector]: https://www.stackage.org/package/vector
