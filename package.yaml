@@ -9,8 +9,8 @@ extra-source-files:
   - stack-*.yaml
   - CHANGELOG.md
   - fixtures/*.json
-synopsis: Aeson instances for GitHub Webhook payloads.
-copyright: (c) 2017-2022 Cuedo Control Engineering
+synopsis: Aeson instances for GitHub webhook payloads.
+copyright: (c) 2017-2023 CUEDO CONTROLS P/L
 author:
   - Kyle Van Berendonck <kyle.vanberendonck@cuedo.com.au>
   - Christian Sakai <christianmsakai@gmail.com>
