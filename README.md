@@ -25,6 +25,7 @@ Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 * [Changelog](#changelog)
 * [Roadmap](#roadmap)
 * [Authors](#authors)
+* [Support](#support)
 * [License](#license)
 
 ## Features
