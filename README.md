@@ -72,6 +72,8 @@ Complete Haskell types and instances for decoding GitHub API [Webhook] payloads.
 ## Examples
 
 ### Minimal interactive example:
+
+Shell:
 ```hs
 $ stack ghci bytestring aeson github-webhooks
 import qualified Data.ByteString.Lazy as BSL
@@ -80,6 +82,7 @@ import           Data.Aeson           ( eitherDecode' )
 json <- BSL.readFile "fixtures/watch-event.json"
 eitherDecode' json :: Either String WatchEvent
 ```
+
 Output:
 ```
 Right (WatchEvent {
@@ -125,7 +128,9 @@ See [AUTHORS](./AUTHORS) for a list of significant authors.
 ## Support
 The best way to get free community support is to raise a well-written issue in this repository and one of the maintainers will endeavour to respond to it quickly.
 
-If you need enterprise support, you can write us: [foss@cuedo.com.au](mailto:foss@cuedo.com.au).
+If you are using a plugin i.e. [servant-github-webhook](https://github.com/tsani/servant-github-webhook), you might be able to get better support if you raise your issue against that project instead.
+
+For enterprise support, you can write us: [foss@cuedo.com.au](mailto:foss@cuedo.com.au).
 
 ## License
 `github-webhooks` is free open source software, however you must use it according to the MIT-style [LICENSE](./LICENSE).
