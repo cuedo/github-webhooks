@@ -162,7 +162,7 @@ Free open source software, sponsored by CUEDO CONTROLS P/L ([cuedo.com.au](https
 \
 <a href="https://cuedo.com.au" rel="sponsor">![CUEDO CONTROLS PTY LTD](./doc/cuedo-color-256.svg)</a>
 
-Software defined mobility, just-so.
+**Software defined mobility, just-so.**
 
 [Webhook]: https://developer.github.com/webhooks/
 
