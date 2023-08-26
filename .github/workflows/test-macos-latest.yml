@@ -14,9 +14,9 @@ jobs:
           - latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: haskell/actions/setup@v1
+      - uses: haskell/actions/setup@v2
         with:
           enable-stack: true
           stack-no-global: true
@@ -28,7 +28,7 @@ jobs:
           stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
           stack sdist
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: github-webhooks-macos-${{ matrix.stack-yaml }}-${{ github.sha }}
           path: .stack-work/dist/
