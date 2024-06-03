@@ -1,4 +1,8 @@
-on: [push]
+on:
+  push:
+  schedule:
+    cron: "0 ? * * 1"
+
 name: test-ubuntu-latest
 jobs:
   test-package:
