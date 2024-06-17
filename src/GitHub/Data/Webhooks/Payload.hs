@@ -836,6 +836,7 @@ data HookPullRequest = HookPullRequest
     , whPullReqStatusesUrl      :: !URL
     , whPullReqBase             :: !PullRequestTarget
     , whPullReqHead             :: !PullRequestTarget
+    , whPullReqIsDraft          :: !(Maybe Bool)
     -- , whPullReqIsMerged         :: !Bool
     -- , whPullReqIsMergeable      :: !Bool
     , whPullReqMergeableState   :: !(Maybe Text)              -- ^ Not sent with all events.
@@ -1437,6 +1438,7 @@ instance FromJSON HookPullRequest where
       <*> o .: "statuses_url"
       <*> o .: "base"
       <*> o .: "head"
+      <*> o .:? "draft"
       -- <*> o .: "merged"
       -- <*> o .: "mergeable"
       <*> o .:? "mergeable_state"
