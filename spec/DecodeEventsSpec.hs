@@ -3785,6 +3785,7 @@ pullRequestEventFixture = PullRequestEvent
                 , whPullReqTargetLabel = "baxterthehacker:changes"
                 , whPullReqTargetRef = "changes"
                 }
+          , whPullReqIsDraft = Nothing
           , whPullReqMergeableState = Just "unknown"
           , whPullReqCommentCount = Just 0
           , whPullReqRevCommentCount = Just 0
@@ -4188,6 +4189,7 @@ pullRequestEventNullBodyFixture = PullRequestEvent
                 , whPullReqTargetLabel = "baxterthehacker:changes"
                 , whPullReqTargetRef = "changes"
                 }
+          , whPullReqIsDraft = Nothing
           , whPullReqMergeableState = Just "unknown"
           , whPullReqCommentCount = Just 0
           , whPullReqRevCommentCount = Just 0
@@ -4507,6 +4509,7 @@ pullRequestEventDeleteNullHeadRepoAnomalyFixture =
                   whPullReqTargetLabel = "thecontributor:master",
                   whPullReqTargetRef = "master"
                 },
+            whPullReqIsDraft = Just False,
             whPullReqMergeableState = Just "dirty",
             whPullReqCommentCount = Just 2,
             whPullReqRevCommentCount = Just 0,
@@ -4957,6 +4960,7 @@ pullRequestReviewCommentEventFixture = PullRequestReviewCommentEvent
                 , whPullReqTargetLabel = "baxterthehacker:changes"
                 , whPullReqTargetRef = "changes"
                 }
+          , whPullReqIsDraft = Nothing
           , whPullReqMergeableState = Nothing
           }
     , evPullReqRevRepo =
@@ -5384,6 +5388,7 @@ pullRequestReviewEventFixture = PullRequestReviewEvent
               , whPullReqTargetLabel = "skalnik:patch-2"
               , whPullReqTargetRef = "patch-2"
               }
+        , whPullReqIsDraft = Nothing
         , whPullReqMergeableState = Nothing
         , whPullReqCommentCount = Nothing
         , whPullReqRevCommentCount = Nothing
