@@ -1,3 +1,7 @@
+# 0.18.0
+
+* A `draft` field was added to `HookPullRequest` (resolves #75)
+
 # 0.17.0
 
 * The sender of a push event was made optional for `PushEvent` (resolves #61)
