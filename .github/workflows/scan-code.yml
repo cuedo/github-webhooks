@@ -1,5 +1,6 @@
 on:
   push:
+  workflow_dispatch:
   schedule:
     - cron: "0 ? * * 1"
 
@@ -10,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: 'Setup hlint'
         uses: rwe/actions-hlint-setup@v1

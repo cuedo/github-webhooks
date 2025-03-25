@@ -1,5 +1,6 @@
 on:
   push:
+  workflow_dispatch:
   schedule:
     - cron: "0 ? * * 1"
 
@@ -37,7 +38,7 @@ jobs:
             stack-version: 1.9
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: haskell/actions/setup@v2
         with:
@@ -51,7 +52,7 @@ jobs:
           stack --skip-ghc-check test --flag github-webhooks:ci --haddock --no-haddock-deps
           stack sdist
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: github-webhooks-ubuntu-${{ matrix.stack-yaml }}-${{ github.sha }}
           path: .stack-work/dist/
