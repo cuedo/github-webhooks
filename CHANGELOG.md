@@ -1,3 +1,8 @@
+# 0.19.0
+
+* The `app` property was added to `HookCheckSuite` (resolves #82)
+* The `permission` property has been added to the above mentioned `app` property (resolves #82)
+
 # 0.18.0
 
 * A `draft` field was added to `HookPullRequest` (resolves #75)
