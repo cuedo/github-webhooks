@@ -147,6 +147,78 @@ checkSuiteEventFixture = CheckSuiteEvent
                         , whSimplUserLogin = Nothing
                         }
                   }
+          , whCheckSuiteApp =
+              Just HookCheckSuiteApp
+                { whCheckSuiteAppId = 12345
+                , whCheckSuiteAppNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
+                , whCheckSuiteAppClientId = Nothing
+                , whCheckSuiteAppSlug = Just "baxterandthehackers-app"
+                , whCheckSuiteAppOwner =
+                    HookUser
+                    { whUserLogin = "baxterthehacker"
+                    , whUserId = 12341234
+                    , whUserNodeId= "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
+                    , whUserAvatarUrl = URL "https://avatars2.githubusercontent.com/u/60385638?v=4"
+                    , whUserGravatarId = URL ""
+                    , whUserUrl = URL "https://api.github.com/users/baxterthehacker"
+                    , whUserHtmlUrl = URL "https://github.com/baxterthehacker"
+                    , whUserFollowersUrl = URL "https://api.github.com/users/baxterthehacker/followers"
+                    , whUserFollowingUrl = URL "https://api.github.com/users/baxterthehacker/following{/other_user}"
+                    , whUserGistsUrl = URL "https://api.github.com/users/baxterthehacker/gists{/gist_id}"
+                    , whUserStarredUrl = URL "https://api.github.com/users/baxterthehacker/starred{/owner}{/repo}"
+                    , whUserSubscriptionsUrl = URL "https://api.github.com/users/baxterthehacker/subscriptions"
+                    , whUserOrganizationsUrl = URL "https://api.github.com/users/baxterthehacker/orgs"
+                    , whUserReposUrl = URL "https://api.github.com/users/baxterthehacker/repos"
+                    , whUserEventsUrl = URL "https://api.github.com/users/baxterthehacker/events{/privacy}"
+                    , whUserReceivedEventsUrl = URL "https://api.github.com/users/baxterthehacker/received_events"
+                    , whUserType = OwnerOrganization
+                    , whUserIsAdminOfSite = False
+                    }
+                , whCheckSuiteAppName = "Baxterandthehackers App"
+                , whCheckSuiteAppDescription = ""
+                , whCheckSuiteAppExternalUrl = URL "https://www.baxterthehacker.com"
+                , whCheckSuiteAppHtmlUrl = URL "https://github.com/apps/baxterandthehackers-app"
+                , whCheckSuiteAppCreatedAt = read "2020-01-19 07:05:42Z"
+                , whCheckSuiteAppUpdatedAt = read "2020-02-18 00:24:52Z"
+                , whCheckSuiteAppEvents = Just (V.fromList ["check_run", "check_suite"])
+                , whCheckSuiteAppPermissions = Just HookCheckSuiteAppPermissions
+                  { whCheckSuiteAppPermissionsChecks = Just "write"
+                  , whCheckSuiteAppPermissionsIssues = Just "read"
+                  , whCheckSuiteAppPermissionsMetadata = Just "read"
+                  , whCheckSuiteAppPermissionsContents = Nothing
+                  , whCheckSuiteAppPermissionsDeployments = Nothing
+                  , whCheckSuiteAppPermissionsActions = Nothing
+                  , whCheckSuiteAppPermissionsAdministration = Nothing
+                  , whCheckSuiteAppPermissionsContentReferences = Nothing
+                  , whCheckSuiteAppPermissionsDiscussions = Nothing
+                  , whCheckSuiteAppPermissionsEmails = Nothing
+                  , whCheckSuiteAppPermissionsEnvironments = Nothing
+                  , whCheckSuiteAppPermissionsKeys = Nothing
+                  , whCheckSuiteAppPermissionsMembers = Nothing
+                  , whCheckSuiteAppPermissionsOrganizationAdministration = Nothing
+                  , whCheckSuiteAppPermissionsOrganizationHooks = Nothing
+                  , whCheckSuiteAppPermissionsOrganisationPackages = Nothing
+                  , whCheckSuiteAppPermissionsOrganizationPlan = Nothing
+                  , whCheckSuiteAppPermissionsOrganizationProjects = Nothing
+                  , whCheckSuiteAppPermissionsOrganizationSecrets = Nothing
+                  , whCheckSuiteAppPermissionsOrganizationSelfHostedRunners = Nothing
+                  , whCheckSuiteAppPermissionsOrganizationUserBlocking = Nothing
+                  , whCheckSuiteAppPermissionsPackages = Nothing
+                  , whCheckSuiteAppPermissionsPages = Nothing
+                  , whCheckSuiteAppPermissionsPullRequests = Nothing
+                  , whCheckSuiteAppPermissionsRepositoryHooks = Nothing
+                  , whCheckSuiteAppPermissionsRepositoryProjects = Nothing
+                  , whCheckSuiteAppPermissionsSecretScanningAlerts = Nothing
+                  , whCheckSuiteAppPermissionsSecrets = Nothing
+                  , whCheckSuiteAppPermissionsSecurityEvents = Nothing
+                  , whCheckSuiteAppPermissionsSecurityScanningAlert = Nothing
+                  , whCheckSuiteAppPermissionsSingleFile = Nothing
+                  , whCheckSuiteAppPermissionsStatuses = Nothing
+                  , whCheckSuiteAppPermissionsTeamDiscussion = Nothing
+                  , whCheckSuiteAppPermissionsVulnerabilityAlerts = Nothing
+                  , whCheckSuiteAppPermissionsWorkflows = Nothing
+                  }
+                }
           }
     , evCheckSuiteRepository =
         HookRepository
@@ -352,6 +424,78 @@ checkRunEventFixture = CheckRunEvent
                 , whCheckSuiteLatestCheckRunsCount = Nothing
                 , whCheckSuiteCheckRunsUrl = Nothing
                 , whCheckSuiteHeadCommit = Nothing
+                , whCheckSuiteApp =
+                    Just HookCheckSuiteApp
+                      { whCheckSuiteAppId = 12345
+                      , whCheckSuiteAppClientId = Nothing
+                      , whCheckSuiteAppNodeId = "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
+                      , whCheckSuiteAppSlug = Just "baxterandthehackers-app"
+                      , whCheckSuiteAppOwner =
+                          HookUser
+                          { whUserLogin = "baxterthehacker"
+                          , whUserId = 12341234
+                          , whUserNodeId= "MDg6Q2hlY2tSdW4xMjg2MjAyMjg="
+                          , whUserAvatarUrl = URL "https://avatars2.githubusercontent.com/u/60385638?v=4"
+                          , whUserGravatarId = URL ""
+                          , whUserUrl = URL "https://api.github.com/users/baxterthehacker"
+                          , whUserHtmlUrl = URL "https://github.com/baxterthehacker"
+                          , whUserFollowersUrl = URL "https://api.github.com/users/baxterthehacker/followers"
+                          , whUserFollowingUrl = URL "https://api.github.com/users/baxterthehacker/following{/other_user}"
+                          , whUserGistsUrl = URL "https://api.github.com/users/baxterthehacker/gists{/gist_id}"
+                          , whUserStarredUrl = URL "https://api.github.com/users/baxterthehacker/starred{/owner}{/repo}"
+                          , whUserSubscriptionsUrl = URL "https://api.github.com/users/baxterthehacker/subscriptions"
+                          , whUserOrganizationsUrl = URL "https://api.github.com/users/baxterthehacker/orgs"
+                          , whUserReposUrl = URL "https://api.github.com/users/baxterthehacker/repos"
+                          , whUserEventsUrl = URL "https://api.github.com/users/baxterthehacker/events{/privacy}"
+                          , whUserReceivedEventsUrl = URL "https://api.github.com/users/baxterthehacker/received_events"
+                          , whUserType = OwnerOrganization
+                          , whUserIsAdminOfSite = False
+                          }
+                      , whCheckSuiteAppName = "Baxterandthehackers App"
+                      , whCheckSuiteAppDescription = ""
+                      , whCheckSuiteAppExternalUrl = URL "https://www.baxterthehacker.com"
+                      , whCheckSuiteAppHtmlUrl = URL "https://github.com/apps/baxterandthehackers-app"
+                      , whCheckSuiteAppCreatedAt = read "2020-01-19 07:05:42Z"
+                      , whCheckSuiteAppUpdatedAt = read "2020-02-18 00:24:52Z"
+                      , whCheckSuiteAppPermissions = Just HookCheckSuiteAppPermissions
+                        { whCheckSuiteAppPermissionsChecks = Just "write"
+                        , whCheckSuiteAppPermissionsIssues = Just "read"
+                        , whCheckSuiteAppPermissionsMetadata = Just "read"
+                        , whCheckSuiteAppPermissionsContents = Nothing
+                        , whCheckSuiteAppPermissionsDeployments = Nothing
+                        , whCheckSuiteAppPermissionsActions = Nothing
+                        , whCheckSuiteAppPermissionsAdministration = Nothing
+                        , whCheckSuiteAppPermissionsContentReferences = Nothing
+                        , whCheckSuiteAppPermissionsDiscussions = Nothing
+                        , whCheckSuiteAppPermissionsEmails = Nothing
+                        , whCheckSuiteAppPermissionsEnvironments = Nothing
+                        , whCheckSuiteAppPermissionsKeys = Nothing
+                        , whCheckSuiteAppPermissionsMembers = Nothing
+                        , whCheckSuiteAppPermissionsOrganizationAdministration = Nothing
+                        , whCheckSuiteAppPermissionsOrganizationHooks = Nothing
+                        , whCheckSuiteAppPermissionsOrganisationPackages = Nothing
+                        , whCheckSuiteAppPermissionsOrganizationPlan = Nothing
+                        , whCheckSuiteAppPermissionsOrganizationProjects = Nothing
+                        , whCheckSuiteAppPermissionsOrganizationSecrets = Nothing
+                        , whCheckSuiteAppPermissionsOrganizationSelfHostedRunners = Nothing
+                        , whCheckSuiteAppPermissionsOrganizationUserBlocking = Nothing
+                        , whCheckSuiteAppPermissionsPackages = Nothing
+                        , whCheckSuiteAppPermissionsPages = Nothing
+                        , whCheckSuiteAppPermissionsPullRequests = Nothing
+                        , whCheckSuiteAppPermissionsRepositoryHooks = Nothing
+                        , whCheckSuiteAppPermissionsRepositoryProjects = Nothing
+                        , whCheckSuiteAppPermissionsSecretScanningAlerts = Nothing
+                        , whCheckSuiteAppPermissionsSecrets = Nothing
+                        , whCheckSuiteAppPermissionsSecurityEvents = Nothing
+                        , whCheckSuiteAppPermissionsSecurityScanningAlert = Nothing
+                        , whCheckSuiteAppPermissionsSingleFile = Nothing
+                        , whCheckSuiteAppPermissionsStatuses = Nothing
+                        , whCheckSuiteAppPermissionsTeamDiscussion = Nothing
+                        , whCheckSuiteAppPermissionsVulnerabilityAlerts = Nothing
+                        , whCheckSuiteAppPermissionsWorkflows = Nothing
+                        }
+                      , whCheckSuiteAppEvents = Just (V.fromList ["check_run", "check_suite"])
+                      }
                 }
           , whCheckRunPullRequests =
               V.fromList [

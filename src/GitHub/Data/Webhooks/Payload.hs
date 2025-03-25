@@ -39,6 +39,8 @@ module GitHub.Data.Webhooks.Payload
     , HookCheckSuiteConclusion(..)
     , HookCheckSuite(..)
     , HookCheckSuiteCommit(..)
+    , HookCheckSuiteApp(..)
+    , HookCheckSuiteAppPermissions(..)
     , HookCheckRunStatus(..)
     , HookCheckRunConclusion(..)
     , HookCheckRun(..)
@@ -608,6 +610,7 @@ data HookCheckSuite = HookCheckSuite
     , whCheckSuiteLatestCheckRunsCount :: !(Maybe Int) -- not included in the check run nested payload
     , whCheckSuiteCheckRunsUrl         :: !(Maybe URL) -- not included in the check run nested payload
     , whCheckSuiteHeadCommit           :: !(Maybe HookCheckSuiteCommit) -- not included in the check run nested payload
+    , whCheckSuiteApp                  :: !(Maybe HookCheckSuiteApp) -- not included in the check run nested payload
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
@@ -623,6 +626,68 @@ data HookCheckSuiteCommit = HookCheckSuiteCommit
     deriving (Eq, Show, Typeable, Data, Generic)
 
 instance NFData HookCheckSuiteCommit where rnf = genericRnf
+
+-- | Represents the "app" field in the
+--  'CheckSuiteEvent' payload.
+data HookCheckSuiteApp = HookCheckSuiteApp
+    { whCheckSuiteAppId          :: !Int
+    , whCheckSuiteAppNodeId      :: !Text
+    , whCheckSuiteAppSlug        :: !(Maybe Text)
+    , whCheckSuiteAppOwner       :: !HookUser
+    , whCheckSuiteAppName        :: !Text
+    , whCheckSuiteAppDescription :: !Text
+    , whCheckSuiteAppExternalUrl :: !URL
+    , whCheckSuiteAppHtmlUrl     :: !URL
+    , whCheckSuiteAppClientId    :: !(Maybe Text)
+    , whCheckSuiteAppCreatedAt   :: !UTCTime
+    , whCheckSuiteAppUpdatedAt   :: !UTCTime
+    , whCheckSuiteAppPermissions :: !(Maybe HookCheckSuiteAppPermissions)
+    , whCheckSuiteAppEvents      :: !(Maybe (Vector Text))
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookCheckSuiteApp where rnf = genericRnf
+
+data HookCheckSuiteAppPermissions = HookCheckSuiteAppPermissions
+    { whCheckSuiteAppPermissionsActions                       :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsAdministration                :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsChecks                        :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsContentReferences             :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsContents                      :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsDeployments                   :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsDiscussions                   :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsEmails                        :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsEnvironments                  :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsIssues                        :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsKeys                          :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsMembers                       :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsMetadata                      :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsOrganizationAdministration    :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsOrganizationHooks             :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsOrganisationPackages          :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsOrganizationPlan              :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsOrganizationProjects          :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsOrganizationSecrets           :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsOrganizationSelfHostedRunners :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsOrganizationUserBlocking      :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsPackages                      :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsPages                         :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsPullRequests                  :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsRepositoryHooks               :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsRepositoryProjects            :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsSecretScanningAlerts          :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsSecrets                       :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsSecurityEvents                :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsSecurityScanningAlert         :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsSingleFile                    :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsStatuses                      :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsTeamDiscussion                :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsVulnerabilityAlerts           :: !(Maybe Text)
+    , whCheckSuiteAppPermissionsWorkflows                     :: !(Maybe Text)
+    }
+    deriving (Eq, Show, Typeable, Data, Generic)
+
+instance NFData HookCheckSuiteAppPermissions where rnf = genericRnf
 
 -- | Represents the "status" field in the
 --  'HookCheckRun' payload.
@@ -682,7 +747,6 @@ instance FromJSON HookCheckRunConclusion where
           "stale"                 -> pure HookCheckRunConclusionStale
           _                       -> pure (HookCheckRunConclusionOther t)
 
--- FIXME: Missing nested "app", there are examples, but no documentation.
 -- | Represents the "check_run" field in the
 --  'CheckRunEvent' payload.
 data HookCheckRun = HookCheckRun
@@ -1318,12 +1382,67 @@ instance FromJSON HookCheckSuite where
       <*> o .:? "latest_check_runs_count"
       <*> o .:? "check_runs_url"
       <*> o .:? "head_commit"
+      <*> o .:? "app"
 
 instance FromJSON HookCheckSuiteCommit where
   parseJSON = withObject "HookCheckSuiteCommit" $ \o -> HookCheckSuiteCommit
       <$> o .: "id"
       <*> o .: "author"
       <*> o .: "committer"
+
+instance FromJSON HookCheckSuiteApp where
+  parseJSON = withObject "HookCheckSuiteApp" $ \o -> HookCheckSuiteApp
+      <$> o .: "id"
+      <*> o .: "node_id"
+      <*> o .:? "slug"
+      <*> o .: "owner"
+      <*> o .: "name"
+      <*> o .: "description"
+      <*> o .: "external_url"
+      <*> o .: "html_url"
+      <*> o .:? "client_id"
+      <*> o .: "created_at"
+      <*> o .: "updated_at"
+      <*> o .:? "permissions"
+      <*> o .:? "events"
+
+instance FromJSON HookCheckSuiteAppPermissions where
+  parseJSON = withObject "HookCheckSuiteAppPermissions" $ \o -> HookCheckSuiteAppPermissions
+      <$> o .:? "actions"
+      <*> o .:? "administration"
+      <*> o .:? "checks"
+      <*> o .:? "content_references"
+      <*> o .:? "contents"
+      <*> o .:? "deployments"
+      <*> o .:? "discussions"
+      <*> o .:? "emails"
+      <*> o .:? "environments"
+      <*> o .:? "issues"
+      <*> o .:? "keys"
+      <*> o .:? "members"
+      <*> o .:? "metadata"
+      <*> o .:? "organization_administration"
+      <*> o .:? "organization_hooks"
+      <*> o .:? "organization_packages"
+      <*> o .:? "organization_plan"
+      <*> o .:? "organization_projects"
+      <*> o .:? "organization_secrets"
+      <*> o .:? "organization_self_hosted_runners"
+      <*> o .:? "organization_user_blocking"
+      <*> o .:? "packages"
+      <*> o .:? "pages"
+      <*> o .:? "pull_requests"
+      <*> o .:? "repository_hooks"
+      <*> o .:? "repository_projects"
+      <*> o .:? "secret_scanning_alerts"
+      <*> o .:? "secrets"
+      <*> o .:? "security_events"
+      <*> o .:? "security_scanning_alert"
+      <*> o .:? "single_file"
+      <*> o .:? "statuses"
+      <*> o .:? "team_discussions"
+      <*> o .:? "vulnerability_alerts"
+      <*> o .:? "workflows"
 
 instance FromJSON HookCheckRun where
   parseJSON = withObject "HookCheckRun" $ \o -> HookCheckRun
