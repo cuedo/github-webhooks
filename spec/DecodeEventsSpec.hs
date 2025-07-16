@@ -5801,6 +5801,7 @@ pushEventFixture = PushEvent
           , whUserType = OwnerUser
           , whUserIsAdminOfSite = False
           }
+    , evPushInstallation = Nothing
     }
 
 pushEventFixtureWithoutSender :: PushEvent
@@ -5923,7 +5924,11 @@ pushEventFixtureWithoutSender =
                 whOrgDescription = "Plurality Media"
               }
           ),
-      evPushSender = Nothing
+      evPushSender = Nothing,
+      evPushInstallation = Just $ HookChecksInstallation
+         { whChecksInstallationId = 17816238
+         , whChecksInstallationNodeId = "MDIzklOdGunVcFm0WauSW9z5GFdsGb0FW9uaTMgM3zcNjg4="
+         }
     }
 
 releaseEventFixture :: ReleaseEvent

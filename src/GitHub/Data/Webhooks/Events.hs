@@ -1119,6 +1119,7 @@ data PushEvent = PushEvent
     , evPushOrganization        :: !(Maybe HookOrganization)
       -- | In very rare cases, the sender may be missing.
     , evPushSender              :: !(Maybe HookUser)
+    , evPushInstallation        :: !(Maybe HookChecksInstallation)
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
@@ -1575,6 +1576,7 @@ instance FromJSON PushEvent where
         <*> o .: "repository"
         <*> o .:? "organization"
         <*> o .:? "sender"
+        <*> o .:? "installation"
 
 instance FromJSON ReleaseEvent where
     parseJSON = withObject "ReleaseEvent" $ \o -> ReleaseEvent
