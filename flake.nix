@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "A flake for developing or using github-webhooks";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
