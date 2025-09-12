@@ -843,6 +843,9 @@ data HookCommit = HookCommit
     , whCommitCommentsUrl       :: !(Maybe URL)   -- ^ Not always sent.
     , whCommitAuthor            :: !(Either HookSimpleUser HookUser)
     , whCommitCommitter         :: !(Either HookSimpleUser HookUser)
+    , whCommitDistinct          :: !(Maybe Bool) -- ^ Whether this commit is distinct from any that have been pushed before. Not always sent.
+    , whCommitMessage           :: !(Maybe Text) -- ^ Not always sent
+    , whCommitTimestamp         :: !(Maybe UTCTime) -- ^ Not always sent.
     }
     deriving (Eq, Show, Typeable, Data, Generic)
 
@@ -1507,6 +1510,9 @@ instance FromJSON HookCommit where
       <*> o .:? "comments_url"
       <*> ((Right <$> o .: "author")      <|> (Left <$> o .: "author"))       -- try complex form first
       <*> ((Right <$> o .: "committer")   <|> (Left <$> o .: "committer"))    -- try complex form first
+      <*> o .:? "distinct"
+      <*> o .:? "message"
+      <*> o .:? "timestamp"
 
 instance FromJSON HookRelease where
   parseJSON = withObject "HookRelease" $ \o -> HookRelease

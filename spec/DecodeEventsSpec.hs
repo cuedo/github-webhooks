@@ -5684,6 +5684,9 @@ pushEventFixture = PushEvent
                       , whSimplUserEmail = "baxterthehacker@users.noreply.github.com"
                       , whSimplUserLogin = Just "baxterthehacker"
                       }
+              , whCommitDistinct = Just True
+              , whCommitMessage = Just "Update README.md"
+              , whCommitTimestamp = Just $ read "2015-05-05 23:40:15Z"
               }
           ]
     , evPushHeadCommit =
@@ -5707,6 +5710,9 @@ pushEventFixture = PushEvent
                     , whSimplUserEmail = "baxterthehacker@users.noreply.github.com"
                     , whSimplUserLogin = Just "baxterthehacker"
                     }
+            , whCommitDistinct = Just True
+            , whCommitMessage = Just "Update README.md"
+            , whCommitTimestamp = Just $ read "2015-05-05 23:40:15Z"
             }
     , evPushRepository =
         HookRepository
@@ -6269,6 +6275,9 @@ statusEventFixture = StatusEvent
                 , whUserType = OwnerUser
                 , whUserIsAdminOfSite = False
                 }
+            , whCommitDistinct = Nothing
+            , whCommitMessage = Nothing
+            , whCommitTimestamp = Nothing
           }
     , evStatusCreatedAt = read "2015-05-05 23:40:39Z"
     , evStatusUpdatedAt = read "2015-05-05 23:40:39Z"
